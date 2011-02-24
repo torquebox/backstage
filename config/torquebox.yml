@@ -1,0 +1,6 @@
+web:
+  context: /backstage
+
+tasks:
+  Backgroundable:
+    concurrency: 0
