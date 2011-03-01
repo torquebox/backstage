@@ -1,0 +1,73 @@
+$medium_gray: #cccccc
+$light_gray: #eeeeee
+$border_color: $medium_gray
+
+@mixin clearfix
+  &:after
+    content: "\0020"
+    display: block
+    height: 0
+    clear: both
+    overflow: hidden
+    visibility: hidden
+
+body
+  font-family: Verdana, Arial, Helvetica, sans-serif
+ 
+#content,
+#header
+  width: 960px
+  margin: 0 auto 
+
+#content
+  margin-bottom: 20px
+  border: 1px solid $border_color
+
+  #inner-content
+    margin: 20px
+
+#navigation
+  @include clearfix
+  a
+    display: block
+    float: left
+    height: 20px
+    padding: 5px 10px
+    border-top: 1px solid $border_color
+    border-right: 1px solid $border_color
+    border-left: 0
+    border-bottom: 0
+    &:first-child
+      border-left: 1px solid $border_color
+      margin-left: 5px
+
+.data-table
+  .data-row
+    td.label, td.value
+      border: 1px solid $border_color
+    .label
+      background-color: $light_gray
+
+h1, h2
+  margin-bottom: 15px
+
+td, th
+  padding: 3px
+  margin: 1px  
+th
+  background-color: $light_gray
+
+@mixin selected-tab($body_class, $link_class = '')
+  @if $link_class == ''
+    $link_class = $body_class
+  body.#{$body_class}
+    #navigation a.#{$link_class}
+      background-color: $medium_gray
+
+
+@include selected-tab('root')
+@include selected-tab('queues')
+@include selected-tab('queue', 'queues')
+@include selected-tab('topics')
+@include selected-tab('topic', 'topics')
+@include selected-tab('jobs')

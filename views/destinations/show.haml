@@ -1,5 +1,11 @@
 #destinations-show
   %h2 
     == #{simple_class_name( @destination ).capitalize}: #{@destination.name}
+  = link_to collection_path(@destination, :messages), 'View Messages'
 
-    
+  %table.data-table
+    - %w{ dead_letter_address expiry_address consumer_count message_count delivering_count scheduled_count messages_added }.each do |method|
+      = data_row( humanize( method ), @destination.send( method ) )
+
+
+

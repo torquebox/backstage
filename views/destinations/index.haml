@@ -11,13 +11,11 @@
       %th Consumers
     - @destinations.each do |destination|
       %tr
-        %td= destination.name
+        %td= link_to( object_path( destination ), destination.name )
         %td= destination.message_count
         %td= destination.delivering_count
         %td= destination.scheduled_count
         %td= destination.messages_added
         %td= destination.consumer_count
-
-        %td= link_to( object_path( destination ), 'Show' )
 
       

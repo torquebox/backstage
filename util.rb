@@ -4,6 +4,8 @@ module Backstage
   module Util
     class << self
       def encode_name(name)
+        #ugh, I'd rather encode a different way, but other attempts
+        #seem to break sinatra?
         Base64.encode64( name ).gsub("\n", '')
       end
 
