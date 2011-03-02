@@ -1,8 +1,6 @@
 require 'has_mbean'
 require 'json'
 
-require 'org.torquebox.messaging-client'
-
 module Backstage
   class Destination
     include Enumerable

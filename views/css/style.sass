@@ -57,9 +57,9 @@ td, th
 th
   background-color: $light_gray
 
-@mixin selected-tab($body_class, $link_class = '')
-  @if $link_class == ''
-    $link_class = $body_class
+@mixin selected-tab($body_class, $link_class: "")
+  @if $link_class == ""
+    $link_class: $body_class
   body.#{$body_class}
     #navigation a.#{$link_class}
       background-color: $medium_gray
@@ -71,3 +71,4 @@ th
 @include selected-tab('topics')
 @include selected-tab('topic', 'topics')
 @include selected-tab('jobs')
+@include selected-tab('services')

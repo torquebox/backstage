@@ -1,5 +1,3 @@
-require 'destination'
-
 module Backstage
   class Queue < Destination
     
