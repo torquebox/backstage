@@ -2,11 +2,11 @@ $medium_gray: #cccccc
 $light_gray: #eeeeee
 $border_color: $medium_gray
 
-$header_color: #c13b00
+$header_color: #7d2500
 $standout_color: #1b1d1e
 $standout_inverse_color: #ffffff
 $text_color: #1b1d1e
-$inactive_tab_color: #5e6d70
+$inactive_tab_color: $light_gray
 $active_tab_color: $standout_color
 $link_color: #424e4f
 $link_hover_color: $text_color
@@ -24,12 +24,8 @@ body
   padding-top: 15px  
   border-bottom: 3px solid $active_tab_color  
   h1
-    @include rounded-corners
     font-size: 1.2em
-    background-color: $standout_color
     color: $standout_inverse_color    
-    padding: 4px
-    display: inline
     
 #navigation
   @include clearfix
@@ -41,12 +37,10 @@ body
     padding: 5px 10px
     margin-right: 5px    
     background-color: $inactive_tab_color    
-    color: $standout_inverse_color
+    color: $text_color
     text-decoration: none    
-    /* border-top: 1px solid $border_color
-    /* border-right: 1px solid $border_color
-    /* border-left: 1px solid $border_color
-    /* border-bottom: 0
+    &:hover
+      @include highlighted-tab
 
 #content
   width: 98%
@@ -78,8 +72,7 @@ td, th
   padding: 3px
   margin: 1px  
 th
-  color: $inactive_tab_color
-  border-bottom: 1px solid $inactive_tab_color
+  border-bottom: 1px solid $text_color
   text-align: left
 
 @include selected-tab('apps')

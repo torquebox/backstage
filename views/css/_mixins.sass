@@ -40,10 +40,13 @@
     visibility: hidden
 
 
+@mixin highlighted-tab
+  background-color: $active_tab_color
+  color: $standout_inverse_color
+  
 @mixin selected-tab($body_class, $link_class: "")
   @if $link_class == ""
     $link_class: $body_class
   body.#{$body_class}
     #navigation a.#{$link_class}
-      background-color: $active_tab_color
-
+      @include highlighted-tab
