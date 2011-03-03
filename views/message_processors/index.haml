@@ -1,0 +1,17 @@
+#message_processors-index
+  %table
+    %tr
+      %th Name 
+      %th App
+      %th Destination
+      %th Selector
+      %th Concurrency
+    - @message_processors.each do |message_processor|
+      %tr
+        %td= message_processor.name
+        %td= message_processor.app
+        %td= message_processor.destination_name
+        %td= message_processor.message_selector
+        %td= message_processor.concurrency
+
+      

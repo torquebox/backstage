@@ -1,8 +1,8 @@
 module Backstage
   class Application < Sinatra::Base
-    get "/jobs" do
-      @jobs = Job.all
-      haml :"jobs/index"
+    get "/apps" do
+      @apps = App.all
+      haml :"apps/index"
     end
   end
 end

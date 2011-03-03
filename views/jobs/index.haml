@@ -1,2 +1,16 @@
 #jobs-index
-  %h2 Coming soon!
+  %table
+    %tr
+      %th Name 
+      %th App
+      %th Ruby Class
+      %th Status
+      %th Schedule
+    - @jobs.each do |job|
+      %tr
+        %td= job.name
+        %td= job.app
+        %td= job.ruby_class_name
+        %td= job.status
+        %td= job.cron_expression
+      

@@ -1,6 +1,7 @@
 module Backstage
-  class Backstage::App < Sinatra::Base
+  class Application < Sinatra::Base
     get "/services" do
+      @services = Service.all
       haml :"services/index"
     end
   end

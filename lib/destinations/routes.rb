@@ -1,6 +1,6 @@
 
 module Backstage
-  class Backstage::App < Sinatra::Base
+  class Application < Sinatra::Base
         %w{ queue topic }.each do |model|
       klass = eval(model.capitalize)
       get "/#{model}s" do

@@ -5,11 +5,12 @@
   %link{:rel=>"stylesheet", :type=>"text/css", :href=>"#{home_path}/css/style.css"}
   %body{:class => class_for_body}
     #header
-      %h1 Backstage
+      %h1 TorqueBox::Backstage
       #navigation
-        = link_to home_path, 'Overview', :class => 'root'
+        = link_to collection_path( :apps ), 'Apps', :class => 'apps'
         = link_to collection_path( :queues ), 'Queues', :class => 'queues'
         = link_to collection_path( :topics ), 'Topics', :class => 'topics'
+        = link_to collection_path( :message_processors ), 'Msg. Processors', :class => 'message_processors'
         = link_to collection_path( :jobs ), 'Jobs', :class => 'jobs'
         = link_to collection_path( :services ), 'Services', :class => 'services'
     #content

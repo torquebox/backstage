@@ -1,0 +1,15 @@
+#apps-index
+  %table
+    %tr
+      %th Name 
+      %th Environment
+      %th Root
+      %th Deployed At
+    - @apps.each do |app|
+      %tr
+        %td= app.name
+        %td= app.environment_name
+        %td= app.root_path
+        %td= app.deployed_at
+
+      

@@ -1,7 +1,7 @@
 require 'util'
 
 module Backstage
-  class Backstage::App < Sinatra::Base
+  class Application < Sinatra::Base
     helpers do
       def home_path
         request.script_name
@@ -54,7 +54,7 @@ module Backstage
       end
 
       def class_for_body
-        klass = request.path_info.split('/').reverse.select { |part| part =~ /^[A-Za-z]*$/ }
+        klass = request.path_info.split('/').reverse.select { |part| part =~ /^[A-Za-z_]*$/ }
         klass.empty? ? 'root' : klass
       end
     end

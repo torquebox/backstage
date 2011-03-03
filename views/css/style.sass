@@ -28,8 +28,7 @@ body
     font-size: 1.2em
     background-color: $standout_color
     color: $standout_inverse_color    
-    width: 200px
-    padding: 8px
+    padding: 4px
     display: inline
     
 #navigation
@@ -79,14 +78,15 @@ td, th
   padding: 3px
   margin: 1px  
 th
-  background-color: $inactive_tab_color
-  color: $standout_inverse_color
-  font-weight: normal
-  
-@include selected-tab('root')
+  color: $inactive_tab_color
+  border-bottom: 1px solid $inactive_tab_color
+  text-align: left
+
+@include selected-tab('apps')
 @include selected-tab('queues')
 @include selected-tab('queue', 'queues')
 @include selected-tab('topics')
 @include selected-tab('topic', 'topics')
+@include selected-tab('message_processors')
 @include selected-tab('jobs')
 @include selected-tab('services')

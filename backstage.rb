@@ -9,12 +9,16 @@ $:.unshift File.join( File.dirname( __FILE__ ), 'lib' )
 require 'torquebox'
 require 'config/jmx-connection'
 require 'helpers'
+require 'has_mbean'
+require 'torquebox_managed'
+require 'apps'
 require 'destinations'
+require 'message_processors'
 require 'jobs'
 require 'services'
 
 module Backstage
-  class Backstage::App < Sinatra::Base
+  class Application < Sinatra::Base
     enable :logging
     
     set :views, Proc.new { File.join( File.dirname( root ), "views" ) }
@@ -28,7 +32,7 @@ module Backstage
     end
 
     get "/" do
-      haml :'root/index'
+      redirect collection_path( :apps )
     end
 
   end

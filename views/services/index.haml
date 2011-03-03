@@ -1,0 +1,15 @@
+#services-index
+  %table
+    %tr
+      %th Name 
+      %th App
+      %th Ruby Class
+      %th Status
+    - @services.each do |service|
+      %tr
+        %td= service.name
+        %td= service.app
+        %td= service.ruby_class_name
+        %td= service.status
+
+      

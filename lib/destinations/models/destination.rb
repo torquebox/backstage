@@ -1,4 +1,3 @@
-require 'has_mbean'
 require 'json'
 
 module Backstage
