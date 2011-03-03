@@ -23,7 +23,7 @@ module Backstage
 
     module ClassMethods
       def all
-        JMX::MBean.find_all_by_name( filter ).collect { |mbean| puts mbean.object_name.to_string;new( mbean ) }
+        JMX::MBean.find_all_by_name( filter ).collect { |mbean| new( mbean ) }
       end
 
       def find(name)
