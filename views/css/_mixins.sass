@@ -1,0 +1,49 @@
+@mixin rounded-top-left-corner($radius: 5px)
+  -moz-border-radius-topleft: $radius
+  -webkit-border-top-left-radius: $radius
+  border-top-left-radius: $radius
+
+@mixin rounded-top-right-corner($radius: 5px)
+  -moz-border-radius-topright: $radius
+  -webkit-border-top-right-radius: $radius
+  border-top-right-radius: $radius
+
+@mixin rounded-top-corners($radius: 5px)
+  @include rounded-top-left-corner($radius)
+  @include rounded-top-right-corner($radius)
+
+@mixin rounded-bottom-left-corner($radius: 5px)
+  -moz-border-radius-bottomleft: $radius
+  -webkit-border-bottom-left-radius: $radius
+  border-bottom-left-radius: $radius
+
+@mixin rounded-bottom-right-corner($radius: 5px)
+  -moz-border-radius-bottomright: $radius
+  -webkit-border-bottom-right-radius: $radius
+  border-bottom-right-radius: $radius
+
+@mixin rounded-bottom-corners($radius: 5px)
+  @include rounded-bottom-left-corner($radius)
+  @include rounded-bottom-right-corner($radius)
+
+@mixin rounded-corners($radius: 5px)
+  @include rounded-top-corners($radius)
+  @include rounded-bottom-corners($radius)
+
+@mixin clearfix
+  &:after
+    content: "\0020"
+    display: block
+    height: 0
+    clear: both
+    overflow: hidden
+    visibility: hidden
+
+
+@mixin selected-tab($body_class, $link_class: "")
+  @if $link_class == ""
+    $link_class: $body_class
+  body.#{$body_class}
+    #navigation a.#{$link_class}
+      background-color: $active_tab_color
+
