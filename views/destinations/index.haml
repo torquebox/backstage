@@ -1,9 +1,8 @@
 #destinations-index
-  %h2= @header
-  
   %table
     %tr
       %th Name
+      %th App
       %th Messages
       %th Delivering
       %th Scheduled
@@ -11,7 +10,8 @@
       %th Consumers
     - @destinations.each do |destination|
       %tr
-        %td= link_to( object_path( destination ), destination.name )
+        %td= link_to( object_path( destination ), destination.display_name )
+        %td= destination.app_name
         %td= destination.message_count
         %td= destination.delivering_count
         %td= destination.scheduled_count

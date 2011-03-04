@@ -44,19 +44,31 @@ module Backstage
       def simple_class_name(object)
         object.class.name.split( "::" ).last.downcase
       end
-
-      def humanize(text)
-        text.split('_').collect(&:capitalize).join(' ')
-      end
       
       def truncate(text, length = 30)
         text.length > length ? text[0...length] + '...' : text
       end
-
+      
       def class_for_body
         klass = request.path_info.split('/').reverse.select { |part| part =~ /^[A-Za-z_]*$/ }
         klass.empty? ? 'root' : klass
       end
     end
+  end
+end
+
+class String
+  def classify
+    if self =~ %r{/}
+      split( '/' ).collect( &:classify ).join( '::' )
+    elsif self =~ %r{_}
+      split( '_' ).collect( &:classify ).join( '' )
+    else
+      capitalize
+    end
+  end
+
+  def humanize
+    split( '_' ).collect( &:capitalize ).join( ' ' )
   end
 end
