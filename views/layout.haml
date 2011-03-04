@@ -13,6 +13,12 @@
         = link_to collection_path( :message_processors ), 'Msg. Processors', :class => 'message_processors'
         = link_to collection_path( :jobs ), 'Jobs', :class => 'jobs'
         = link_to collection_path( :services ), 'Services', :class => 'services'
-    #content
-      #inner-content
+    #content-wrapper
+      #content
         = yield
+    #footer
+      %a{:href => 'https://github.com/torquebox/backstage'}<
+        Backstage
+      for 
+      %a{:href => 'http://torquebox.org/'}
+        TorqueBox

@@ -2,12 +2,12 @@ $medium_gray: #cccccc
 $light_gray: #eeeeee
 $border_color: $medium_gray
 
-$header_color: #7d2500
-$standout_color: #1b1d1e
-$standout_inverse_color: #ffffff
+$content_background_color: $light_gray  
+$header_color: #0d4c4c
+$navigation_color: #3e707f
+$standout_color: #429693
 $text_color: #1b1d1e
-$inactive_tab_color: $light_gray
-$active_tab_color: $standout_color
+$active_tab_color: $content_background_color
 $link_color: #424e4f
 $link_hover_color: $text_color
 $link_hover_background_color: #fbffa4
@@ -17,39 +17,40 @@ $link_hover_background_color: #fbffa4
 body
   font-family: Verdana, Arial, Helvetica, sans-serif
   color: $text_color
+  background-color: $content_background_color
+  min-width: 100px
   
 #header
   background-color: $header_color
-  padding-left: 30px  
   padding-top: 15px  
-  border-bottom: 3px solid $active_tab_color  
   h1
+    margin-left: 30px  
     font-size: 1.2em
-    color: $standout_inverse_color    
+    color: white
     
 #navigation
   @include clearfix
   margin-top: 15px
+  padding-left: 10px
+  background-color: $navigation_color  
   a
     display: block
     float: left
     height: 20px
     padding: 5px 10px
-    margin-right: 5px    
-    background-color: $inactive_tab_color    
     color: $text_color
     text-decoration: none    
     &:hover
       @include highlighted-tab
 
-#content
-  width: 98%
-  margin: 0 auto 
-  margin-bottom: 20px
-
-  #inner-content
-    margin: 20px
-    
+#content-wrapper
+  padding: 0.5em
+  #content
+    @include rounded-corners
+    padding: 0.5em
+    background-color: white    
+    border: 1px solid $border_color    
+    min-height: 600px
     a
       color: $link_color
       padding: 2px      
@@ -58,6 +59,10 @@ body
         text-decoration: none
         background-color: $link_hover_background_color
 
+#footer
+  margin: 30px 0
+  text-align: center
+  
 .data-table
   .data-row
     td.label, td.value
@@ -67,6 +72,12 @@ body
 
 h1, h2
   margin-bottom: 15px
+
+h2
+  @include rounded-corners(3px)
+  background-color: $standout_color
+  line-height: 1.2em
+  padding: 2px 5px
 
 td, th
   padding: 3px
@@ -83,3 +94,4 @@ th
 @include selected-tab('message_processors')
 @include selected-tab('jobs')
 @include selected-tab('services')
+
