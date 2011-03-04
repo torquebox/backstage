@@ -5,7 +5,7 @@
       %th Environment
       %th Root
       %th Deployed At
-    - @apps.each do |app|
+    - @collection.each do |app|
       %tr
         %td= app.name
         %td= app.environment_name

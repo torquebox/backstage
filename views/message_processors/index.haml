@@ -6,7 +6,7 @@
       %th Destination
       %th Selector
       %th Concurrency
-    - @message_processors.each do |message_processor|
+    - @collection.each do |message_processor|
       %tr
         %td= message_processor.name
         %td= message_processor.app

@@ -1,11 +1,11 @@
 #destinations-show
   %h2 
-    == #{simple_class_name( @destination ).capitalize}: #{@destination.display_name}
-  = link_to collection_path(@destination, :messages), 'View Messages'
+    == #{simple_class_name( @object ).capitalize}: #{@object.display_name}
+  = link_to collection_path(@object, :messages), 'View Messages'
 
   %table.data-table
     - %w{ dead_letter_address expiry_address consumer_count message_count delivering_count scheduled_count messages_added }.each do |method|
-      = data_row( method.humanize, @destination.send( method ) )
+      = data_row( method.humanize, @object.send( method ) )
 
 
 

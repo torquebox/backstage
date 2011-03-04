@@ -8,7 +8,7 @@
       %th Scheduled
       %th Added
       %th Consumers
-    - @destinations.each do |destination|
+    - @collection.each do |destination|
       %tr
         %td= link_to( object_path( destination ), destination.display_name )
         %td= destination.app_name

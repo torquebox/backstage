@@ -8,6 +8,7 @@ $:.unshift File.join( File.dirname( __FILE__ ), 'lib' )
 
 require 'torquebox'
 require 'config/jmx-connection'
+require 'resource'
 require 'helpers'
 require 'has_mbean'
 require 'torquebox_managed'
@@ -20,7 +21,7 @@ require 'services'
 module Backstage
   class Application < Sinatra::Base
     enable :logging
-    
+
     set :views, Proc.new { File.join( File.dirname( root ), "views" ) }
 
     get '/css/style.css' do
@@ -34,6 +35,5 @@ module Backstage
     get "/" do
       redirect collection_path( :apps )
     end
-
   end
 end
