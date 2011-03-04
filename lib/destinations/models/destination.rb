@@ -21,12 +21,16 @@ module Backstage
     end
 
     def display_name
+      self.class.display_name( name )
+    end
+
+    def self.display_name(name)
       display_name = name.gsub( 'jms.queue.', '' )
       display_name = 'Backgroundable' if display_name =~ %r{/queues/torquebox/.*/backgroundable}
       display_name = "#{$1.classify}Task" if display_name =~ %r{/queues/torquebox/.*/tasks/(.*)$}
       display_name
     end
-
+    
     def jndi_name
       jndi_name = name.gsub( 'jms.queue.', '' )
       jndi_name = "/queue/#{jndi_name}" if %w{ DLQ ExpiryQueue }.include?( jndi_name )

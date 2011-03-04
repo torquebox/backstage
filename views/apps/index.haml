@@ -7,7 +7,7 @@
       %th Deployed At
     - @collection.each do |app|
       %tr
-        %td= app.name
+        %td= link_to( object_path( app ), app.name )
         %td= app.environment_name
         %td= app.root_path
         %td= app.deployed_at

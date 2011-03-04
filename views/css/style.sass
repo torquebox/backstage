@@ -15,7 +15,8 @@ $link_hover_background_color: #fbffa4
 @import "mixins"
 
 body
-  font-family: Verdana, Arial, Helvetica, sans-serif
+  font-family: Verdana, Arial, Helvetica, sans-serif 
+  font-size: 13px  
   color: $text_color
   background-color: $content_background_color
   min-width: 100px
@@ -36,7 +37,6 @@ body
   a
     display: block
     float: left
-    height: 20px
     padding: 5px 10px
     color: $text_color
     text-decoration: none    
@@ -86,6 +86,17 @@ th
   border-bottom: 1px solid $text_color
   text-align: left
 
+.actions,
+.controls
+  font-size: 0.9em
+
+.actions
+  text-align: right
+  margin-bottom: 15px
+
+.controls
+  margin-top: 15px
+    
 @include selected-tab('apps')
 @include selected-tab('queues')
 @include selected-tab('queue', 'queues')

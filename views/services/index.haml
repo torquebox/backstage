@@ -3,13 +3,11 @@
     %tr
       %th Name 
       %th App
-      %th Ruby Class
       %th Status
     - @collection.each do |service|
       %tr
-        %td= service.name
+        %td= link_to( object_path( service ), service.name )
         %td= service.app
-        %td= service.ruby_class_name
         %td= service.status
 
       

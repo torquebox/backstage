@@ -8,7 +8,7 @@
       %th Concurrency
     - @collection.each do |message_processor|
       %tr
-        %td= message_processor.name
+        %td= link_to( object_path( message_processor ), message_processor.name )
         %td= message_processor.app
         %td= message_processor.destination_name
         %td= message_processor.message_selector

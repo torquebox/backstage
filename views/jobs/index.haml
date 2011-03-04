@@ -8,7 +8,7 @@
       %th Schedule
     - @collection.each do |job|
       %tr
-        %td= job.name
+        %td= link_to( object_path( job ), job.name )
         %td= job.app
         %td= job.ruby_class_name
         %td= job.status

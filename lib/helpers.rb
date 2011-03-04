@@ -42,7 +42,7 @@ module Backstage
       end
       
       def simple_class_name(object)
-        object.class.name.split( "::" ).last.downcase
+        object.class.name.split( "::" ).last.underscore
       end
       
       def truncate(text, length = 30)
@@ -68,6 +68,10 @@ class String
     end
   end
 
+  def underscore
+    gsub(/([a-zA-Z])([A-Z])/, '\1_\2').downcase
+  end
+  
   def humanize
     split( '_' ).collect( &:capitalize ).join( ' ' )
   end

@@ -1,11 +1,18 @@
 #destinations-show
   %h2 
     == #{simple_class_name( @object ).capitalize}: #{@object.display_name}
-  = link_to collection_path(@object, :messages), 'View Messages'
+  .actions
+    = link_to collection_path(@object, :messages), 'View Messages'
 
   %table.data-table
-    - %w{ dead_letter_address expiry_address consumer_count message_count delivering_count scheduled_count messages_added }.each do |method|
+    = data_row( "Name", @object.display_name )
+    = data_row( "JNDI Address", @object.jndi_name )
+    = data_row( "Dead Letter Address", ::Backstage::Destination.display_name( @object.dead_letter_address ) )
+    = data_row( "Expiry Address", ::Backstage::Destination.display_name( @object.expiry_address ) )
+    = data_row( "App", @object.app_name )
+    - %w{ consumer_count message_count delivering_count scheduled_count messages_added }.each do |method|
       = data_row( method.humanize, @object.send( method ) )
 
-
+  .controls
+    = link_to collection_path( :queues ), '<< Back'
 
