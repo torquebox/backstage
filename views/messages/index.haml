@@ -1,12 +1,12 @@
 #messages-index
   %h2 
-    == #{simple_class_name( @destination ).capitalize}: #{link_to( object_path( @destination ), @destination.name)} :: Messages
+    == #{simple_class_name( @object ).capitalize}: #{link_to( object_path( @object ), @object.name)} :: Messages
   %table
     %tr
       %th ID
       %th Delivery Count
       %th Text
-    - @destination.each do |message|
+    - @object.each do |message|
       %tr
         %td
           = message.jms_id 

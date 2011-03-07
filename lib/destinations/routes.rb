@@ -5,7 +5,7 @@ module Backstage
       resource model, :view_path => :destinations
       
       get "/#{model}/:name/messages" do
-        @object = klass.find( params[:name] )
+        @object = eval(model.classify).find( params[:name] )
         haml :'messages/index'
       end
 
