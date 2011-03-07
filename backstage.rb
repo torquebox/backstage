@@ -2,12 +2,10 @@ require 'rubygems'
 require 'sinatra/base'
 require 'haml'
 require 'sass'
-require 'rack-flash'
 
 $:.unshift File.join( File.dirname( __FILE__ ), 'lib' )
 
 require 'torquebox'
-require 'config/jmx-connection'
 require 'resource'
 require 'helpers'
 require 'has_mbean'
