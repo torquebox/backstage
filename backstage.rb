@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra/base'
 require 'haml'
 require 'sass'
+require 'jmx'
 
 $:.unshift File.join( File.dirname( __FILE__ ), 'lib' )
 

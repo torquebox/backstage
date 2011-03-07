@@ -37,6 +37,10 @@ module Backstage
       jndi_name
     end
 
+    def app
+      name =~ %r{/queues/torquebox/(.*?)/} ? App.find( "torquebox.apps:app=#{$1}" ) : nil
+    end
+    
     def app_name
       name =~ %r{/queues/torquebox/(.*)\.trq} ? $1 : 'n/a'
     end

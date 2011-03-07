@@ -13,7 +13,7 @@ module Backstage
         end
 
         get "/#{resource}/:name" do
-          @object = klass.find( params[:name] )
+          @object = klass.find( Util.decode_name( params[:name] ) )
           haml :"#{view_path}/show"
         end
       end

@@ -11,7 +11,11 @@
     - @collection.each do |destination|
       %tr
         %td= link_to( object_path( destination ), destination.display_name )
-        %td= destination.app_name
+        %td
+          - if destination.app
+            = link_to( object_path( destination.app ), destination.app_name )
+          - else
+            = destination.app_name
         %td= destination.message_count
         %td= destination.delivering_count
         %td= destination.scheduled_count

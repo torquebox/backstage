@@ -1,6 +1,3 @@
-require 'util'
-require 'jmx'
-
 module Backstage
   module HasMBean
     java_import javax.management.ObjectName
@@ -35,8 +32,9 @@ module Backstage
       end
 
       def find(name)
-        name = ObjectName.new( Util.decode_name( name ) ) unless name.is_a?( ObjectName )
-        new( name, jmx_server[name] )
+        name = ObjectName.new( name ) unless name.is_a?( ObjectName )
+        mbean = jmx_server[name]
+        mbean ? new( name, mbean ) : nil
       end
 
     end
