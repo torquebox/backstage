@@ -1,0 +1,12 @@
+#services-show
+  %h2 
+    == Service: #{@object.name}
+  .actions
+
+  %table.data-table
+    - %w{ name app status }.each do |method|
+      = data_row( method.humanize, @object.send( method ) )
+
+  .controls
+    = link_to collection_path( :services ), '<< Back'
+

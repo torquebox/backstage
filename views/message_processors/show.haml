@@ -1,0 +1,12 @@
+#message_processors-show
+  %h2 
+    == Message Processor: #{@object.name}
+  .actions
+
+  %table.data-table
+    - %w{ name app destination_name message_selector concurrency }.each do |method|
+      = data_row( method.humanize, @object.send( method ) )
+
+  .controls
+    = link_to collection_path( :message_processors ), '<< Back'
+

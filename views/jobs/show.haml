@@ -1,0 +1,12 @@
+#jobs-show
+  %h2 
+    == Job: #{@object.name}
+  .actions
+
+  %table.data-table
+    - %w{ name app ruby_class_name status cron_expression }.each do |method|
+      = data_row( method.humanize, @object.send( method ) )
+
+  .controls
+    = link_to collection_path( :jobs ), '<< Back'
+

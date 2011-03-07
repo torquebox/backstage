@@ -1,0 +1,12 @@
+#apps-show
+  %h2 
+    == App: #{@object.name}
+  .actions
+
+  %table.data-table
+    - %w{ name environment_name root_path deployed_at }.each do |method|
+      = data_row( method.humanize, @object.send( method ) )
+
+  .controls
+    = link_to collection_path( :apps ), '<< Back'
+
