@@ -6,7 +6,7 @@ module Backstage
     include HasMBean
 
     def self.filter
-      'org.hornetq:address=*,*,type=Queue'
+      "org.hornetq:address=\"#{jms_prefix}\",*,type=Queue"
     end
 
     def jms_desination
@@ -19,22 +19,22 @@ module Backstage
         yield message
       end
     end
-
+    
     def display_name
       self.class.display_name( name )
     end
 
+    def jndi_name
+      jndi_name = name.gsub( self.class.jms_prefix, '' )
+      jndi_name = "/queue/#{jndi_name}" if %w{ DLQ ExpiryQueue }.include?( jndi_name )
+      jndi_name
+    end
+
     def self.display_name(name)
-      display_name = name.gsub( 'jms.queue.', '' )
+      display_name = name.gsub( /jms\..*?./, '' )
       display_name = 'Backgroundable' if display_name =~ %r{/queues/torquebox/.*/backgroundable}
       display_name = "#{$1.classify}Task" if display_name =~ %r{/queues/torquebox/.*/tasks/(.*)$}
       display_name
-    end
-    
-    def jndi_name
-      jndi_name = name.gsub( 'jms.queue.', '' )
-      jndi_name = "/queue/#{jndi_name}" if %w{ DLQ ExpiryQueue }.include?( jndi_name )
-      jndi_name
     end
 
     def app

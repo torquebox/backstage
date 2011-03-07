@@ -27,8 +27,8 @@ module Backstage
         @jmx_server ||= JMX::MBeanServer.new
       end
       
-      def all
-        jmx_server.query_names( filter ).collect { |name| new( name, jmx_server[name] ) }
+      def all(filter_string = filter)
+        jmx_server.query_names( filter_string ).collect { |name| new( name, jmx_server[name] ) }
       end
 
       def find(name)

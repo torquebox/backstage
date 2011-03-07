@@ -96,4 +96,9 @@ class String
   def humanize
     split( '_' ).collect( &:capitalize ).join( ' ' )
   end
+
+  #poor man's...
+  def pluralize
+    "#{self}s"
+  end
 end

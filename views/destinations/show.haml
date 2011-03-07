@@ -14,5 +14,5 @@
       = data_row( method.humanize, @object.send( method ) )
 
   .controls
-    = link_to collection_path( :queues ), '<< Back'
+    = link_to collection_path( simple_class_name( @object ).pluralize ), '<< Back'
 
