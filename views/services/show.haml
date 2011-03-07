@@ -2,6 +2,7 @@
   %h2 
     == Service: #{@object.name}
   .actions
+    = @object.status == 'Started' ? action_button( @object, 'stop' ) : action_button( @object, 'start' )
 
   %table.data-table
     - %w{ name app status }.each do |method|

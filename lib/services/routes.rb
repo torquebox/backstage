@@ -1,1 +1,1 @@
-Backstage::Application.resource :service
+Backstage::Application.resource :service, :actions => [:start, :stop]

@@ -7,10 +7,12 @@ $header_color: #0d4c4c
 $navigation_color: #3e707f
 $standout_color: #429693
 $text_color: #1b1d1e
+$highlight_color: #fbffa4
+$warning_background_color: red
+$warning_color: white
 $active_tab_color: $content_background_color
 $link_color: #424e4f
 $link_hover_color: $text_color
-$link_hover_background_color: #fbffa4
 
 @import "mixins"
 
@@ -57,8 +59,17 @@ body
       &:hover
         @include rounded-corners(3px)
         text-decoration: none
-        background-color: $link_hover_background_color
+        background-color: $highlight_color
 
+  #flash
+    @include rounded-corners
+    border: 1px solid $border_color    
+    padding: 0.5em
+    margin-bottom: 0.5em
+    color: black
+    background-color: $highlight_color
+    font-weight: bold
+    
 #footer
   margin: 30px 0
   text-align: center
@@ -89,6 +100,8 @@ th
 .actions,
 .controls
   font-size: 0.9em
+  form
+    display: inline
 
 .actions
   text-align: right
@@ -96,7 +109,12 @@ th
 
 .controls
   margin-top: 15px
-    
+
+.status.paused,
+.status.stopped
+  background-color: $warning_background_color
+  color: $warning_color
+
 @include selected-tab('apps')
 @include selected-tab('queues')
 @include selected-tab('queue', 'queues')

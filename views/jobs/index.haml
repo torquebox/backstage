@@ -6,11 +6,13 @@
       %th Ruby Class
       %th Status
       %th Schedule
+      %th
     - @collection.each do |job|
       %tr
         %td= link_to( object_path( job ), job.name )
         %td= job.app
         %td= job.ruby_class_name
-        %td= job.status
+        %td.status{:class => job.status.downcase}= job.status
         %td= job.cron_expression
-      
+        %td
+          = job.status == 'Started' ? action_button( job, 'stop' ) : action_button( job, 'start' )

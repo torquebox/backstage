@@ -1,2 +1,2 @@
-Backstage::Application.resource :job
+Backstage::Application.resource :job, :actions => [:start, :stop]
 

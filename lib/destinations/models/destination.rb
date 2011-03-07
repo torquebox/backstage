@@ -44,5 +44,9 @@ module Backstage
     def app_name
       name =~ %r{/queues/torquebox/(.*)\.trq} ? $1 : 'n/a'
     end
+
+    def status
+      mbean.paused ? 'Paused' : 'Running'
+    end
   end
 end

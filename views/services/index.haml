@@ -4,10 +4,13 @@
       %th Name 
       %th App
       %th Status
+      %th
     - @collection.each do |service|
       %tr
         %td= link_to( object_path( service ), service.name )
         %td= service.app
-        %td= service.status
+        %td.status{:class => service.status.downcase}= service.status
+        %td
+          = service.status == 'Started' ? action_button( service, 'stop' ) : action_button( service, 'start' )
 
       

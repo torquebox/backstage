@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra/base'
+require 'rack-flash'
 require 'haml'
 require 'sass'
 require 'jmx'
@@ -19,7 +20,8 @@ require 'services'
 
 module Backstage
   class Application < Sinatra::Base
-    enable :logging
+    enable :logging, :sessions
+    use Rack::Flash
 
     set :views, Proc.new { File.join( File.dirname( root ), "views" ) }
 

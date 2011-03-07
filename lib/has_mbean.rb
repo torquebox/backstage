@@ -17,7 +17,7 @@ module Backstage
     end
     
     def method_missing(method, *args, &block)
-      mbean.send( method, args, block )
+      mbean.send( method, *args, &block )
     rescue NoMethodError => ex
       super
     end

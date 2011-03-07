@@ -15,6 +15,16 @@ module Backstage
         path_to( paths.join( '/' ) )
       end
 
+      def object_action_path(*objects)
+        action = objects.pop
+        paths = []
+        objects.each do |object|
+          paths << "#{simple_class_name( object )}/#{Util.encode_name( object.full_name )}"
+        end
+        paths << action
+        path_to( paths.join( '/' ) )
+      end
+
       def collection_path(*objects)
         collection = objects.pop
         paths = []
@@ -52,6 +62,15 @@ module Backstage
       def class_for_body
         klass = request.path_info.split('/').reverse.select { |part| part =~ /^[A-Za-z_]*$/ }
         klass.empty? ? 'root' : klass
+      end
+
+      def action_button(object, action, text=nil)
+        text ||= action.capitalize
+        accum = <<-EOF
+<form method="post" action="#{object_action_path(object, action)}">
+  <input type="submit" value="#{text}"/>
+</form>
+        EOF
       end
     end
   end
