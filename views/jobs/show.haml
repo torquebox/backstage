@@ -5,7 +5,7 @@
     = @object.status == 'Started' ? action_button( @object, 'stop' ) : action_button( @object, 'start' )
 
   %table.data-table
-    - %w{ name app ruby_class_name status cron_expression }.each do |method|
+    - %w{ name app_name ruby_class_name status cron_expression }.each do |method|
       = data_row( method.humanize, @object.send( method ) )
 
   .controls

@@ -48,7 +48,9 @@ module Backstage
       end
 
       def data_row(name, value)
-        "<tr class='data-row'><td class='label'>#{name}</td><td class='value'>#{value}</td></tr>"
+        dom_class = ['value']
+        dom_class << 'status' << value.downcase if name.to_s.downcase == 'status' # hack
+        "<tr class='data-row'><td class='label'>#{name}</td><td class='#{dom_class.join(' ')}'>#{value}</td></tr>"
       end
       
       def simple_class_name(object)

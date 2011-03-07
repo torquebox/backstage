@@ -11,5 +11,6 @@ module Backstage
       name = super
       name =~ /\[(.*)\]/ ? $1 : name
     end
+
   end
 end

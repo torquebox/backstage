@@ -3,15 +3,24 @@
     %tr
       %th Name 
       %th App
+      %th Status
       %th Destination
       %th Selector
       %th Concurrency
     - @collection.each do |message_processor|
       %tr
         %td= link_to( object_path( message_processor ), message_processor.name )
-        %td= message_processor.app
+        %td
+          - if message_processor.app
+            = link_to( object_path( message_processor.app ), message_processor.app_name )
+          - else
+            = message_processor.app_name
+        %td.status{:class => message_processor.status.downcase}= message_processor.status
         %td= message_processor.destination_name
         %td= message_processor.message_selector
         %td= message_processor.concurrency
+        %td
+          = message_processor.status == 'Started' ? action_button( message_processor, 'stop' ) : action_button( message_processor, 'start' )
+
 
       

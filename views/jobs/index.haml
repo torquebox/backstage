@@ -10,7 +10,11 @@
     - @collection.each do |job|
       %tr
         %td= link_to( object_path( job ), job.name )
-        %td= job.app
+        %td
+          - if job.app
+            = link_to( object_path( job.app ), job.app_name )
+          - else
+            = job.app_name
         %td= job.ruby_class_name
         %td.status{:class => job.status.downcase}= job.status
         %td= job.cron_expression

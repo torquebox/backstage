@@ -1,2 +1,2 @@
-Backstage::Application.resource :message_processor
+Backstage::Application.resource :message_processor, :actions => [:start, :stop]
 

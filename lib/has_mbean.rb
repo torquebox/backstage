@@ -33,8 +33,9 @@ module Backstage
 
       def find(name)
         name = ObjectName.new( name ) unless name.is_a?( ObjectName )
-        mbean = jmx_server[name]
-        mbean ? new( name, mbean ) : nil
+        new( name, jmx_server[name] )
+      rescue JMX::NoSuchBeanError => ex
+        nil
       end
 
     end

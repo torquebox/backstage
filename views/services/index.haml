@@ -8,7 +8,11 @@
     - @collection.each do |service|
       %tr
         %td= link_to( object_path( service ), service.name )
-        %td= service.app
+        %td
+          - if service.app
+            = link_to( object_path( service.app ), service.app_name )
+          - else
+            = service.app_name
         %td.status{:class => service.status.downcase}= service.status
         %td
           = service.status == 'Started' ? action_button( service, 'stop' ) : action_button( service, 'start' )

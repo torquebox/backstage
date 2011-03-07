@@ -4,7 +4,7 @@
   .actions
 
   %table.data-table
-    - %w{ name app destination_name message_selector concurrency }.each do |method|
+    - %w{ name app_name status destination_name message_selector concurrency }.each do |method|
       = data_row( method.humanize, @object.send( method ) )
 
   .controls
