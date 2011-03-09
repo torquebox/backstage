@@ -1,16 +1,21 @@
 #messages-index
   %h2 
-    == #{simple_class_name( @object ).capitalize}: #{link_to( object_path( @object ), @object.name)} :: Messages
+    == #{simple_class_name( @destination ).capitalize}: #{link_to( object_path( @destination ), @destination.name)} :: Messages
   %table
     %tr
       %th ID
       %th Delivery Count
+      %th Properties
       %th Text
-    - @object.each do |message|
+    - @destination.each do |message|
       %tr
         %td
           = message.jms_id 
         %td
           = message.delivery_count
         %td
-          = truncate( message.text, 30 )
+          - message.properties.each do |name, value|
+            .property
+              == #{name}: #{truncate( value )}
+        %td
+          = truncate( message.text )

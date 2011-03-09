@@ -1,7 +1,8 @@
 module Backstage
   class Message
     attr_reader :jms_message
-    
+
+    IGNORED_PROPERTIES = %w{ torquebox_encoding JMSXDeliveryCount }
     def initialize(message)
       @jms_message = message
     end
@@ -14,6 +15,13 @@ module Backstage
       jms_message.jmsmessage_id
     end
 
+    def properties
+      @properties ||= jms_message.property_names.inject( {} ) do |properties, name|
+        properties[name] = jms_message.get_string_property( name ) unless IGNORED_PROPERTIES.include?( name )
+        properties        
+      end
+    end
+    
     def delivery_count
       jms_message.get_string_property( 'JMSXDeliveryCount' )
     end

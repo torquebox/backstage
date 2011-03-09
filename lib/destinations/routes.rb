@@ -5,8 +5,14 @@ module Backstage
       resource model, :view_path => :destinations, :actions => [:pause, :resume]
       
       get "/#{model}/:name/messages" do
-        @object = eval(model.classify).find( Util.decode_name( params[:name] ) )
+        @destination = eval(model.classify).find( Util.decode_name( params[:name] ) )
         haml :'messages/index'
+      end
+
+      get "/#{model}/:name/message/:id" do
+        @destination = eval(model.classify).find( Util.decode_name( params[:name] ) )
+        @message = @destination.messages('').first #FIXME
+        haml :'messages/show'
       end
 
     end

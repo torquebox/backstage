@@ -31,7 +31,7 @@ module Backstage
     end
 
     def self.display_name(name)
-      display_name = name.gsub( /jms\..*?./, '' )
+      display_name = name.gsub( /jms\..*?\./, '' )
       display_name = 'Backgroundable' if display_name =~ %r{/queues/torquebox/.*/backgroundable}
       display_name = "#{$1.classify}Task" if display_name =~ %r{/queues/torquebox/.*/tasks/(.*)$}
       display_name
