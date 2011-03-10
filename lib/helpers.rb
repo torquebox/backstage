@@ -1,8 +1,11 @@
 require 'util'
+require 'authentication'
 
 module Backstage
   class Application < Sinatra::Base
     helpers do
+      include Backstage::Authentication
+      
       def home_path
         request.script_name
       end

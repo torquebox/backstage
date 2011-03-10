@@ -25,6 +25,14 @@ module Backstage
 
     set :views, Proc.new { File.join( File.dirname( root ), "views" ) }
 
+    before do
+      if ENV['USERNAME'] && ENV['PASSWORD']
+        require_authentication
+      else
+        puts "ENV['USERNAME'] and ENV['PASSWORD'] are not set, *disabling* authentication"
+      end
+    end
+    
     get '/css/style.css' do
       sass :'css/style'
     end

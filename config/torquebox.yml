@@ -4,3 +4,8 @@ web:
 tasks:
   Backgroundable:
     concurrency: 0
+
+environment:
+# set a username and password here to require authentication to Backstage
+#  USERNAME: backstage
+#  PASSWORD: pass
