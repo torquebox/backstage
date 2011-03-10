@@ -25,6 +25,7 @@
         %td= destination.messages_added
         %td= destination.consumer_count
         %td
+          = link_to collection_path(destination, :messages), 'View Messages'
           = destination.status == 'Running' ? action_button( destination, 'pause' ) : action_button( destination, 'resume' )
 
       
