@@ -8,33 +8,21 @@ module Backstage
       end
 
       def object_path(*objects)
+        object_action_or_collection_path(*(objects << nil))
+      end
+
+      def object_action_or_collection_path(*objects)
+        collection_or_action = objects.pop
         paths = []
         objects.each do |object|
           paths << "#{simple_class_name( object )}/#{Util.encode_name( object.full_name )}"
         end
+        paths << collection_or_action if collection_or_action
         path_to( paths.join( '/' ) )
       end
-
-      def object_action_path(*objects)
-        action = objects.pop
-        paths = []
-        objects.each do |object|
-          paths << "#{simple_class_name( object )}/#{Util.encode_name( object.full_name )}"
-        end
-        paths << action
-        path_to( paths.join( '/' ) )
-      end
-
-      def collection_path(*objects)
-        collection = objects.pop
-        paths = []
-        objects.each do |object|
-          paths << "#{simple_class_name( object )}/#{Util.encode_name( object.full_name )}"
-        end
-        paths << collection
-        path_to( paths.join( '/' ) )
-      end
-
+      alias_method :object_action_path, :object_action_or_collection_path
+      alias_method :collection_path, :object_action_or_collection_path
+      
       def path_to(location)
         "#{home_path}/#{location}"
       end
@@ -47,9 +35,15 @@ module Backstage
         "<a href='#{path}' class='#{options[:class]}'>#{text}</a>"
       end
 
-      def data_row(name, value)
-        dom_class = ['value']
-        dom_class << 'status' << value.downcase if name.to_s.downcase == 'status' # hack
+      def data_row(name, value=nil)
+        dom_class = []
+        if value
+          dom_class << 'value'
+          dom_class << 'status' << value.downcase if name.to_s.downcase == 'status' # hack
+        end
+
+        value ||= yield if block_given?
+        
         "<tr class='data-row'><td class='label'>#{name}</td><td class='#{dom_class.join(' ')}'>#{value}</td></tr>"
       end
       

@@ -1,0 +1,15 @@
+#messages-show
+  %h2 
+    == #{simple_class_name( @destination ).capitalize}: #{link_to( object_path( @destination ), @destination.name)} :: Message: #{@object.jms_id}
+  .actions
+
+  %table.data-table
+    = data_row( "ID", @object.jms_id )
+    = data_row( "Delivery Count", @object.delivery_count )
+    = data_row( "Properties" ) do 
+      = haml :'messages/properties', :locals => { :message => @object }
+    = data_row( "Text", @object.text )
+
+  .controls
+    = link_to collection_path( @destination, :messages ), '<< Back'
+

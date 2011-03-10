@@ -10,12 +10,11 @@
     - @destination.each do |message|
       %tr
         %td
-          = message.jms_id 
+          = link_to( object_path( @destination, message ), message.jms_id )
         %td
           = message.delivery_count
         %td
-          - message.properties.each do |name, value|
-            .property
-              == #{name}: #{truncate( value )}
+          = haml :'messages/properties', :locals => { :message => message }
         %td
           = truncate( message.text )
+          

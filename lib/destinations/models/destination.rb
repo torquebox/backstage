@@ -5,16 +5,18 @@ module Backstage
     include Enumerable
     include HasMBean
 
+    attr_accessor :enumerable_options
+    
     def self.filter
       "org.hornetq:address=\"#{jms_prefix}\",*,type=Queue"
     end
 
-    def jms_desination
-      @jms_desination ||= TorqueBox::Messaging::Queue.new( jndi_name )
+    def jms_destination
+      TorqueBox::Messaging::Queue.new( jndi_name, nil, enumerable_options )
     end
     
-    def each(options = { })
-      jms_desination.each do |message|
+    def each
+      jms_destination.each do |message|
         message = Message.new( message )
         yield message
       end
