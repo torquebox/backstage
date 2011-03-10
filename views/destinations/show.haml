@@ -2,7 +2,7 @@
   %h2 
     == #{simple_class_name( @object ).capitalize}: #{@object.display_name}
   .actions
-    = link_to collection_path(@object, :messages), 'View Messages'
+    = link_to collection_path(@object, :messages), 'View Messages' unless @object.is_a?(Backstage::Topic)
     = @object.status == 'Running' ? action_button( @object, 'pause' ) : action_button( @object, 'resume' )
   %table.data-table
     = data_row( "Name", @object.display_name )
