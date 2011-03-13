@@ -8,13 +8,13 @@ end
 # --------------------------------------------------
 def run(cmd)
   puts(cmd)
-  system('gem env')
   system(cmd)
   puts '-' * 60
 end
 
 def run_specs(*specs)
-  run "jruby target/rspec-runner.rb #{specs.join(' ')}"
+  specs << 'spec' if specs.empty?
+  run "jruby -S bundle exec rspec #{specs.join(' ')}"
 end
 
  def run_single_spec *spec
@@ -37,6 +37,7 @@ end
 #watch( '^spec/.*_spec\.rb' ) { |m| run_single_spec(m[0]) }
  watch( '^(.*)\.rb' ) do |m|
    redeploy
+   run_specs
  #  run_single_spec("spec/%s_spec.rb" % m[1])
  end
  

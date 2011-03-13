@@ -19,4 +19,5 @@
         %td.status{:class => job.status.downcase}= job.status
         %td= job.cron_expression
         %td
-          = job.status == 'Started' ? action_button( job, 'stop' ) : action_button( job, 'start' )
+          - job.available_actions.each do |action|
+            = action_button( job, action )

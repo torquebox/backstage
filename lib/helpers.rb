@@ -1,17 +1,22 @@
 require 'util'
 require 'authentication'
+require 'sinatra/url_for'
+require 'respond_to'
 
 module Backstage
   class Application < Sinatra::Base
     helpers do
       include Backstage::Authentication
-      
-      def home_path
-        request.script_name
-      end
+      include Sinatra::UrlForHelper
+      #include Backstage::RespondTo
 
-      def object_path(*objects)
-        object_action_or_collection_path(*(objects << nil))
+      def json_url_for(fragment, options = { })
+        options[:format] = 'json'
+        url_for( fragment, :full, options )
+      end
+      
+      def object_path(object)
+        object_action_or_collection_path(*(object.association_chain << nil))
       end
 
       def object_action_or_collection_path(*objects)
@@ -21,21 +26,17 @@ module Backstage
           paths << "#{simple_class_name( object )}/#{Util.encode_name( object.full_name )}"
         end
         paths << collection_or_action if collection_or_action
-        path_to( paths.join( '/' ) )
+        '/' + paths.join( '/' )
       end
       alias_method :object_action_path, :object_action_or_collection_path
       alias_method :collection_path, :object_action_or_collection_path
       
-      def path_to(location)
-        "#{home_path}/#{location}"
-      end
-
       def redirect_to(location)
-        redirect path_to(location)
+        redirect url_for(location, :full)
       end
 
       def link_to(path, text, options = {})
-        "<a href='#{path}' class='#{options[:class]}'>#{text}</a>"
+        "<a href='#{url_for path}' class='#{options[:class]}'>#{text}</a>"
       end
 
       def data_row(name, value)
@@ -60,10 +61,36 @@ module Backstage
       def action_button(object, action, text=nil)
         text ||= action.capitalize
         accum = <<-EOF
-<form method="post" action="#{object_action_path(object, action)}">
+<form method="post" action="#{url_for object_action_path(object, action)}">
   <input type="submit" value="#{text}"/>
 </form>
         EOF
+      end
+
+      def html_requested?
+        params[:format] != 'json' && env['rack-accept.request'].media_type?( 'text/html' )
+      end
+      
+      def collection_to_json( collection )
+        JSON.generate( collection.collect { |object| object_to_hash( object ) } )
+      end
+
+      def object_to_json(object)
+        JSON.generate( object_to_hash( object ) )  
+      end
+      
+      def object_to_hash(object)
+        response = object.to_hash
+        response[:actions] = object.available_actions.inject({}) do |actions, action|
+          actions[action] = json_url_for( object_action_path( response[:resource], action ) )
+          actions
+        end
+        response.each do |key, value|
+          if value.kind_of?( Resource )
+            response[key] = json_url_for( object_path( value ) )
+          end
+        end
+        response
       end
     end
   end
@@ -80,6 +107,10 @@ class String
     end
   end
 
+  def constantize
+    eval( classify )
+  end
+  
   def underscore
     gsub(/([a-zA-Z])([A-Z])/, '\1_\2').downcase
   end

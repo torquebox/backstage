@@ -5,14 +5,24 @@ module Backstage
 
     get "/queue/:name/messages" do
       @destination = Queue.find( Util.decode_name( params[:name] ) )
-      haml :'messages/index'
+      if html_requested?
+        haml :'messages/index'
+      else
+        content_type :json
+        collection_to_json( @destination.entries )
+      end
     end
 
     get "/queue/:name/message/:id" do
       @destination = Queue.find( Util.decode_name( params[:name] ) )
       @object = @destination.find { |m| m.jms_id == Util.decode_name( params[:id] ) }
-      haml :'messages/show'
+      if html_requested?
+        haml :'messages/show'
+      else
+        object_to_json( @object )
+      end
     end
+    
   end
 end
 

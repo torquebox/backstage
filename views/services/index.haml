@@ -15,6 +15,7 @@
             = service.app_name
         %td.status{:class => service.status.downcase}= service.status
         %td
-          = service.status == 'Started' ? action_button( service, 'stop' ) : action_button( service, 'start' )
+          - service.available_actions.each do |action|
+            = action_button( service, action )
 
       

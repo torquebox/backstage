@@ -1,29 +1,44 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    backports (2.0.2)
+    diff-lcs (1.1.2)
     haml (3.0.25)
     json (1.5.1-java)
-    monkey-lib (0.5.4)
-      backports
     rack (1.2.1)
+    rack-accept (0.4.3)
+      rack (>= 0.4)
     rack-flash (0.1.1)
       rack
+    rack-test (0.5.7)
+      rack (>= 1.0)
+    rspec (2.5.0)
+      rspec-core (~> 2.5.0)
+      rspec-expectations (~> 2.5.0)
+      rspec-mocks (~> 2.5.0)
+    rspec-core (2.5.1)
+    rspec-expectations (2.5.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.5.0)
     sinatra (1.1.2)
       rack (~> 1.1)
       tilt (~> 1.2)
-    sinatra-advanced-routes (0.5.1)
-      monkey-lib (~> 0.5.0)
-      sinatra (~> 1.0)
-      sinatra-sugar (~> 0.5.0)
-    sinatra-reloader (0.5.0)
-      sinatra (~> 1.0)
-      sinatra-advanced-routes (~> 0.5.0)
-    sinatra-sugar (0.5.0)
-      monkey-lib (~> 0.5.0)
-      sinatra (~> 1.0)
     tilt (1.2.2)
     tobias-jmxjr (0.4)
+    tobias-sinatra-url-for (0.2.1)
+      sinatra (>= 0.9.1.1)
+    torquebox (1.0.0.CR1)
+      torquebox-base (= 1.0.0.CR1)
+      torquebox-messaging (= 1.0.0.CR1)
+      torquebox-naming (= 1.0.0.CR1)
+      torquebox-rake-support (= 1.0.0.CR1)
+      torquebox-web (= 1.0.0.CR1)
+    torquebox-base (1.0.0.CR1-java)
+    torquebox-messaging (1.0.0.CR1-java)
+      torquebox-base (= 1.0.0.CR1)
+      torquebox-naming (= 1.0.0.CR1)
+    torquebox-naming (1.0.0.CR1-java)
+    torquebox-rake-support (1.0.0.CR1)
+    torquebox-web (1.0.0.CR1-java)
     watchr (0.7)
 
 PLATFORMS
@@ -32,8 +47,12 @@ PLATFORMS
 DEPENDENCIES
   haml (~> 3.0)
   json
+  rack-accept
   rack-flash
+  rack-test
+  rspec
   sinatra (= 1.1.2)
-  sinatra-reloader (= 0.5.0)
   tobias-jmxjr (= 0.4)
+  tobias-sinatra-url-for
+  torquebox
   watchr

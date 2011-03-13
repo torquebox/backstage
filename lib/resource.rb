@@ -1,30 +1,36 @@
 module Backstage
-  class Application < Sinatra::Base
-    def self.resource(*resources)
-      options = resources.pop if resources.last.is_a?(Hash)
-      options ||= {}
-      resources.each do |resource|
-        resource = resource.to_s
-        klass = eval(resource.classify)
-        view_path = options[:view_path] || resource.pluralize
-        get "/#{resource.pluralize}" do
-          @collection = klass.all
-          haml :"#{view_path}/index"
-        end
+  module Resource
 
-        get "/#{resource}/:name" do
-          @object = klass.find( Util.decode_name( params[:name] ) )
-          haml :"#{view_path}/show"
-        end
+    def self.included(base)
+      base.extend( ClassMethods )
+      base.send( :attr_accessor, :parent )
+    end
 
-        (options[:actions] || []).each do |action|
-          post "/#{resource}/:name/#{action}" do
-            object = klass.find( Util.decode_name( params[:name] ) )
-            object.__send__( action )
-            flash[:notice] = "'#{action}' called on #{simple_class_name( object ).humanize} #{object.name}"
-            redirect object_path( object )
-          end
-        end
+    def association_chain
+      chain = []
+      chain << parent if parent
+      chain << self
+      chain
+    end
+    
+    def to_hash
+      self.class.to_hash_attributes.inject({ }) do |response, attribute|
+        response[attribute] = __send__( attribute )
+        response
+      end
+    end
+
+    def resource
+      self
+    end
+
+    def available_actions
+      []
+    end
+
+    module ClassMethods
+      def to_hash_attributes
+        [:resource]
       end
     end
   end

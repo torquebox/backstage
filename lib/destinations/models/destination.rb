@@ -4,11 +4,16 @@ module Backstage
   class Destination
     include Enumerable
     include HasMBean
-
+    include Resource
+    
     attr_accessor :enumerable_options
     
     def self.filter
       "org.hornetq:address=\"#{jms_prefix}\",*,type=Queue"
+    end
+
+    def self.to_hash_attributes
+      super + [:display_name, :app, :app_name, :status, :message_count, :delivering_count, :scheduled_count, :messages_added, :consumer_count]
     end
 
     def jms_destination
@@ -18,6 +23,7 @@ module Backstage
     def each
       jms_destination.each do |message|
         message = Message.new( message )
+        message.parent = self
         yield message
       end
     end
@@ -49,6 +55,10 @@ module Backstage
 
     def status
       mbean.paused ? 'Paused' : 'Running'
+    end
+
+    def available_actions
+      status == 'Running' ? %w{ pause } : %w{ resume }
     end
   end
 end

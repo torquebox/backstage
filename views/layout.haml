@@ -1,8 +1,8 @@
 !!!
 %html
   %title Backstage
-  %link{:rel=>"stylesheet", :type=>"text/css", :href=>"#{home_path}/css/html5reset.css"}
-  %link{:rel=>"stylesheet", :type=>"text/css", :href=>"#{home_path}/css/style.css"}
+  %link{:rel=>"stylesheet", :type=>"text/css", :href=>"#{url_for('/css/html5reset.css')}"}
+  %link{:rel=>"stylesheet", :type=>"text/css", :href=>"#{url_for('/css/style.css')}"}
   %body{:class => class_for_body}
     #header
       %h1 TorqueBox::Backstage

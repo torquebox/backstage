@@ -8,6 +8,6 @@ module Backstage
     def self.filter
       'org.hornetq:address="jms.queue.*",*,type=Queue'
     end
-    
+
   end
 end

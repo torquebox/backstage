@@ -13,7 +13,7 @@ module Backstage
     def consumer_topics
       unless @consumer_topics
         @consumer_topics = self.class.all( 'org.hornetq:address="jms.topic.*",*,type=Queue' )
-        @consumer_topics.select! { |t| t.full_name != full_name }
+        @consumer_topics = @consumer_topics.reject { |t| t.full_name == full_name }
         @consumer_topics.each { |t| t.consumer_topic = true }
       end
       @consumer_topics
@@ -22,9 +22,9 @@ module Backstage
     %w{ message_count delivering_count scheduled_count messages_added }.each do |method|
       define_method method do
         if consumer_topic
-          super
+          super 
         else
-          consumer_topics.collect(&(method.to_sym)).max
+          consumer_topics.collect(&(method.to_sym)).max || 0
         end
       end
     end

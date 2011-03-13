@@ -1,5 +1,7 @@
 module Backstage
   class Message
+    include Resource
+
     attr_reader :jms_message
 
     IGNORED_PROPERTIES = %w{ torquebox_encoding JMSXDeliveryCount }
@@ -25,6 +27,10 @@ module Backstage
     
     def delivery_count
       jms_message.get_string_property( 'JMSXDeliveryCount' )
+    end
+
+    def self.to_hash_attributes
+      super + [:jms_id, :delivery_count, :properties, :text]
     end
   end
 end

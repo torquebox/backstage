@@ -26,6 +26,9 @@
         %td= destination.consumer_count
         %td
           = link_to collection_path(destination, :messages), 'View Messages' unless destination.is_a?(Backstage::Topic)
-          = destination.status == 'Running' ? action_button( destination, 'pause' ) : action_button( destination, 'resume' )
+          - destination.available_actions.each do |action|
+            = action_button( destination, action )
+
+
 
       

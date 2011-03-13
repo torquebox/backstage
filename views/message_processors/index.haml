@@ -20,7 +20,9 @@
         %td= message_processor.message_selector
         %td= message_processor.concurrency
         %td
-          = message_processor.status == 'Started' ? action_button( message_processor, 'stop' ) : action_button( message_processor, 'start' )
+          - message_processor.available_actions.each do |action|
+            = action_button( message_processor, action )
+
 
 
       
