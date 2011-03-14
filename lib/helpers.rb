@@ -1,14 +1,12 @@
 require 'util'
 require 'authentication'
 require 'sinatra/url_for'
-require 'respond_to'
 
 module Backstage
   class Application < Sinatra::Base
     helpers do
       include Backstage::Authentication
       include Sinatra::UrlForHelper
-      #include Backstage::RespondTo
 
       def json_url_for(fragment, options = { })
         options[:format] = 'json'
