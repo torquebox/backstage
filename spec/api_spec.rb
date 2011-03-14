@@ -24,8 +24,38 @@ module Backstage
         @response[:collections][collection].should =~ %r{^http://example.org/#{collection}\?format=json$}
       end
     end
-  end
 
+      end
+
+  describe 'with authentication enabled' do
+    before(:each) do
+      ENV['USERNAME'] = 'blah'
+      ENV['PASSWORD'] = 'pw'
+    end
+    
+    it "api should work with authentication" do
+      authorize 'blah', 'pw'
+      get '/api'
+      last_response.should be_ok
+    end
+
+    it "should 401 w/o credentials" do
+      get '/api'
+      last_response.status.should == 401
+    end
+
+    it "should 401 with invalid credentials" do
+      authorize 'foo', 'bar'
+      get '/api'
+      last_response.status.should == 401
+    end
+
+    after(:each) do
+      ENV['USERNAME'] = nil
+      ENV['PASSWORD'] = nil
+    end
+  end
+  
   %w{ app queue topic job message_processor service }.each do |resource|
     klass = "backstage/#{resource}".constantize
     describe resource do
@@ -37,7 +67,6 @@ module Backstage
         before(:each) do
           klass.stub(:all).and_return([resource_with_mock_mbean(klass)])
           get "/#{resource.pluralize}", :format => 'json'
-          File.open("/tmp/result#{resource}#{rand}.html", 'w') { |f| f.write(last_response.body)}
           @response = JSON.parse(last_response.body, :symbolize_names => true)
         end
 
@@ -67,7 +96,6 @@ module Backstage
         before(:each) do
           klass.stub(:find).and_return(resource_with_mock_mbean(klass))
           get "/#{resource}/somename", :format => 'json'
-          File.open("/tmp/result#{resource}#{rand}.html", 'w') { |f| f.write(last_response.body)}
           @response = JSON.parse(last_response.body, :symbolize_names => true)
         end
 

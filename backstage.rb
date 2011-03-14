@@ -29,7 +29,7 @@ module Backstage
     use Rack::Accept
     use Rack::Flash
 
-    set :views, Proc.new { File.join( File.dirname( root ), "views" ) }
+    set :views, Proc.new { File.join( File.dirname( __FILE__ ), "views" ) }
 
     before do
       require_authentication if ENV['USERNAME'] && ENV['PASSWORD']
