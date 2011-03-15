@@ -1,4 +1,4 @@
-= TorqueBox BackStage =
+# TorqueBox BackStage #
 
 BackStage is an app that when deployed into a TorqueBox server gives you
 visibility into the apps, queues, topics, message processors, jobs, and
@@ -14,7 +14,7 @@ You also have some control over these components:
 It basically just acts as an friendly overlay for JMX, so is very easy to 
 extend if there is more data you want to see.
 
-== Authentication ==
+## Authentication ##
 
 By default, access to BackStage is wide open. You can secure it by setting 
 `USERNAME` and `PASSWORD` environment variables in `torquebox.yml`:
@@ -25,7 +25,7 @@ By default, access to BackStage is wide open. You can secure it by setting
 
 This will enable basic HTTP authentication.
 
-== Deployment ==
+## Deployment ##
 
 To deploy BackStage, clone the [git repo](https://github.com/torquebox/backstage),
 then (install and) run bundler:
@@ -45,7 +45,7 @@ or archive and deploy it as a .knob (zipfile):
 By default, BackStage is deployed to the /backstage context (see the `context:` 
 setting in `torquebox.yml`).
 
-== API ==
+## API ##
 
 BackStage also provides a RESTful API that allows you to access almost any of the 
 data or actions of the web UI (browsing messages via the API is not yet available).
@@ -53,9 +53,9 @@ The API provides a top level entry point at `/api` that returns a list of collec
 urls. The data is returned as JSON, and you must either  pass `format=json` as a
 query parameter, or set the `Accept:` header to `application/json`. `/api` always
 returns JSON, no matter what `Accept:` header or format param you use, and all of 
-the urls returned in the JSON include the `format=json` parameter. 
+the urls returned in the JSON include the `format#json` parameter. 
 
-=== Example ===
+### Example ###
 
 This example uses curl. First, we retrieve the API entry point:
 
@@ -112,7 +112,7 @@ return the JSON encoded resource:
       }
     }
 
-== LICENSE ==
+## LICENSE ##
 
 Copyright 2011 Red Hat, Inc.
 
