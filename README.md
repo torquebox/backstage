@@ -53,7 +53,7 @@ The API provides a top level entry point at `/api` that returns a list of collec
 urls. The data is returned as JSON, and you must either  pass `format=json` as a
 query parameter, or set the `Accept:` header to `application/json`. `/api` always
 returns JSON, no matter what `Accept:` header or format param you use, and all of 
-the urls returned in the JSON include the `format#json` parameter. 
+the urls returned in the JSON include the `format=json` parameter. 
 
 ### Example ###
 
