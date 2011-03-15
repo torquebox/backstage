@@ -36,7 +36,7 @@ module Backstage
               redirect_to object_path( object )
             else
               content_type :json
-              object_to_json( @object )
+              object_to_json( object )
             end
           end
 
