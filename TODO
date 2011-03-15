@@ -1,0 +1,5 @@
+TODO
+
+* allow queue browsing from the API
+* link queues/topics to their apps
+* see how backstage behaves in a cluster

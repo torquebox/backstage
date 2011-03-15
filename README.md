@@ -1,18 +1,23 @@
 # TorqueBox BackStage #
 
-BackStage is an app that when deployed into a TorqueBox server gives you
-visibility into the apps, queues, topics, message processors, jobs, and
-services, giving you stats about each.
-
-You also have some control over these components:
+BackStage is a Sinatra application that when deployed into a TorqueBox 
+server gives you visibility into the apps, queues, topics, message 
+processors, jobs, and services, allowing you to browse settings and stats, 
+and exposes some actions to allow you to change the operational state of 
+the components:
 
 * pause/unpause queues and topics
-* browse messages on a queue 
 * stop/start message processors, services, and jobs
 * view stats on all of the above 
 
-It basically just acts as an friendly overlay for JMX, so is very easy to 
-extend if there is more data you want to see.
+In addition, BackStage allows you to browse messages on a queue, and hides
+some of the underlying complexity of how topics are implemented in HornetQ.
+
+It basically acts as an friendly overlay for JMX, so is very easy to 
+extend if there is more data you want to see. The data/actions that are
+available from BackStage are also available from `/jmx-console` (with
+the exception of queue message browsing), but are more accessible in
+BackStage.
 
 ## Authentication ##
 
@@ -28,7 +33,7 @@ This will enable basic HTTP authentication.
 ## Deployment ##
 
 To deploy BackStage, clone the [git repo](https://github.com/torquebox/backstage),
-then (install and) run bundler:
+then run bundler:
 
     jruby -S gem install bundler # if you haven't done so already
     jruby -S bundle install
@@ -42,7 +47,7 @@ or archive and deploy it as a .knob (zipfile):
 
     jruby -S rake torquebox:deploy:archive
     
-By default, BackStage is deployed to the /backstage context (see the `context:` 
+By default, BackStage is deployed to the `/backstage` context (see the `context:` 
 setting in `torquebox.yml`).
 
 ## API ##
@@ -57,7 +62,7 @@ the urls returned in the JSON include the `format=json` parameter.
 
 ### Example ###
 
-This example uses curl. First, we retrieve the API entry point:
+First, we retrieve the API entry point:
 
     curl http://localhost:8080/backstage/api 
 
@@ -101,6 +106,10 @@ If a resource has actions that can be performed on it, they will appear in
 the results under `actions`. Action urls must be called via POST, and 
 return the JSON encoded resource:
 
+    curl -X POST http://localhost:8080/backstage/service/dG9ycXVlYm94LnNlcnZpY2VzOmFwcD1raXRjaGVuLXNpbmsudHJxLG5hbWU9QVNlcnZpY2U=/stop?format=json
+    
+Returns:
+
     {
       "resource":"http://localhost:8080/backstage/service/dG9ycXVlYm94LnNlcnZpY2VzOmFwcD1raXRjaGVuLXNpbmsudHJxLG5hbWU9QVNlcnZpY2U=?format=json",
       "name":"AService",
@@ -112,7 +121,13 @@ return the JSON encoded resource:
       }
     }
 
-## LICENSE ##
+## Contributing ##
+
+Bug reports, feature requests, and patches are always welcome! See
+http://torquebox.org/community/ on how to get in touch with the TorqueBox
+crew.
+
+## License ##
 
 Copyright 2011 Red Hat, Inc.
 
