@@ -1,6 +1,6 @@
 #messages-show
   %h2 
-    == #{simple_class_name( @destination ).capitalize}: #{link_to( object_path( @destination ), @destination.name)} :: Message: #{@object.jms_id}
+    == #{simple_class_name( @destination ).capitalize}: #{link_to( object_path( @destination ), @destination.display_name)} :: Message: #{@object.jms_id}
   .actions
 
   %table.data-table

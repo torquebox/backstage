@@ -1,6 +1,6 @@
 #messages-index
   %h2 
-    == #{simple_class_name( @destination ).capitalize}: #{link_to( object_path( @destination ), @destination.name)} :: Messages
+    == #{simple_class_name( @destination ).capitalize}: #{link_to( object_path( @destination ), @destination.display_name)} :: Messages
   %table
     %tr
       %th ID
