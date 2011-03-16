@@ -6,7 +6,7 @@ processors, jobs, and services, allowing you to browse settings and stats,
 and exposes some actions to allow you to change the operational state of 
 the components:
 
-* pause/unpause queues and topics
+* pause/resume queues and topics
 * stop/start message processors, services, and jobs
 * view stats on all of the above 
 
