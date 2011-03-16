@@ -30,7 +30,7 @@ module Backstage
     end
 
     def jms_id
-      jms_message.jmsmessage_id
+      jms_message.jms_message_id
     end
     alias_method :full_name, :jms_id
     
