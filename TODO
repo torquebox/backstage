@@ -3,3 +3,7 @@ TODO
 * allow queue browsing from the API
 * link queues/topics to their apps
 * see how backstage behaves in a cluster
+* allow resending DLQ and ExpiryQueue messages
+* store failure backtraces for jobs/tasks in TorqueBox, and display here
+* improve test coverage
+* add stats collection, with memory usage and other bits? ruby runtime stats?

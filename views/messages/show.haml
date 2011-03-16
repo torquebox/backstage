@@ -11,7 +11,7 @@
         Properties
       %td.value
         = haml :'messages/properties', :locals => { :message => @object }
-    = data_row( "Text", @object.text )
+    = data_row( "Content", @object.content )
 
   .controls
     = link_to collection_path( @destination, :messages ), '<< Back'

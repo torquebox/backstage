@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+require 'torquebox/messaging/javax_jms_text_message'
+
 module Backstage
   class Message
     include Resource
@@ -25,7 +27,11 @@ module Backstage
       @jms_message = message
     end
 
-    def text
+    def content
+      jms_message.decode.inspect
+    rescue ArgumentError => ex
+      # we may not have access to a serialized class. Just show the
+      # Marshal string in that case
       jms_message.get_string_property( 'torquebox_encoding' ) ? Base64.decode64( jms_message.text ) : jms_message.text
     end
 
@@ -46,7 +52,7 @@ module Backstage
     end
 
     def self.to_hash_attributes
-      super + [:jms_id, :delivery_count, :properties, :text]
+      super + [:jms_id, :delivery_count, :properties, :content]
     end
   end
 end

@@ -6,7 +6,7 @@
       %th ID
       %th Delivery Count
       %th Properties
-      %th Text
+      %th Content
     - @destination.each do |message|
       %tr
         %td
@@ -16,5 +16,5 @@
         %td
           = haml :'messages/properties', :locals => { :message => message }
         %td
-          = truncate( message.text )
+          = truncate( message.content, 40 )
           
