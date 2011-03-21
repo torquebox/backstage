@@ -22,11 +22,11 @@ module Backstage
     end
 
     def app_name
-      $1.gsub('.trq', '') if full_name =~ /app=(.*?)(,|$)/
+      $1 if full_name =~ /app=(.*?)(,|$)/
     end
 
     def app
-      App.find( "torquebox.apps:app=#{app_name}.trq" )
+      App.find( "torquebox.apps:app=#{app_name}" )
     end
     
     def status

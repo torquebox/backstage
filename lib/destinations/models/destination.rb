@@ -66,7 +66,7 @@ module Backstage
     end
     
     def app_name
-      name =~ %r{/queues/torquebox/(.*)\.trq} ? $1 : 'n/a'
+      name =~ %r{/queues/torquebox/(.*)} ? $1 : 'n/a'
     end
 
     def status

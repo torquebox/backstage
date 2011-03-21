@@ -28,9 +28,6 @@ module Backstage
       super + [:name, :environment_name, :root_path, :deployed_at]
     end
     
-    def name
-      super.gsub( '.trq', '' )
-    end
   end
 end
 
