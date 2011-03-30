@@ -33,7 +33,8 @@ This will enable basic HTTP authentication.
 ## Deployment ##
 
 To deploy BackStage, clone the [git repo](https://github.com/torquebox/backstage),
-then run bundler:
+then run bundler to install the needed gems (listed in the 
+[Gemfile](https://github.com/torquebox/backstage/blob/master/Gemfile)):
 
     jruby -S gem install bundler # if you haven't done so already
     jruby -S bundle install

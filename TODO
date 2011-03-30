@@ -7,3 +7,5 @@ TODO
 * store failure backtraces for jobs/tasks in TorqueBox, and display here
 * improve test coverage
 * add stats collection, with memory usage and other bits? ruby runtime stats?
+* add a runtimes collection, with an option for a console into the runtime
+* update to use new TB auth stuffs
