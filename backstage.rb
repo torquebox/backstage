@@ -37,7 +37,7 @@ require 'jobs'
 require 'services'
 
 
-puts "ENV['USERNAME'] and ENV['PASSWORD'] are not set, *disabling* authentication" unless ENV['USERNAME'] && ENV['PASSWORD']
+puts "ENV['REQUIRE_AUTHENTICATION'] is not set, *disabling* authentication" unless ENV['REQUIRE_AUTHENTICATION'] 
 
 module Backstage
   class Application < Sinatra::Base
@@ -45,11 +45,22 @@ module Backstage
     use Rack::Accept
     use Rack::Flash
 
+    include Backstage::Authentication 
+
     set :views, Proc.new { File.join( File.dirname( __FILE__ ), "views" ) }
 
-    before do
-      require_authentication if ENV['USERNAME'] && ENV['PASSWORD']
+
+    if ENV['REQUIRE_AUTHENTICATION']
+      ['*/login', '*/logout', '*/*.css', '*/*.js'].each do |path|
+        before path do
+          skip_authentication
+        end
+      end
+      before do
+        require_authentication 
+      end
     end
+
 
     get '/api' do
       content_type :json
@@ -72,6 +83,19 @@ module Backstage
 
     get '/css/html5reset.css' do
       sass :'css/html5reset'
+    end
+
+    get '/login' do
+      haml :'sessions/new'
+    end
+
+    get '/logout' do
+      logout
+    end
+
+    post '/login' do
+      authenticate( params[:user], params[:password] )
+      redirect_to '/'
     end
 
   end

@@ -6,6 +6,6 @@ tasks:
     concurrency: 0
 
 environment:
-# set a username and password here to require authentication to Backstage
-#  USERNAME: backstage
-#  PASSWORD: pass
+# Add users to $JBOSS_HOME/server/default/conf/props/torquebox-users.properties
+# or just call rake torquebox:auth:adduser CREDENTIALS=user:pass from the command line
+  REQUIRE_AUTHENTICATION: true

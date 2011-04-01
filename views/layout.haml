@@ -13,6 +13,8 @@
         = link_to collection_path( :message_processors ), 'Msg. Processors', :class => 'message_processors'
         = link_to collection_path( :jobs ), 'Jobs', :class => 'jobs'
         = link_to collection_path( :services ), 'Services', :class => 'services'
+        - if authenticated?
+          = link_to '/logout', 'Logout'
     #content-wrapper
       - if flash_msg = flash[:notice]
         #flash

@@ -22,13 +22,15 @@ BackStage.
 ## Authentication ##
 
 By default, access to BackStage is wide open. You can secure it by setting 
-`USERNAME` and `PASSWORD` environment variables in `torquebox.yml`:
+`REQUIRE_AUTHENTICATION: true` in the environment section of `torquebox.yml`:
 
     environment:
-      USERNAME: backstage
-      PASSWORD: pass
+      REQUIRE_AUTHENTICATION: true
 
-This will enable basic HTTP authentication.
+This will enable basic JAAS authentication through TorqueBox. Use the 
+rake task to add usernames and password:
+
+    $ rake torquebox:auth:adduser CREDENTIALS=username:password
 
 ## Deployment ##
 

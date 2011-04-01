@@ -14,29 +14,26 @@
 # limitations under the License.
 #
 
+require 'torquebox'
+require 'org/torquebox/auth/authentication'
+
 module Backstage
   module Authentication
  
-    def auth
-      @auth ||= Rack::Auth::Basic::Request.new(request.env)
+    def login_path
+      "#{request.script_name}/login"
     end
-   
-    def unauthorized!(realm=request.host)
-      headers 'WWW-Authenticate' => %(Basic realm="#{realm}")
-      throw :halt, [ 401, 'Authentication Required' ]
-    end
-   
-    def bad_request!
-      throw :halt, [ 400, 'Bad Request' ]
-    end
-   
+
     def authenticated?
-      !request.env['REMOTE_USER'].nil?
+      !session[:user].nil?
     end
    
     def authenticate(username, password)
-      (ENV['USERNAME'] == username) && 
-        (ENV['PASSWORD'] == password)
+      return false if username.nil? || password.nil?
+      authenticator = TorqueBox::Authentication.default
+      authenticator.authenticate(username, password) do
+        session[:user] = username
+      end
     end
 
     def skip_authentication
@@ -46,10 +43,12 @@ module Backstage
     def require_authentication
       return if request.env['SKIP_AUTH']
       return if authenticated?
-      unauthorized! unless auth.provided?
-      bad_request! unless auth.basic?
-      unauthorized! unless authenticate(*auth.credentials)
-      request.env['REMOTE_USER'] = auth.username
+      redirect login_path 
+    end
+
+    def logout
+      session[:user] = nil
+      redirect login_path
     end
    
   end
