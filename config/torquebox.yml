@@ -8,4 +8,4 @@ tasks:
 environment:
 # Add users to $JBOSS_HOME/server/default/conf/props/torquebox-users.properties
 # or just call rake torquebox:auth:adduser CREDENTIALS=user:pass from the command line
-  REQUIRE_AUTHENTICATION: true
+#  REQUIRE_AUTHENTICATION: true
