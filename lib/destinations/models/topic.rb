@@ -28,7 +28,7 @@ module Backstage
 
     def consumer_topics
       unless @consumer_topics
-        @consumer_topics = self.class.all( 'org.hornetq:address="jms.topic.*",*,type=Queue' )
+        @consumer_topics = self.class.all( %Q{org.hornetq:address="#{name}",*,type=Queue} )
         @consumer_topics = @consumer_topics.reject { |t| t.full_name == full_name }
         @consumer_topics.each { |t| t.consumer_topic = true }
       end
