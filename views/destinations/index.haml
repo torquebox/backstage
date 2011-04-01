@@ -12,7 +12,10 @@
       %th
     - @collection.each do |destination|
       %tr
-        %td= link_to( object_path( destination ), destination.display_name )
+        %td
+          = link_to( object_path( destination ), destination.display_name )
+          - if destination.is_a?( Backstage::Queue )
+            = destination.durable ? "(durable)" : "(non-durable)"
         %td
           - if destination.app
             = link_to( object_path( destination.app ), destination.app_name )

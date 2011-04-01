@@ -25,5 +25,9 @@ module Backstage
       'org.hornetq:address="jms.queue.*",*,type=Queue'
     end
 
+    def self.to_hash_attributes
+      super + [:durable]
+    end
+
   end
 end
