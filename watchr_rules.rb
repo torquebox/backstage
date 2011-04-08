@@ -44,7 +44,7 @@ end
 
  def redeploy
    puts "--- Redeploying @ #{Time.now.strftime("%H:%M:%S")}..."
-   system "touch #{ENV['JBOSS_HOME']}/server/default/deploy/backstage-knob.yml"
+   system "touch #{ENV['TORQUEBOX_HOME']}/apps/backstage-knob.yml"
  end
  
 # --------------------------------------------------

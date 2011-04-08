@@ -3,6 +3,7 @@ GEM
   specs:
     diff-lcs (1.1.2)
     haml (3.0.25)
+    jmx (0.6)
     json (1.5.1-java)
     rack (1.2.1)
     rack-accept (0.4.3)
@@ -23,7 +24,6 @@ GEM
       rack (~> 1.1)
       tilt (~> 1.2)
     tilt (1.2.2)
-    tobias-jmxjr (0.4)
     tobias-sinatra-url-for (0.2.1)
       sinatra (>= 0.9.1.1)
     torquebox (1.0.0.CR1)
@@ -46,13 +46,13 @@ PLATFORMS
 
 DEPENDENCIES
   haml (~> 3.0)
+  jmx (= 0.6)
   json
   rack-accept
   rack-flash
   rack-test
   rspec
   sinatra (= 1.1.2)
-  tobias-jmxjr (= 0.4)
   tobias-sinatra-url-for
   torquebox
   watchr
