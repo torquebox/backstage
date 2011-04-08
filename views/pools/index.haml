@@ -1,0 +1,32 @@
+#pools-index
+  %table
+    %tr
+      %th Name 
+      %th App
+      %th Type
+      %th Size
+      %th Available
+      %th Borrowed
+      %th Min Instances
+      %th Max Instances
+    - @collection.each do |pool|
+      %tr
+        %td= link_to( object_path( pool ), pool.name )
+        %td
+          - if pool.app
+            = link_to( object_path( pool.app ), pool.app_name )
+          - else
+            = pool.app_name
+        %td= pool.pool_type
+        %td= pool.size
+        %td
+          = pool.available unless pool.shared?
+        %td
+          = pool.borrowed unless pool.shared?
+        %td
+          = pool.minimum_instances unless pool.shared?
+        %td
+          = pool.maximum_instances unless pool.shared?
+
+
+      

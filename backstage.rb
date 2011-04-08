@@ -30,6 +30,7 @@ require 'resource'
 require 'helpers'
 require 'has_mbean'
 require 'torquebox_managed'
+require 'pools'
 require 'apps'
 require 'destinations'
 require 'message_processors'
@@ -66,7 +67,7 @@ module Backstage
       content_type :json
 
       {
-        :collections => [:apps, :queues, :topics, :message_processors, :jobs, :services].inject({}) do |collections, collection|
+        :collections => [:pools, :apps, :queues, :topics, :message_processors, :jobs, :services].inject({}) do |collections, collection|
           collections[collection] = json_url_for( collection_path( collection ) )
           collections
         end

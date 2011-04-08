@@ -14,23 +14,22 @@
 # limitations under the License.
 #
 
+Backstage::Application.resource :pool
+
+
 module Backstage
-  module TorqueBoxManaged
-    def name
-      return mbean.name if mbean.respond_to?( :name )
-      $1 if full_name =~ /name=(.*?)(,|$)/
+  class Application < Sinatra::Base
+
+    post "/pool/:name/execute" do
+      @object = Pool.find( Util.decode_name( params[:name] ) )
+      @script = params[:script] || ''
+      begin
+        @result = @object.evaluate(@script)
+      rescue Exception => @exception
+      end
+
+      haml :"pools/show"
     end
 
-    def app_name
-      $1 if full_name =~ /app=(.*?)(,|$)/
-    end
-
-    def app
-      App.find( "torquebox.apps:app=#{app_name}" )
-    end
-    
-    def status
-      mbean.status.downcase.capitalize
-    end
   end
 end

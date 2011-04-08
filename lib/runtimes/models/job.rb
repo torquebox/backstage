@@ -15,22 +15,21 @@
 #
 
 module Backstage
-  module TorqueBoxManaged
-    def name
-      return mbean.name if mbean.respond_to?( :name )
-      $1 if full_name =~ /name=(.*?)(,|$)/
-    end
-
-    def app_name
-      $1 if full_name =~ /app=(.*?)(,|$)/
-    end
-
-    def app
-      App.find( "torquebox.apps:app=#{app_name}" )
-    end
+  class Job
+    include HasMBean
+    include TorqueBoxManaged
+    include Resource
     
-    def status
-      mbean.status.downcase.capitalize
+    def self.filter
+      "torquebox.jobs:*"
+    end
+
+    def self.to_hash_attributes
+      super + [:name, :app, :app_name, :ruby_class_name, :status, :cron_expression]
+    end
+
+    def available_actions
+      status == 'Started' ? %w{stop} : %w{start}
     end
   end
 end

@@ -15,22 +15,36 @@
 #
 
 module Backstage
-  module TorqueBoxManaged
-    def name
-      return mbean.name if mbean.respond_to?( :name )
-      $1 if full_name =~ /name=(.*?)(,|$)/
+  class Pool
+    include HasMBean
+    include TorqueBoxManaged
+    include Resource
+    
+    def self.filter
+      "torquebox.pools:*"
     end
 
-    def app_name
-      $1 if full_name =~ /app=(.*?)(,|$)/
+    def self.to_hash_attributes
+      super + [:name, :app, :app_name, :pool_type, :size, :available, :borrowed, :minimum_instances, :maximum_instances]
     end
 
-    def app
-      App.find( "torquebox.apps:app=#{app_name}" )
+    def pool_type
+      full_name =~ /type=(.*?)(,|$)/ ? $1 : ''
+    end
+
+    def size
+      shared? ? 1 : mbean.size
     end
     
-    def status
-      mbean.status.downcase.capitalize
+    %w{ available borrowed minimum_instances maximum_instances }.each do |meth|
+      define_method meth do
+        shared? ? 0 : mbean.__send__( meth )
+      end
+    end
+
+    def shared?
+      pool_type == 'shared'
     end
   end
 end
+

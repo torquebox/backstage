@@ -1,0 +1,17 @@
+#pools-show
+  %h2 
+    == Runtime Pool: #{@object.name}
+  .actions
+
+  %table.data-table
+    - %w{ name app_name pool_type size }.each do |method|
+      = data_row( method.humanize, @object.send( method ) )
+
+    - unless @object.shared?
+      - %w{ available borrowed minimum_instances maximum_instances }.each do |method|
+        = data_row( method.humanize, @object.send( method ) )
+     
+
+  .controls
+    = link_to collection_path( :pools ), '<< Back'
+

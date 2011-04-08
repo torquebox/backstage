@@ -14,23 +14,5 @@
 # limitations under the License.
 #
 
-module Backstage
-  module TorqueBoxManaged
-    def name
-      return mbean.name if mbean.respond_to?( :name )
-      $1 if full_name =~ /name=(.*?)(,|$)/
-    end
-
-    def app_name
-      $1 if full_name =~ /app=(.*?)(,|$)/
-    end
-
-    def app
-      App.find( "torquebox.apps:app=#{app_name}" )
-    end
-    
-    def status
-      mbean.status.downcase.capitalize
-    end
-  end
-end
+require 'pools/models/pool'
+require 'pools/routes'
