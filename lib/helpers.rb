@@ -20,6 +20,7 @@ require 'sinatra/url_for'
 
 module Backstage
   class Application < Sinatra::Base
+    
     helpers do
       include Backstage::Authentication
       include Sinatra::UrlForHelper
@@ -106,6 +107,7 @@ module Backstage
         end
         response
       end
+
     end
   end
 end

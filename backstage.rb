@@ -41,6 +41,9 @@ require 'services'
 puts "ENV['REQUIRE_AUTHENTICATION'] is not set, *disabling* authentication" unless ENV['REQUIRE_AUTHENTICATION'] 
 
 module Backstage
+  BACKSTAGE_VERSION = File.readlines( File.join( File.dirname( __FILE__ ), 'VERSION' ) ).first.strip
+  TORQUEBOX_VERSION = File.readlines( File.join( File.dirname( __FILE__ ), 'TORQUEBOX_VERSION' ) ).first.strip
+
   class Application < Sinatra::Base
     enable :logging, :sessions
     use Rack::Accept
