@@ -1,0 +1,74 @@
+#!/usr/bin/env jruby
+#-*-ruby-*-
+#
+# Copyright 2011 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+require 'thor'
+require 'torquebox-rake-support'
+
+class BackstageCommand < Thor
+
+  DEPLOYMENT_NAME = 'backstage-knob.yml'
+  
+  desc "deploy [--secure=username:password[,username:password]*]", "Deploys backstage to $TORQUEBOX_HOME/apps"
+  method_option :secure, :type => :hash, :default => nil
+  def deploy
+    check
+    root = File.expand_path( File.join( File.dirname( __FILE__ ), '..' ) )
+    descriptor = TorqueBox::DeployUtils.basic_deployment_descriptor( :root => root,
+                                                                     :env => 'production' )
+    if options[:secure]
+      descriptor['environment'] = { 'REQUIRE_AUTHENTICATION' => true }
+      credentials = []
+      options[:secure].each do |user, pass|
+        credentials << [user, pass]
+      end
+      prop_file = TorqueBox::DeployUtils.write_credentials( credentials )
+      puts ">> Wrote user/password entries to #{prop_file}"
+    else
+      puts ">> WARNING: deploying BackStage with no security - use the --secure=username:password option to secure it"
+    end
+
+    name, dir = TorqueBox::DeployUtils.deploy_yaml( descriptor, DEPLOYMENT_NAME )
+    
+    puts ">> Deployed #{name} to #{dir}"
+  end
+
+  desc "undeploy", "Removes backstage from $TORQUEBOX_HOME/apps"
+  def undeploy
+    check
+    name, dir = TorqueBox::DeployUtils.undeploy( DEPLOYMENT_NAME )
+    
+    puts ">> Undeployed #{name} from #{dir}"
+  end
+
+  desc "info", "Prints info about BackStage's status"
+  def info
+    check
+    path = File.join( ENV['TORQUEBOX_HOME'], 'apps', DEPLOYMENT_NAME )
+    if File.exists?( path )
+      puts ">> BackStage deployed to #{path}"
+    else
+      puts ">> BackStage is not deployed"
+    end
+  end
+
+  protected
+  def check
+    raise Exception.new("$TORQUEBOX_HOME must be set") unless ENV['TORQUEBOX_HOME']
+  end
+end
+
+BackstageCommand.start

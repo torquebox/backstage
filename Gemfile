@@ -9,7 +9,9 @@ gem 'torquebox'
 gem 'tobias-sinatra-url-for' 
 gem 'rack-accept'
 
-group :test do
+group :development do
+  gem 'thor'
+  gem 'jeweler'
   gem 'watchr'
   gem 'rspec'
   gem 'rack-test'

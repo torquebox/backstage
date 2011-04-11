@@ -1,0 +1,3 @@
+*.knob
+pkg/
+.sass-cache/

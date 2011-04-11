@@ -34,7 +34,27 @@ rake task to add usernames and password:
 
 ## Deployment ##
 
-To deploy BackStage, clone the [git repo](https://github.com/torquebox/backstage),
+BackStage can either be installed and deployed as a gem, or deployed from the
+application source.
+
+### As A Gem ###
+
+First, install the gem:
+
+    jruby -S gem install backstage
+    
+Then, deploy backstage using the `backstage` command. You can deploy with security
+disabled:
+
+    jruby -S backstage deploy
+    
+Or enable security by providing a username/password pair:
+
+    jruby -S backstage deploy --secure=username:password
+
+### From Source ###
+
+Clone the [git repo](https://github.com/torquebox/backstage),
 then run bundler to install the needed gems (listed in the 
 [Gemfile](https://github.com/torquebox/backstage/blob/master/Gemfile)):
 
