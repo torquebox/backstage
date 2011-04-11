@@ -53,18 +53,9 @@ module Backstage
 
     set :views, Proc.new { File.join( File.dirname( __FILE__ ), "views" ) }
 
-
-    if ENV['REQUIRE_AUTHENTICATION']
-      ['*/login', '*/logout', '*/*.css', '*/*.js'].each do |path|
-        before path do
-          skip_authentication
-        end
-      end
-      before do
-        require_authentication 
-      end
+    before do
+      require_authentication if ENV['REQUIRE_AUTHENTICATION']
     end
-
 
     get '/api' do
       content_type :json
@@ -87,19 +78,6 @@ module Backstage
 
     get '/css/html5reset.css' do
       sass :'css/html5reset'
-    end
-
-    get '/login' do
-      haml :'sessions/new'
-    end
-
-    get '/logout' do
-      logout
-    end
-
-    post '/login' do
-      authenticate( params[:user], params[:password] )
-      redirect_to '/'
     end
 
   end

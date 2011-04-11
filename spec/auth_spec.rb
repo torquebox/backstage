@@ -20,11 +20,13 @@ module Backstage
   describe 'with authentication enabled' do
     before(:each) do
       App.stub(:all).and_return([resource_with_mock_mbean(App)])
-      ENV['USERNAME'] = 'blah'
-      ENV['PASSWORD'] = 'pw'
+      ENV['REQUIRE_AUTHENTICATION'] = 'true'
+      @authenticator = mock(:authenticator)
+      TorqueBox::Authentication.stub(:default).and_return(@authenticator)
     end
     
     it "allow access with proper credentials" do
+      @authenticator.should_receive(:authenticate).with('blah', 'pw').and_return(true)
       authorize 'blah', 'pw'
       get '/apps'
       last_response.should be_ok
@@ -36,22 +38,21 @@ module Backstage
     end
 
     it "should 401 with invalid credentials" do
+      @authenticator.should_receive(:authenticate).with('foo', 'bar').and_return(false)
       authorize 'foo', 'bar'
       get '/apps'
       last_response.status.should == 401
     end
 
     after(:each) do
-      ENV['USERNAME'] = nil
-      ENV['PASSWORD'] = nil
+      ENV['REQUIRE_AUTHENTICATION'] = nil
     end
   end
 
   describe 'with authentication disabled' do
     before(:each) do
       App.stub(:all).and_return([resource_with_mock_mbean(App)])
-      ENV['USERNAME'] = nil
-      ENV['PASSWORD'] = nil
+      ENV['REQUIRE_AUTHENTICATION'] = nil
     end
 
     it "should allow access w/o credentials" do

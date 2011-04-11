@@ -15,8 +15,6 @@
         = link_to collection_path( :services ), 'Services', :class => 'services'
         = link_to collection_path( :pools ), 'Runtime Pools', :class => 'pools'
 
-        - if authenticated?
-          = link_to '/logout', 'Logout'
     #content-wrapper
       - if flash_msg = flash[:notice]
         #flash
