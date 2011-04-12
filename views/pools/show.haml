@@ -12,6 +12,7 @@
         = data_row( method.humanize, @object.send( method ) )
      
   #evaluate
+    %h3 Evaluate Ruby Against This Pool
     #results
 
     :javascript
@@ -21,12 +22,14 @@
           $('#script_form').serialize(),
           function( response ) {
             result = response.result
-            klass = ''
+            klass = 'result'
             if (response.exception) {
-              klass = 'exception'
+              klass += ' exception'
               result = response.exception + "\n    " + response.backtrace.join( "\n    " )
+            } else {
+              result = '' + response.result
             }
-            $( '#results' ).append( '<div class="result ' + klass + '"><pre>' + result + "</pre></div>" )
+            $( '#results' ).append( $( '<pre/>' ).addClass( klass ).text( result ) )
           }
         )
       }
