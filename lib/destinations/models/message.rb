@@ -29,7 +29,7 @@ module Backstage
 
     def content
       jms_message.decode.inspect
-    rescue ArgumentError => ex
+    rescue
       # we may not have access to a serialized class. Just show the
       # Marshal string in that case
       jms_message.get_string_property( 'torquebox_encoding' ) ? Base64.decode64( jms_message.text ) : jms_message.text
