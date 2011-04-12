@@ -47,6 +47,15 @@ module Backstage
       end
     end
     
+    JMS_PROPERTIES = %w{ JMS_Correlation_ID JMS_Priority JMS_Type  JMS_Reply_To JMS_Redelivered }
+    def jms_properties
+      @jms_properties ||= JMS_PROPERTIES.inject( {} ) do |props,name|
+        value = jms_message.send(name.downcase)
+        props[name.gsub('_',' ')] = value.to_s if value # Ignore empty values
+        props
+      end
+    end
+
     def delivery_count
       jms_message.get_string_property( 'JMSXDeliveryCount' )
     end
