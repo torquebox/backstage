@@ -45,6 +45,13 @@ module Backstage
     def shared?
       pool_type == 'shared'
     end
+
+    def evaluate(script)
+      
+      mbean.evaluate( script )
+    rescue Exception => ex
+      puts ex
+    end
   end
 end
 

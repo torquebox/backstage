@@ -11,6 +11,30 @@
       - %w{ available borrowed minimum_instances maximum_instances }.each do |method|
         = data_row( method.humanize, @object.send( method ) )
      
+  #evaluate
+    #results
+
+    :javascript
+      function evaluate_remote() {
+        $.post(
+          '#{url_for( object_action_path( @object, :evaluate ) )}', 
+          $('#script_form').serialize(),
+          function( response ) {
+            result = response.result
+            klass = ''
+            if (response.exception) {
+              klass = 'exception'
+              result = response.exception + "\n    " + response.backtrace.join( "\n    " )
+            }
+            $( '#results' ).append( '<div class="result ' + klass + '"><pre>' + result + "</pre></div>" )
+          }
+        )
+      }
+
+    %form#script_form
+      %textarea{:name => 'script'}
+        = @script
+      %input{:type => 'button', :value => 'Evaluate', :onclick => "javascript:evaluate_remote()"}
 
   .controls
     = link_to collection_path( :pools ), '<< Back'

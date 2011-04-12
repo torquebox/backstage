@@ -117,6 +117,24 @@ th
   background-color: $warning_background_color
   color: $warning_color
 
+#evaluate
+  #results
+    .result
+      background-color: $light_gray
+      border: 1px solid $medium_gray
+      margin: 3px
+      padding: 3px      
+      &.exception
+        background-color: $warning_background_color
+  #script_form
+    background-color: $light_gray
+    border: 1px solid $medium_gray
+    margin: 3px
+    padding: 3px      
+    textarea 
+      width: 500px
+      height: 200px
+
 @include selected-tab('apps')
 @include selected-tab('queues')
 @include selected-tab('queue', 'queues')

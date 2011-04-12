@@ -19,16 +19,22 @@ Backstage::Application.resource :pool
 
 module Backstage
   class Application < Sinatra::Base
+    
+    post "/pool/:name/evaluate" do
+      content_type :json
 
-    post "/pool/:name/execute" do
-      @object = Pool.find( Util.decode_name( params[:name] ) )
-      @script = params[:script] || ''
+      object = Pool.find( Util.decode_name( params[:name] ) )
+      script = params[:script] || ''
+      response = { :script => script }
       begin
-        @result = @object.evaluate(@script)
-      rescue Exception => @exception
+        result = object.evaluate( script )
+        response[:result] = result
+      rescue Exception => ex
+        response[:exception] = ex
+        response[:backtrace] = ex.backtrace
       end
 
-      haml :"pools/show"
+      JSON.generate( response )
     end
 
   end
