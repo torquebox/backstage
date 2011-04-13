@@ -8,6 +8,7 @@ the components:
 
 * pause/resume queues and topics
 * stop/start message processors, services, and jobs
+* execute debug ruby code inside a runtime pool
 * view stats on all of the above 
 
 In addition, BackStage allows you to browse messages on a queue, and hides
