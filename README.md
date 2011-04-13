@@ -39,9 +39,14 @@ application source.
 
 ### As A Gem ###
 
+
 First, install the gem:
 
-    jruby -S gem install backstage
+    jruby -S gem install torquebox-backstage
+
+*Note:* the torquebox-backstage gem cannot be made available on rubygems.org 
+until an official release of the torquebox gems is made. Until then, you will
+need to check out the source and run `jruby -S rake install` to install the gem.
     
 Then, deploy backstage using the `backstage` command. You can deploy with security
 disabled:

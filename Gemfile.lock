@@ -38,6 +38,7 @@ GEM
       torquebox-messaging (= 1.0.0.CR1)
       torquebox-naming (= 1.0.0.CR1)
       torquebox-rake-support (= 1.0.0.CR1)
+      torquebox-vfs (= 1.0.0.CR1)
       torquebox-web (= 1.0.0.CR1)
     torquebox-base (1.0.0.CR1-java)
     torquebox-messaging (1.0.0.CR1-java)
@@ -45,6 +46,7 @@ GEM
       torquebox-naming (= 1.0.0.CR1)
     torquebox-naming (1.0.0.CR1-java)
     torquebox-rake-support (1.0.0.CR1)
+    torquebox-vfs (1.0.0.CR1-java)
     torquebox-web (1.0.0.CR1-java)
     watchr (0.7)
 

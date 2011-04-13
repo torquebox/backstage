@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-require 'rubygems'
+require 'bundler/setup'
 require 'sinatra/base'
 require 'rack-flash'
 require 'rack/accept'

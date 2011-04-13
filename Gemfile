@@ -6,7 +6,7 @@ gem 'haml', '~>3.0'
 gem "jmx", '0.7'
 gem 'json'
 gem 'torquebox'
-gem 'tobias-sinatra-url-for' 
+gem 'tobias-sinatra-url-for'
 gem 'rack-accept'
 
 group :development do

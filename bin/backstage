@@ -26,8 +26,7 @@ class BackstageCommand < Thor
   method_option :secure, :type => :hash, :default => nil
   def deploy
     check
-    root = File.expand_path( File.join( File.dirname( __FILE__ ), '..' ) )
-    descriptor = TorqueBox::DeployUtils.basic_deployment_descriptor( :root => root,
+    descriptor = TorqueBox::DeployUtils.basic_deployment_descriptor( :root => root_dir,
                                                                      :env => 'production' )
     if options[:secure]
       descriptor['environment'] = { 'REQUIRE_AUTHENTICATION' => true }
@@ -69,6 +68,11 @@ class BackstageCommand < Thor
   def check
     raise Exception.new("$TORQUEBOX_HOME must be set") unless ENV['TORQUEBOX_HOME']
   end
+
+  def root_dir
+    File.expand_path( File.join( File.dirname( __FILE__ ), '..' ) )
+  end
+  
 end
 
 BackstageCommand.start

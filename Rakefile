@@ -13,7 +13,7 @@ require 'torquebox-rake-support'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "backstage"
+  gem.name = "torquebox-backstage"
   gem.homepage = "http://github.com/torquebox/backstage"
   gem.license = "MIT"
   gem.summary = %Q{BackStage - Queue/Topic/Job viewer for TorqueBox}
@@ -25,8 +25,7 @@ Jeweler::Tasks.new do |gem|
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   gem.add_runtime_dependency 'thor', '> 0.14'
-  gem.add_runtime_dependency 'torquebox-rake-support'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.add_runtime_dependency 'bundler', '> 1.0.12'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
