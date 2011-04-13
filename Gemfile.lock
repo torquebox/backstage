@@ -8,7 +8,7 @@ GEM
       bundler (~> 1.0.0)
       git (>= 1.2.5)
       rake
-    jmx (0.6)
+    jmx (0.7)
     json (1.5.1-java)
     rack (1.2.1)
     rack-accept (0.4.3)
@@ -54,7 +54,7 @@ PLATFORMS
 DEPENDENCIES
   haml (~> 3.0)
   jeweler
-  jmx (= 0.6)
+  jmx (= 0.7)
   json
   rack-accept
   rack-flash

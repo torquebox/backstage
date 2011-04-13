@@ -26,12 +26,6 @@ module Backstage
     def initialize(mbean_name, mbean)
       self.mbean_name = mbean_name
       self.mbean = mbean
-
-      # this works around a bug in the jmx gem where method_missing is busted
-      # https://github.com/enebo/jmxjr/issues/5
-      def mbean.method_missing(meth, *args, &block)
-        raise NoMethodError.new( "undefined method '#{meth}' for #{self}", meth, args )
-      end
     end
     
     def full_name
