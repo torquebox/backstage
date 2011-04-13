@@ -20,7 +20,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{BackStage - Queue/Topic/Job viewer for TorqueBox}
   gem.email = "tcrawley@redhat.com"
   gem.authors = ["Tobias Crawley"]
-  gem.files = FileList["[A-Z]*.*", 'backstage.rb', 'config.ru', 'bin/*.rb', "{config,lib,spec,views}/**/*"]
+  gem.files = FileList["[A-Z]*", 'backstage.rb', 'config.ru', 'bin/*.rb', "{config,lib,spec,views}/**/*"]
   gem.executables = %w{backstage}
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
