@@ -33,7 +33,7 @@ rake task to add usernames and password:
 
     $ rake torquebox:auth:adduser CREDENTIALS=username:password
 
-## Deployment ##
+## Installation ##
 
 BackStage can either be installed and deployed as a gem, or deployed from the
 application source.
