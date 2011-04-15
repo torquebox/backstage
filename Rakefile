@@ -25,7 +25,7 @@ Jeweler::Tasks.new do |gem|
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   gem.add_runtime_dependency 'thor', '> 0.14'
-  gem.add_runtime_dependency 'bundler', '> 1.0.12'
+  gem.add_runtime_dependency 'bundler', '>= 1.0.12'
 end
 Jeweler::RubygemsDotOrgTasks.new
 

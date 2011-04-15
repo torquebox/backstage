@@ -65,5 +65,5 @@ DEPENDENCIES
   sinatra (= 1.1.2)
   thor
   tobias-sinatra-url-for
-  torquebox
+  torquebox (= 1.0.0.CR1)
   watchr

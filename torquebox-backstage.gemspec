@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tobias Crawley"]
-  s.date = %q{2011-04-13}
+  s.date = %q{2011-04-15}
   s.default_executable = %q{backstage}
   s.description = %q{BackStage - Queue/Topic/Job viewer for TorqueBox}
   s.email = %q{tcrawley@redhat.com}
@@ -103,7 +103,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<haml>, ["~> 3.0"])
       s.add_runtime_dependency(%q<jmx>, ["= 0.7"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
-      s.add_runtime_dependency(%q<torquebox>, [">= 0"])
+      s.add_runtime_dependency(%q<torquebox>, ["= 1.0.0.CR1"])
       s.add_runtime_dependency(%q<tobias-sinatra-url-for>, [">= 0"])
       s.add_runtime_dependency(%q<rack-accept>, [">= 0"])
       s.add_development_dependency(%q<thor>, [">= 0"])
@@ -119,7 +119,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<haml>, ["~> 3.0"])
       s.add_dependency(%q<jmx>, ["= 0.7"])
       s.add_dependency(%q<json>, [">= 0"])
-      s.add_dependency(%q<torquebox>, [">= 0"])
+      s.add_dependency(%q<torquebox>, ["= 1.0.0.CR1"])
       s.add_dependency(%q<tobias-sinatra-url-for>, [">= 0"])
       s.add_dependency(%q<rack-accept>, [">= 0"])
       s.add_dependency(%q<thor>, [">= 0"])
@@ -136,7 +136,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<haml>, ["~> 3.0"])
     s.add_dependency(%q<jmx>, ["= 0.7"])
     s.add_dependency(%q<json>, [">= 0"])
-    s.add_dependency(%q<torquebox>, [">= 0"])
+    s.add_dependency(%q<torquebox>, ["= 1.0.0.CR1"])
     s.add_dependency(%q<tobias-sinatra-url-for>, [">= 0"])
     s.add_dependency(%q<rack-accept>, [">= 0"])
     s.add_dependency(%q<thor>, [">= 0"])
