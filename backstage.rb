@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-require 'bundler/setup'
 require 'sinatra/base'
 require 'rack-flash'
 require 'rack/accept'

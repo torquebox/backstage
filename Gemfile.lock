@@ -10,7 +10,7 @@ GEM
       rake
     jmx (0.7)
     json (1.5.1-java)
-    rack (1.2.1)
+    rack (1.2.2)
     rack-accept (0.4.3)
       rack (>= 0.4)
     rack-flash (0.1.1)
