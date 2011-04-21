@@ -42,6 +42,9 @@ module Backstage
         message.parent = self
         yield message
       end
+    rescue Exception => ex
+      puts "WARNING - failed to access messages for queue #{jndi_name}: #{ex}"
+      puts ex.backtrace.join( "\n" )
     end
     
     def display_name
