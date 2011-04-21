@@ -1,8 +1,8 @@
 TODO
 
-* link queues/topics to their apps (rqeuires TB changes)
+* link queues/topics to their apps (requires TB changes)
 * see how backstage behaves in a cluster 
-* allow resending DLQ and ExpiryQueue messages
-* store failure backtraces for jobs/tasks in TorqueBox, and display here  (rqeuires TB changes)
+* allow resending DLQ and ExpiryQueue messages (requires replacing the external (client) queuebrowser with one based off of the mbean listMessages)
+* store failure backtraces for jobs/tasks in TorqueBox, and display here  (requires TB changes)
 * improve test coverage
 * add stats collection, with memory usage and other bits? ruby runtime stats?
