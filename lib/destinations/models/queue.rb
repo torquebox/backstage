@@ -29,5 +29,8 @@ module Backstage
       super + [:durable]
     end
 
+    def subcollections
+      [:messages]
+    end
   end
 end

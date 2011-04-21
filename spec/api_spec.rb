@@ -41,7 +41,7 @@ module Backstage
       end
     end
 
-      end
+  end
 
   describe 'with authentication enabled' do
     before(:each) do
@@ -49,7 +49,7 @@ module Backstage
       @authenticator = mock(:authenticator)
       TorqueBox::Authentication.stub(:default).and_return(@authenticator)
     end
-    
+
     it "api should work with authentication" do
       @authenticator.should_receive(:authenticate).with('blah', 'pw').and_return(true)
       authorize 'blah', 'pw'
@@ -73,14 +73,14 @@ module Backstage
       ENV['REQUIRE_AUTHENTICATION'] = nil
     end
   end
-  
+
   %w{ app queue topic job message_processor service pool }.each do |resource|
     klass = "backstage/#{resource}".constantize
     describe resource do
       it "should have hash attributes beyond :resource" do
         klass.to_hash_attributes.size.should > 1
       end
-      
+
       describe "/#{resource.pluralize}" do
         before(:each) do
           klass.stub(:all).and_return([resource_with_mock_mbean(klass)])
@@ -131,6 +131,18 @@ module Backstage
         end
       end
     end
-
   end
+
+  describe "/queue" do
+    before(:each) do
+      Queue.stub(:find).and_return(resource_with_mock_mbean(Queue))
+      get "/queue/somename", :format => 'json'
+      @response = JSON.parse(last_response.body, :symbolize_names => true)
+    end
+
+    it "should include a link to its messages" do
+      @response[:messages].should =~ %r{/queue/.*/messages.*format=json$}
+    end
+  end
+
 end

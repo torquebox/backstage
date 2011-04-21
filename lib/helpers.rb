@@ -105,6 +105,13 @@ module Backstage
             response[key] = json_url_for( object_path( value ) )
           end
         end
+
+        if object.respond_to?( :subcollections )
+          object.subcollections.each do |collection|
+            response[collection] = json_url_for( collection_path( object, collection ) )
+          end
+        end
+
         response
       end
 
