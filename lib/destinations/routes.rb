@@ -38,7 +38,19 @@ module Backstage
         object_to_json( @object )
       end
     end
-    
+
+    # we can't implement move until we figure out how to get the
+    # actual HQ internal message id on the client side
+    # post "/queue/:name/message/:id/move" do
+    #   @destination = Queue.find( Util.decode_name( params[:name] ) )
+    #   @destination.mbean.move_message( params[:id], params[:queue])
+    #   if html_requested?
+    #     haml :'messages/show'
+    #   else
+    #     object_to_json( @destination )
+    #   end
+    # end
+
   end
 end
 

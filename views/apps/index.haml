@@ -5,11 +5,12 @@
       %th Environment
       %th Root
       %th Deployed At
+      %th 
     - @collection.each do |app|
       %tr
         %td= link_to( object_path( app ), app.name )
         %td= app.environment_name
         %td= app.root_path
         %td= app.deployed_at
-
+        %td= link_to( collection_path( app, :logs ), 'View Logs' ) if app.has_logs?
       

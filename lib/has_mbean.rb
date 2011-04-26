@@ -16,6 +16,7 @@
 
 module Backstage
   module HasMBean
+    include Comparable
     java_import javax.management.ObjectName
 
     def self.included(base)
@@ -26,6 +27,10 @@ module Backstage
     def initialize(mbean_name, mbean)
       self.mbean_name = mbean_name
       self.mbean = mbean
+    end
+
+    def <=>(other)
+      full_name <=> other.full_name
     end
     
     def full_name
@@ -44,7 +49,7 @@ module Backstage
       end
 
       def all(filter_string = filter)
-        jmx_server.query_names( filter_string ).collect { |name| new( name, jmx_server[name] ) }
+        jmx_server.query_names( filter_string ).collect { |name| new( name, jmx_server[name] ) }.sort
       end
 
       def find(name)

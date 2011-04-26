@@ -34,24 +34,26 @@ require 'apps'
 require 'destinations'
 require 'message_processors'
 require 'jobs'
+require 'logs'
 require 'services'
 
 
-puts "ENV['REQUIRE_AUTHENTICATION'] is not set, *disabling* authentication" unless ENV['REQUIRE_AUTHENTICATION'] 
+Backstage.logger.warn "ENV['REQUIRE_AUTHENTICATION'] is not set, *disabling* authentication" unless ENV['REQUIRE_AUTHENTICATION'] 
 
 module Backstage
   BACKSTAGE_VERSION = File.readlines( File.join( File.dirname( __FILE__ ), 'VERSION' ) ).first.strip
   TORQUEBOX_VERSION = File.readlines( File.join( File.dirname( __FILE__ ), 'TORQUEBOX_VERSION' ) ).first.strip
 
   class Application < Sinatra::Base
-    enable :logging, :sessions
+    enable :sessions
     use Rack::Accept
     use Rack::Flash
-
+    use Rack::CommonLogger, Backstage.logger
+    
     include Backstage::Authentication 
 
     set :views, Proc.new { File.join( File.dirname( __FILE__ ), "views" ) }
-
+    
     before do
       require_authentication if ENV['REQUIRE_AUTHENTICATION']
     end
@@ -60,7 +62,7 @@ module Backstage
       content_type :json
 
       {
-        :collections => [:pools, :apps, :queues, :topics, :message_processors, :jobs, :services].inject({}) do |collections, collection|
+        :collections => [:pools, :apps, :queues, :topics, :message_processors, :jobs, :services, :logs].inject({}) do |collections, collection|
           collections[collection] = json_url_for( collection_path( collection ) )
           collections
         end
@@ -68,7 +70,11 @@ module Backstage
     end
     
     get '/' do
-      redirect_to collection_path( :apps ) 
+      if html_requested?
+        haml :'dashboard/index'
+      else
+        redirect_to '/url'
+      end
     end
 
     get '/css/style.css' do

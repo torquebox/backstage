@@ -18,6 +18,8 @@ require 'rack/test'
 require 'backstage'
 require 'json'
 
+TEST_ROOT = File.expand_path( File.dirname( __FILE__ ) )
+
 def app
   Backstage::Application
 end
@@ -27,10 +29,17 @@ def resource_with_mock_mbean(klass)
   def mock_mbean.method_missing(method, *args, &block)
     method.to_s
   end
-  resource = klass.new('mock_mbean', mock_mbean)
+
+  if klass == Backstage::Log
+    resource = Backstage::Log.new(File.join( TEST_ROOT, 'data', 'railsapp', 'log', 'production.log' ))
+  else
+    resource = klass.new('mock_mbean', mock_mbean)
+    resource.stub(:app).and_return(resource_with_mock_mbean(Backstage::App)) unless klass == Backstage::App
+  end
+
   resource.stub(:name).and_return('name')
   resource.stub(:app_name).and_return('app_name')
-  resource.stub(:app).and_return(resource_with_mock_mbean(Backstage::App)) unless klass == Backstage::App
+
   resource
 end
 

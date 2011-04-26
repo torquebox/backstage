@@ -43,8 +43,8 @@ module Backstage
         yield message
       end
     rescue Exception => ex
-      puts "WARNING - failed to access messages for queue #{jndi_name}: #{ex}"
-      puts ex.backtrace.join( "\n" )
+      Backstage.logger "WARNING - failed to access messages for queue #{jndi_name}: #{ex}"
+      Backstage.logger ex
     end
     
     def display_name
@@ -70,6 +70,16 @@ module Backstage
     
     def app_name
       name =~ %r{/queues/torquebox/(.*)} ? $1 : 'n/a'
+    end
+
+    def pause
+      super
+      self
+    end
+
+    def resume
+      super
+      self
     end
 
     def status

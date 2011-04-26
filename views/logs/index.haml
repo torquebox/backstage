@@ -1,0 +1,14 @@
+#logs-index
+  %table
+    %tr
+      %th Name 
+      %th Size
+      %th
+      - @collection.each do |log|
+        %tr 
+          %td= log.name
+          %td= human_size( log.size )
+          %td
+            = link_to( object_path( log ), 'Tail' )
+            
+ 

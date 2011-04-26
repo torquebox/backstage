@@ -14,5 +14,33 @@
 # limitations under the License.
 #
 
-Backstage::Application.resource :app
+module Backstage
+  class Application < Sinatra::Base
+    resource :app
+
+    get "/app/:name/logs" do
+      @parent = App.find( Util.decode_name( params[:name] ) )
+      @collection = @parent.logs
+      if html_requested?
+        haml :'logs/index'
+      else
+        content_type :json
+        collection_to_json( @collection )
+      end
+    end
+
+     get "/app/:name/log/:id" do
+      @parent = App.find( Util.decode_name( params[:name] ) )
+      @object = Log.find( Util.decode_name( params[:id] ) )
+      @object.parent = @parent
+                          
+      if html_requested?
+        haml :'logs/show'
+      else
+        object_to_json( @object )
+      end
+    end
+
+  end
+end
 

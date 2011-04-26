@@ -2,6 +2,7 @@
   %h2 
     == App: #{@object.name}
   .actions
+    = link_to( collection_path( @object, :logs ), 'View Logs' ) if @object.has_logs?
 
   %table.data-table
     - %w{ name environment_name root_path deployed_at }.each do |method|

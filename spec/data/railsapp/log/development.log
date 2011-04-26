@@ -1,0 +1,80 @@
+  [1m[36mSQL (2.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (1.0ms)[0m  SELECT name, sql FROM sqlite_master WHERE tbl_name = "schema_migrations" AND type = 'index'
+  [1m[36mSQL (2.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.0ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (1.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateWidgets (20110421160514)
+  [1m[36mSQL (1.0ms)[0m  [1mCREATE TABLE "widgets" ("id" integer primary key autoincrement not null, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  SELECT last_insert_rowid()
+  [1m[36mSQL (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT name, sql FROM sqlite_master WHERE tbl_name = "widgets" AND type = 'index'[0m
+
+
+Started GET "/__sinatra__/500.png" for 0:0:0:0:0:0:0:1%0 at Thu Apr 21 12:19:00 -0400 2011
+
+ActionController::RoutingError (No route matches "/__sinatra__/500.png"):
+  
+
+Rendered /Users/tobias/work/torquebox-current/jruby/lib/ruby/gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (4.0ms)
+
+
+Started GET "/__sinatra__/500.png" for 0:0:0:0:0:0:0:1%0 at Thu Apr 21 12:19:29 -0400 2011
+
+ActionController::RoutingError (No route matches "/__sinatra__/500.png"):
+  
+
+Rendered /Users/tobias/work/torquebox-current/jruby/lib/ruby/gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (2.0ms)
+  [1m[36mSQL (0.0ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateWidgets (20110421160514)
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT name, sql FROM sqlite_master WHERE tbl_name = "widgets" AND type = 'index'[0m
+
+
+Started GET "/__sinatra__/500.png" for 0:0:0:0:0:0:0:1%0 at Thu Apr 21 13:19:32 -0400 2011
+
+ActionController::RoutingError (No route matches "/__sinatra__/500.png"):
+  
+
+Rendered /Users/tobias/work/torquebox-current/jruby/lib/ruby/gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (4.0ms)
+
+
+Started GET "/widgets" for 0:0:0:0:0:0:0:1%0 at Thu Apr 21 13:52:39 -0400 2011
+  Processing by WidgetsController#index as HTML
+  [1m[36mWidget Load (1.0ms)[0m  [1mSELECT "widgets".* FROM "widgets"[0m
+Rendered widgets/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 309ms (Views: 36.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/widgets" for 0:0:0:0:0:0:0:1%0 at Mon Apr 25 22:25:52 -0400 2011
+  Processing by WidgetsController#index as HTML
+  [1m[36mWidget Load (0.0ms)[0m  [1mSELECT "widgets".* FROM "widgets"[0m
+Rendered widgets/index.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 338ms (Views: 36.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/__sinatra__/500.png" for 0:0:0:0:0:0:0:1%0 at Mon Apr 25 22:27:02 -0400 2011
+
+ActionController::RoutingError (No route matches "/__sinatra__/500.png"):
+  
+
+Rendered /Users/tobias/work/torquebox-current/jruby/lib/ruby/gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (2.0ms)

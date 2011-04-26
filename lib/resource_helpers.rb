@@ -46,13 +46,15 @@ module Backstage
         (options[:actions] || []).each do |action|
           post "/#{resource}/:name/#{action}" do
             object = klass.find( Util.decode_name( params[:name] ) )
-            object.__send__( action )
+            send_args = [action]
+            send_args << params if object.respond_to?( action ) && object.method( action ).arity == 1
+            action_response = object.__send__( *send_args )
             if html_requested?
               flash[:notice] = "'#{action}' called on #{simple_class_name( object ).humanize} #{object.name}"
               redirect_to object_path( object )
             else
               content_type :json
-              object_to_json( object )
+              object_to_json( action_response )
             end
           end
 

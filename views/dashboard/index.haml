@@ -1,0 +1,96 @@
+#dashboard
+  #left_column
+    #overview.list
+      %h3 Overview
+      .actions
+        = link_to( collection_path( :logs ), 'View JBoss Logs' )
+      .element
+        %ul
+          %li
+            BackStage:
+            %ul
+              %li== Version: #{Backstage::BACKSTAGE_VERSION}      
+          %li 
+            TorqueBox:
+            %ul
+              - torquebox_version_info.each do |key, value|
+                - unless value.blank?
+                  %li== #{key}: #{value}
+          %li 
+            JBoss:
+            %ul
+              - jboss_version_info.each do |key, value|
+                - unless value.blank?
+                  %li== #{key}: #{value}
+          %li 
+            HornetQ:
+            %ul
+              - hornetq_version_info.each do |key, value|
+                - unless value.blank?
+                  %li== #{key}: #{value}
+          /  
+            %li
+            Quartz:
+            %ul
+              %li== Version: ???              
+
+    #apps.list
+      %h3 Apps
+      .actions
+        = link_to( collection_path( :apps ), 'View All Apps' )
+      - Backstage::App.all.each do |app|
+        .element
+          = link_to object_path( app ), app.name
+
+    #queues.list
+      %h3 Queues
+      .actions
+        = link_to( collection_path( :queues ), 'View All Queues' )
+      - Backstage::Queue.all.each do |queue|
+        .element
+          = link_to object_path( queue ), "#{queue.display_name} - #{queue.app_name}"
+
+    #topics.list
+      %h3 Topics
+      .actions
+        = link_to( collection_path( :topics ), 'View All Topics' )
+      - Backstage::Topic.all.each do |topic|
+        .element
+          = link_to object_path( topic ), "#{topic.display_name} - #{topic.app_name}"
+
+  #right_column
+    #message_processors.list
+      %h3 Message Processors
+      .actions
+        = link_to( collection_path( :messsage_processors ), 'View All Messsage Processors' )
+      - Backstage::MessageProcessor.all.each do |message_processor|
+        .element
+          = link_to object_path( message_processor ), "#{message_processor.name} - #{message_processor.app_name}"
+
+    #jobs.list
+      %h3 Jobs
+      .actions
+        = link_to( collection_path( :jobs ), 'View All Jobs' )
+      - Backstage::Job.all.each do |job|
+        .element
+          = link_to object_path( job ), "#{job.display_name} - #{job.app_name}"
+
+    #services.list
+      %h3 Services
+      .actions
+        = link_to( collection_path( :services ), 'View All Services' )
+      - Backstage::Service.all.each do |service|
+        .element
+          = link_to object_path( service ), "#{service.name} - #{service.app_name}"
+
+    #pools.list
+      %h3 Runtime Pools
+      .actions
+        = link_to( collection_path( :pools ), 'View All Runtime Pools' )
+      - Backstage::Pool.all.each do |pool|
+        .element
+          = link_to object_path( pool ), "#{pool.name} - #{pool.app_name}"
+
+  
+
+  

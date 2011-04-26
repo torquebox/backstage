@@ -28,6 +28,16 @@ module Backstage
       super + [:name, :app, :app_name, :ruby_class_name, :status, :cron_expression]
     end
 
+    def start
+      super
+      self
+    end
+
+    def stop
+      super
+      self
+    end
+    
     def available_actions
       status == 'Started' ? %w{stop} : %w{start}
     end

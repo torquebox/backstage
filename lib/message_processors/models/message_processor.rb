@@ -33,6 +33,16 @@ module Backstage
       name =~ /\[(.*)\]/ ? $1 : name
     end
 
+    def start
+      super
+      self
+    end
+
+    def stop
+      super
+      self
+    end
+    
     def available_actions
       status == 'Started' ? %w{ stop } : %w{ start }
     end

@@ -1,13 +1,15 @@
 !!!
 %html
   %title TorqueBox::BackStage
-  %link{:rel=>"stylesheet", :type=>"text/css", :href=>"#{url_for('/css/html5reset.css')}"}
-  %link{:rel=>"stylesheet", :type=>"text/css", :href=>"#{url_for('/css/style.css')}"}
+  %link{:rel=>"stylesheet", :type=>"text/css", :href=>url_for('/css/html5reset.css')}
+  %link{:rel=>"stylesheet", :type=>"text/css", :href=>url_for('/css/style.css')}
   %script{:type=>"text/javascript", :src=>"https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"}
+  %script{:type=>"text/javascript", :src=> url_for('/app.js')}
   %body{:class => class_for_body}
     #header
       %h1 TorqueBox::Backstage
       #navigation
+        = link_to '/', 'Dashboard', :class => 'dashboard'
         = link_to collection_path( :apps ), 'Apps', :class => 'apps'
         = link_to collection_path( :queues ), 'Queues', :class => 'queues'
         = link_to collection_path( :topics ), 'Topics', :class => 'topics'

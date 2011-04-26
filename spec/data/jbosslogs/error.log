@@ -1,0 +1,177 @@
+12:38:58,971 INFO  [AbstractJBossASServerBase] Server Configuration:
+
+	JBOSS_HOME URL: file:/Users/tobias/work/torquebox/integration-tests/target/integ-dist/jboss/
+	Bootstrap: $JBOSS_HOME/server/default/conf/bootstrap.xml
+	Common Base: $JBOSS_HOME/common/
+	Common Library: $JBOSS_HOME/common/lib/
+	Server Name: default
+	Server Base: $JBOSS_HOME/server/
+	Server Library: $JBOSS_HOME/server/default/lib/
+	Server Config: $JBOSS_HOME/server/default/conf/
+	Server Home: $JBOSS_HOME/server/default/
+	Server Data: $JBOSS_HOME/server/default/data/
+	Server Log: $JBOSS_HOME/server/default/log/
+	Server Temp: $JBOSS_HOME/server/default/tmp/
+
+12:38:58,974 INFO  [AbstractServer] Starting: JBossAS [6.0.0.Final "Neo"]
+12:39:00,295 INFO  [ServerInfo] Java version: 1.6.0_24,Apple Inc.
+12:39:00,295 INFO  [ServerInfo] Java Runtime: Java(TM) SE Runtime Environment (build 1.6.0_24-b07-334)
+12:39:00,295 INFO  [ServerInfo] Java VM: Java HotSpot(TM) 64-Bit Server VM 19.1-b02-334,Apple Inc.
+12:39:00,296 INFO  [ServerInfo] OS-System: Mac OS X 10.6.7,x86_64
+12:39:00,296 INFO  [ServerInfo] VM arguments: -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSClassUnloadingEnabled -Djruby_home.env.ignore=true -Dgem.path=default -Djbosstest.udp.ip_ttl=0 -Djava.endorsed.dirs=/Users/tobias/work/torquebox/integration-tests/target/integ-dist/jboss/lib/endorsed -Djboss.server.log.threshold=DEBUG -Djava.endorsed.dirs=/Users/tobias/work/torquebox/integration-tests/target/integ-dist/jboss/lib/endorsed/ -Dxb.builder.useUnorderedSequence=true 
+12:39:00,331 INFO  [JMXKernel] Legacy JMX core initialized
+12:39:04,270 INFO  [AbstractServerConfig] JBoss Web Services - Stack CXF Server 3.4.1.GA
+12:39:04,670 INFO  [JSFImplManagementDeployer] Initialized 3 JSF configurations: [Mojarra-1.2, MyFaces-2.0, Mojarra-2.0]
+12:39:04,829 INFO  [Bootstrap] Bootstrapping TorqueBox AS
+12:39:04,830 INFO  [Bootstrap] Using JRuby: "/Users/tobias/work/torquebox/integration-tests/target/integ-dist/jruby"
+12:39:05,441 INFO  [MCBeanInjectableHandler] Starting
+12:39:05,445 INFO  [InjectableHandlerRegistry] Registering injectable handler: mc - org.torquebox.injection.mc.MCBeanInjectableHandler@7ced5732
+12:39:08,265 INFO  [RubyRuntimeFactoryImpl] Creating ruby runtime (ruby_version: RUBY1_8, compile_mode: JIT, context: torquebox.global)
+12:39:11,137 WARN  [RubyRuntimeFactoryImpl] No initializer set for runtime
+12:39:11,148 INFO  [RubyRuntimeFactoryImpl] Created ruby runtime (ruby_version: RUBY1_8, compile_mode: JIT, context: torquebox.global) in 2.88s
+12:39:11,148 INFO  [TorqueBox] Welcome to TorqueBox AS - http://torquebox.org/
+12:39:11,149 INFO  [TorqueBox]   version...... 1.0.0.CR2-SNAPSHOT
+12:39:11,149 INFO  [TorqueBox]   build........ development (tobias)
+12:39:11,149 INFO  [TorqueBox]   revision..... e279d5ba494c191af7ba0ad3742bf3b4322f3830
+12:39:11,149 INFO  [TorqueBox]   jruby.home... /Users/tobias/work/torquebox/integration-tests/target/integ-dist/jruby
+12:39:11,149 INFO  [JNDIInjectableHandler] Starting
+12:39:11,149 INFO  [CDIInjectableHandler] Starting
+12:39:11,150 INFO  [InjectableHandlerRegistry] Registering injectable handler: jndi - org.torquebox.injection.jndi.JNDIInjectableHandler@798fe5a1
+12:39:11,150 INFO  [InjectableHandlerRegistry] Registering injectable handler: cdi - org.torquebox.injection.cdi.CDIInjectableHandler@562ceb60
+12:39:11,153 INFO  [AppsDirectoryBootstrapper] Adding deployment directory: /Users/tobias/work/torquebox/integration-tests/target/integ-dist/apps
+12:39:11,172 INFO  [DestinationInjectableHandler] Starting
+12:39:11,172 INFO  [InjectableHandlerRegistry] Registering injectable handler: queue - org.torquebox.messaging.injection.DestinationInjectableHandler@1feb551
+12:39:11,173 INFO  [DestinationInjectableHandler] Starting
+12:39:11,173 INFO  [InjectableHandlerRegistry] Registering injectable handler: topic - org.torquebox.messaging.injection.DestinationInjectableHandler@5123027e
+12:39:13,261 WARNING [FileConfigurationParser] AIO wasn't located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+12:39:15,332 WARNING [FileConfigurationParser] AIO wasn't located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+12:39:15,474 INFO  [JMXConnector] starting JMXConnector on host 127.0.0.1:1090
+12:39:15,555 INFO  [MailService] Mail Service bound to java:/Mail
+12:39:16,147 INFO  [HornetQServerImpl] live server is starting..
+12:39:16,202 INFO  [JournalStorageManager] Using NIO Journal
+12:39:16,219 WARNING [HornetQServerImpl] Security risk! It has been detected that the cluster admin user and password have not been changed from the installation default. Please see the HornetQ user guide, cluster chapter, for instructions on how to do this.
+12:39:16,634 INFO  [NettyAcceptor] Started Netty Acceptor version 3.2.1.Final-r2319 127.0.0.1:5455 for CORE protocol
+12:39:16,635 INFO  [NettyAcceptor] Started Netty Acceptor version 3.2.1.Final-r2319 127.0.0.1:5445 for CORE protocol
+12:39:16,638 INFO  [HornetQServerImpl] HornetQ Server version 2.1.2.Final (Colmeia, 120) started
+12:39:16,685 INFO  [WebService] Using RMI server codebase: http://127.0.0.1:8083/
+12:39:16,862 INFO  [jbossatx] ARJUNA-32010 JBossTS Recovery Service (tag: JBOSSTS_4_14_0_Final) - JBoss Inc.
+12:39:16,867 INFO  [arjuna] ARJUNA-12324 Start RecoveryActivators
+12:39:16,883 INFO  [arjuna] ARJUNA-12296 ExpiredEntryMonitor running at Mon, 25 Apr 2011 12:39:16
+12:39:16,937 INFO  [arjuna] ARJUNA-12310 Recovery manager listening on endpoint 127.0.0.1:4712
+12:39:16,938 INFO  [arjuna] ARJUNA-12344 RecoveryManagerImple is ready on port 4712
+12:39:16,939 INFO  [jbossatx] ARJUNA-32013 Starting transaction recovery manager
+12:39:16,952 INFO  [arjuna] ARJUNA-12163 Starting service com.arjuna.ats.arjuna.recovery.ActionStatusService on port 4713
+12:39:16,953 INFO  [arjuna] ARJUNA-12337 TransactionStatusManagerItem host: 127.0.0.1 port: 4713
+12:39:16,954 INFO  [arjuna] ARJUNA-12170 TransactionStatusManager started on port 4713 and host 127.0.0.1 with service com.arjuna.ats.arjuna.recovery.ActionStatusService
+12:39:16,992 INFO  [jbossatx] ARJUNA-32017 JBossTS Transaction Service (JTA version - tag: JBOSSTS_4_14_0_Final) - JBoss Inc.
+12:39:17,035 INFO  [arjuna] ARJUNA-12202 registering bean jboss.jta:type=ObjectStore.
+12:39:17,237 INFO  [AprLifecycleListener] The Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: .:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
+12:39:17,360 INFO  [TomcatDeployment] deploy, ctxPath=/invoker
+12:39:17,600 INFO  [ModClusterService] Initializing mod_cluster 1.1.0.Final
+12:39:17,635 INFO  [RARDeployment] Required license terms exist, view vfs:/Users/tobias/work/torquebox/integration-tests/target/integ-dist/jboss/server/default/deploy/jboss-local-jdbc.rar/META-INF/ra.xml
+12:39:17,644 INFO  [RARDeployment] Required license terms exist, view vfs:/Users/tobias/work/torquebox/integration-tests/target/integ-dist/jboss/server/default/deploy/jboss-xa-jdbc.rar/META-INF/ra.xml
+12:39:17,680 INFO  [RARDeployment] Required license terms exist, view vfs:/Users/tobias/work/torquebox/integration-tests/target/integ-dist/jboss/server/default/deploy/jms-ra.rar/META-INF/ra.xml
+12:39:17,693 INFO  [HornetQResourceAdapter] HornetQ resource adaptor started
+12:39:17,699 INFO  [RARDeployment] Required license terms exist, view vfs:/Users/tobias/work/torquebox/integration-tests/target/integ-dist/jboss/server/default/deploy/mail-ra.rar/META-INF/ra.xml
+12:39:17,710 INFO  [RARDeployment] Required license terms exist, view vfs:/Users/tobias/work/torquebox/integration-tests/target/integ-dist/jboss/server/default/deploy/quartz-ra.rar/META-INF/ra.xml
+12:39:17,786 INFO  [SimpleThreadPool] Job execution threads will use class loader of thread: Thread-3
+12:39:17,819 INFO  [SchedulerSignalerImpl] Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+12:39:17,819 INFO  [QuartzScheduler] Quartz Scheduler v.1.8.3 created.
+12:39:17,821 INFO  [RAMJobStore] RAMJobStore initialized.
+12:39:17,823 INFO  [QuartzScheduler] Scheduler meta-data: Quartz Scheduler (v1.8.3) 'JBossQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+12:39:17,823 INFO  [StdSchedulerFactory] Quartz scheduler 'JBossQuartzScheduler' initialized from an externally opened InputStream.
+12:39:17,823 INFO  [StdSchedulerFactory] Quartz scheduler version: 1.8.3
+12:39:17,823 INFO  [QuartzScheduler] Scheduler JBossQuartzScheduler_$_NON_CLUSTERED started.
+12:39:18,132 INFO  [ConnectionFactoryBindingService] Bound ConnectionManager 'jboss.jca:service=DataSourceBinding,name=DefaultDS' to JNDI name 'java:DefaultDS'
+12:39:18,306 INFO  [ConnectionFactoryBindingService] Bound ConnectionManager 'jboss.jca:service=ConnectionFactoryBinding,name=JmsXA' to JNDI name 'java:JmsXA'
+12:39:18,424 INFO  [xnio] XNIO Version 2.1.0.CR2
+12:39:18,431 INFO  [nio] XNIO NIO Implementation Version 2.1.0.CR2
+12:39:18,606 INFO  [remoting] JBoss Remoting version 3.1.0.Beta2
+12:39:18,692 INFO  [TomcatDeployment] deploy, ctxPath=/
+12:39:18,728 INFO  [service] Removing bootstrap log handlers
+12:39:18,784 INFO  [org.torquebox.bootstrap.AppsDirectoryNotificationListener] Activating deployments dir
+12:39:18,805 INFO  [org.apache.coyote.http11.Http11Protocol] Starting Coyote HTTP/1.1 on http-127.0.0.1-8080
+12:39:18,810 INFO  [org.apache.coyote.ajp.AjpProtocol] Starting Coyote AJP/1.3 on ajp-127.0.0.1-8009
+12:39:18,811 INFO  [org.jboss.bootstrap.impl.base.server.AbstractServer] JBossAS [6.0.0.Final "Neo"] Started in 19s:834ms
+12:39:19,170 INFO  [org.jboss.deployment.MainDeployer] deploy, url=file:/Users/tobias/work/torquebox/integration-tests/basic-auth-knob.jar
+12:39:19,283 INFO  [org.torquebox.mc.vdf.PojoDeployment] Deploying: basic-auth -- "/Users/tobias/work/torquebox/integration-tests/apps/rack/basic_auth"
+12:39:19,290 INFO  [org.torquebox.base.deployers.AuthDefaultsDeployer] No authentication configuration provided for this application. Using defaults.
+12:39:19,290 INFO  [org.torquebox.base.deployers.AuthDefaultsDeployer] Authentication Domain: torquebox-auth
+12:39:19,311 WARN  [org.torquebox.interp.deployers.BaseRubyRuntimeDeployer] Ruby runtime already configured as RACK: AbstractVFSDeploymentContext@1357132739{basic-auth}
+12:39:19,438 INFO  [org.torquebox.interp.deployers.RuntimePoolDeployer] Deploying runtime pool: [PoolMetaData: name=messaging min=1 max=2]
+12:39:19,442 INFO  [org.torquebox.interp.deployers.RuntimePoolDeployer] Deploying runtime pool: [PoolMetaData: name=web type=SHARED]
+12:39:19,551 INFO  [org.jboss.weld.Version] WELD-000900 1.1.0 (CR3)
+12:39:19,568 INFO  [org.torquebox.interp.core.RubyRuntimeFactoryImpl] Creating ruby runtime (ruby_version: RUBY1_9, compile_mode: JIT, app: basic-auth, context: web)
+12:39:21,818 INFO  [org.torquebox.interp.core.RubyRuntimeFactoryImpl] Created ruby runtime (ruby_version: RUBY1_9, compile_mode: JIT, app: basic-auth, context: web) in 2.25s
+12:39:21,866 INFO  [org.torquebox.interp.core.RubyRuntimeFactoryImpl] Creating ruby runtime (ruby_version: RUBY1_9, compile_mode: JIT, app: basic-auth, context: messaging)
+12:39:23,346 INFO  [org.torquebox.interp.core.RubyRuntimeFactoryImpl] Created ruby runtime (ruby_version: RUBY1_9, compile_mode: JIT, app: basic-auth, context: messaging) in 1.48s
+12:39:23,556 INFO  [org.jboss.web.tomcat.service.deployers.TomcatDeployment] deploy, ctxPath=/basic-auth
+12:39:23,592 WARN  [org.jboss.web.tomcat.service.deployers.JBossContextConfig] Failed to setup clustering, clustering disabled. ClusteringNotSupportedException: No DistributedCacheManagerFactory service provider found.
+12:39:24,093 INFO  [org.torquebox.base.deployers.DeploymentNotifier] Fully deployed: basic-auth
+12:39:24,093 INFO  [org.torquebox.mc.vdf.PojoDeployment] Fully deployed: "/Users/tobias/work/torquebox/integration-tests/apps/rack/basic_auth"
+12:39:25,408 INFO  [STDOUT] {["rack.input", #<IO:0x00000000>]=>nil,
+12:39:25,409 INFO  [STDOUT]  ["rack.errors", #<IO:0x00000000>]=>nil,
+12:39:25,419 INFO  [STDOUT]  ["REQUEST_METHOD", "GET"]=>nil,
+12:39:25,423 INFO  [STDOUT]  ["SCRIPT_NAME", "/basic-auth"]=>nil,
+12:39:25,425 INFO  [STDOUT]  ["PATH_INFO", "/"]=>nil,
+12:39:25,427 INFO  [STDOUT]  ["QUERY_STRING", ""]=>nil,
+12:39:25,450 INFO  [STDOUT]  ["SERVER_NAME", "localhost"]=>nil,
+12:39:25,452 INFO  [STDOUT]  ["SERVER_PORT", "8080"]=>nil,
+12:39:25,454 INFO  [STDOUT]  ["CONTENT_TYPE", nil]=>nil,
+12:39:25,457 INFO  [STDOUT]  ["REQUEST_URI", "/basic-auth/"]=>nil,
+12:39:25,459 INFO  [STDOUT]  ["REMOTE_ADDR", "127.0.0.1"]=>nil,
+12:39:25,461 INFO  [STDOUT]  ["rack.url_scheme", "http"]=>nil,
+12:39:25,475 INFO  [STDOUT]  ["rack.version", [1, 1]]=>nil,
+12:39:25,477 INFO  [STDOUT]  ["rack.multithread", true]=>nil,
+12:39:25,479 INFO  [STDOUT]  ["rack.multiprocess", true]=>nil,
+12:39:25,480 INFO  [STDOUT]  ["rack.run_once", false]=>nil,
+12:39:25,485 INFO  [STDOUT]  ["HTTP_USER_AGENT", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)"]=>
+12:39:25,485 INFO  [STDOUT]   nil,
+12:39:25,492 INFO  [STDOUT]  ["HTTP_ACCEPT_LANGUAGE", "en-us"]=>nil,
+12:39:25,494 INFO  [STDOUT]  ["HTTP_ACCEPT", "*/*"]=>nil,
+12:39:25,495 INFO  [STDOUT]  ["HTTP_HOST", "localhost:8080"]=>nil,
+12:39:25,497 INFO  [STDOUT]  ["HTTP_CONNECTION", "Keep-Alive"]=>nil,
+12:39:25,498 INFO  [STDOUT]  ["servlet_request",
+12:39:25,499 INFO  [STDOUT]   #<Java::OrgApacheCatalinaConnector::RequestFacade:0x626dac12>]=>nil,
+12:39:25,500 INFO  [STDOUT]  ["java.servlet_request",
+12:39:25,501 INFO  [STDOUT]   #<Java::OrgApacheCatalinaConnector::RequestFacade:0x626dac12>]=>nil}
+12:39:25,538 INFO  [STDOUT] {["rack.input", #<IO:0x00000000>]=>nil,
+12:39:25,538 INFO  [STDOUT]  ["rack.errors", #<IO:0x00000000>]=>nil,
+12:39:25,540 INFO  [STDOUT]  ["REQUEST_METHOD", "GET"]=>nil,
+12:39:25,542 INFO  [STDOUT]  ["SCRIPT_NAME", "/basic-auth"]=>nil,
+12:39:25,543 INFO  [STDOUT]  ["PATH_INFO", "/"]=>nil,
+12:39:25,545 INFO  [STDOUT]  ["QUERY_STRING", ""]=>nil,
+12:39:25,546 INFO  [STDOUT]  ["SERVER_NAME", "localhost"]=>nil,
+12:39:25,548 INFO  [STDOUT]  ["SERVER_PORT", "8080"]=>nil,
+12:39:25,549 INFO  [STDOUT]  ["CONTENT_TYPE", nil]=>nil,
+12:39:25,551 INFO  [STDOUT]  ["REQUEST_URI", "/basic-auth/"]=>nil,
+12:39:25,552 INFO  [STDOUT]  ["REMOTE_ADDR", "127.0.0.1"]=>nil,
+12:39:25,554 INFO  [STDOUT]  ["rack.url_scheme", "http"]=>nil,
+12:39:25,556 INFO  [STDOUT]  ["rack.version", [1, 1]]=>nil,
+12:39:25,558 INFO  [STDOUT]  ["rack.multithread", true]=>nil,
+12:39:25,559 INFO  [STDOUT]  ["rack.multiprocess", true]=>nil,
+12:39:25,561 INFO  [STDOUT]  ["rack.run_once", false]=>nil,
+12:39:25,562 INFO  [STDOUT]  ["HTTP_USER_AGENT", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)"]=>
+12:39:25,562 INFO  [STDOUT]   nil,
+12:39:25,564 INFO  [STDOUT]  ["HTTP_ACCEPT_LANGUAGE", "en-us"]=>nil,
+12:39:25,575 INFO  [STDOUT]  ["HTTP_ACCEPT", "*/*"]=>nil,
+12:39:25,576 INFO  [STDOUT]  ["HTTP_HOST", "localhost:8080"]=>nil,
+12:39:25,578 INFO  [STDOUT]  ["HTTP_CONNECTION", "Keep-Alive"]=>nil,
+12:39:25,580 INFO  [STDOUT]  ["HTTP_AUTHORIZATION", "Basic Ym1jd2hpcnRAcmVkaGF0LmNvbTpzd29yZGZpc2g="]=>nil,
+12:39:25,581 INFO  [STDOUT]  ["servlet_request",
+12:39:25,581 INFO  [STDOUT]   #<Java::OrgApacheCatalinaConnector::RequestFacade:0x626dac12>]=>nil,
+12:39:25,582 INFO  [STDOUT]  ["java.servlet_request",
+12:39:25,583 INFO  [STDOUT]   #<Java::OrgApacheCatalinaConnector::RequestFacade:0x626dac12>]=>nil}
+12:39:25,793 INFO  [org.jboss.web.tomcat.service.deployers.TomcatDeployment] undeploy, ctxPath=/basic-auth
+12:39:25,997 INFO  [org.jboss.system.server.jmx.JMXKernel] Server exit called, exiting the JVM now!
+12:39:25,998 INFO  [STDOUT] Posting Shutdown Request to the server...
+12:39:25,999 INFO  [org.jboss.bootstrap.impl.base.server.AbstractServer] Stopping: JBossAS [6.0.0.Final "Neo"]
+12:39:26,001 INFO  [org.apache.coyote.http11.Http11Protocol] Pausing Coyote HTTP/1.1 on http-127.0.0.1-8080
+12:39:26,002 INFO  [org.apache.coyo

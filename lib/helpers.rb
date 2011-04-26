@@ -13,14 +13,37 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+require 'logger'
 require 'util'
 require 'authentication'
 require 'sinatra/url_for'
 
 module Backstage
-  class Application < Sinatra::Base
+  def self.jboss_log_dir
+    java.lang.System.get_property( 'jboss.server.log.dir' )
+  end
+
+  def self.jboss_app_name
+    App.find( "torquebox.apps:app=torquebox-backstage" ) ? 'torquebox-backstage' : 'backstage'
+  end
+
+  def self.logger
+    return @logger if @logger
     
+    # log to <jboss log dir>/torquebox/<RACK_ENV>.log if you can,
+    # otherwise do <app dir>/log/<RACK_ENV>.log
+    if Backstage.jboss_log_dir && File.directory?( Backstage.jboss_log_dir )
+      log_dir = File.join( Backstage.jboss_log_dir, Backstage.jboss_app_name )
+    else
+      log_dir = File.join( File.dirname( __FILE__ ), '..', 'log' )
+    end
+    FileUtils.mkdir_p( log_dir )
+    
+    @logger = Logger.new( File.join( log_dir, "#{ENV['RACK_ENV']}.log" ) )
+  end
+  
+  class Application < Sinatra::Base
+
     helpers do
       include Backstage::Authentication
       include Sinatra::UrlForHelper
@@ -29,7 +52,7 @@ module Backstage
         options[:format] = 'json'
         url_for( fragment, :full, options )
       end
-      
+
       def object_path(object)
         object_action_or_collection_path(*(object.association_chain << nil))
       end
@@ -45,7 +68,7 @@ module Backstage
       end
       alias_method :object_action_path, :object_action_or_collection_path
       alias_method :collection_path, :object_action_or_collection_path
-      
+
       def redirect_to(location)
         redirect url_for(location, :full)
       end
@@ -59,15 +82,15 @@ module Backstage
         dom_class << 'status' << value.downcase if name.to_s.downcase == 'status' # hack
         "<tr class='data-row'><td class='label'>#{name}</td><td class='#{dom_class.join(' ')}'>#{value}</td></tr>"
       end
-      
+
       def simple_class_name(object)
         object.class.name.split( "::" ).last.underscore
       end
-      
+
       def truncate(text, length = 30)
         text.length > length ? text[0...length] + '...' : text
       end
-      
+
       def class_for_body
         klass = request.path_info.split('/').reverse.select { |part| part =~ /^[A-Za-z_]*$/ }
         klass.empty? ? 'root' : klass
@@ -85,21 +108,24 @@ module Backstage
       def html_requested?
         params[:format] != 'json' && env['rack-accept.request'].media_type?( 'text/html' )
       end
-      
+
       def collection_to_json( collection )
         JSON.generate( collection.collect { |object| object_to_hash( object ) } )
       end
 
       def object_to_json(object)
-        JSON.generate( object_to_hash( object ) )  
+        JSON.generate( object_to_hash( object ) )
       end
-      
+
       def object_to_hash(object)
         response = object.to_hash
-        response[:actions] = object.available_actions.inject({}) do |actions, action|
-          actions[action] = json_url_for( object_action_path( response[:resource], action ) )
-          actions
+        if object.respond_to?( :available_actions )
+          response[:actions] = object.available_actions.inject({}) do |actions, action|
+            actions[action] = json_url_for( object_action_path( response[:resource], action ) )
+            actions
+          end
         end
+        
         response.each do |key, value|
           if value.kind_of?( Resource )
             response[key] = json_url_for( object_path( value ) )
@@ -115,7 +141,54 @@ module Backstage
         response
       end
 
+      def human_size(size)
+        if size > 1024
+          size = size.to_f
+          if size > 1024*1024
+            size /= 1024*1024
+            suffix = 'Mb'
+          elsif size > 1024
+            size /= 1024
+            suffix = 'kb'
+          end
+          size = size.round( 2 )
+        else
+          suffix = 'b'
+        end
+
+        "#{size} #{suffix}"
+      end
+
+      def torquebox_version_info
+        versions = []
+        torquebox = JMX::MBeanServer.new[javax.management.ObjectName.new( 'torquebox:type=system' )]
+        versions << ['Version', torquebox.version]
+        versions << ['Build Number', torquebox.build_number]
+        versions << ['Revision', torquebox.revision]
+        versions
+      end
+
+      def hornetq_version_info
+        versions = []
+        hornetq = JMX::MBeanServer.new[javax.management.ObjectName.new( 'org.hornetq:module=Core,type=Server' )]
+        versions << ['Version', hornetq.version]
+        versions << ['Clustered', hornetq.clustered]
+        versions
+      end
+
+      def jboss_version_info
+        versions = []
+        jboss = JMX::MBeanServer.new[javax.management.ObjectName.new( 'jboss.system:type=Server' )]
+        versions << ['Version', jboss.version]
+        versions
+      end
     end
+  end
+end
+
+class Object
+  def blank?
+    nil? or (respond_to?( :empty? ) and empty?)
   end
 end
 
@@ -133,11 +206,11 @@ class String
   def constantize
     eval( classify )
   end
-  
+
   def underscore
     gsub(/([a-zA-Z])([A-Z])/, '\1_\2').downcase
   end
-  
+
   def humanize
     split( '_' ).collect( &:capitalize ).join( ' ' )
   end
@@ -146,4 +219,8 @@ class String
   def pluralize
     "#{self}s"
   end
+end
+
+class Logger
+  alias_method :write, :<<
 end

@@ -27,7 +27,24 @@ module Backstage
     def self.to_hash_attributes
       super + [:name, :environment_name, :root_path, :deployed_at]
     end
+
+    def has_logs?
+      File.directory?( log_dir )
+    end
     
+    def logs
+      logs = Log.all( log_dir )
+      logs.each { |log| log.parent = self }
+      logs
+    end
+
+    def log_dir
+      log_dir = File.join( root_path, 'logs' )
+      log_dir = File.join( Backstage.jboss_log_dir, name ) if !File.directory?( log_dir ) && Backstage.jboss_log_dir
+      log_dir = File.join( root_path, 'log' ) unless File.directory?( log_dir )
+
+      log_dir
+    end
   end
 end
 
