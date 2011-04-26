@@ -5,7 +5,7 @@ gem "rack-flash"
 gem 'haml', '~>3.0'
 gem "jmx", '0.7'
 gem 'json'
-gem 'torquebox', '1.0.0.CR1'
+gem 'torquebox', '1.0.0.CR2'
 gem 'tobias-sinatra-url-for'
 gem 'rack-accept'
 
