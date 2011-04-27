@@ -20,7 +20,7 @@ require 'torquebox-rake-support'
 
 class BackstageCommand < Thor
 
-  DEPLOYMENT_NAME = 'backstage-knob.yml'
+  DEPLOYMENT_NAME = 'torquebox-backstage-knob.yml'
   
   desc "deploy [--secure=username:password[,username:password]*]", "Deploys backstage to $TORQUEBOX_HOME/apps"
   method_option :secure, :type => :hash, :default => nil
