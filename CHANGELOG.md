@@ -1,7 +1,8 @@
 * 0.3.0 - 2011-04-29
   * you can now tail application and jboss logs
   * added a dashboard
-
+  * updated to use the TorqueBox 1.0.0.Final gems
+  
 * 0.2.1 - 2011-04-27
   * The deployment descriptor name was changed from backstage-knob.yml to torquebox-backstage-knob.yml
   

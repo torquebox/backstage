@@ -7,4 +7,4 @@ TODO
 * improve test coverage
 * add stats collection, with memory usage and other bits? ruby runtime stats?
 * link to app context (requires TB changes)
-* allow log tailing/download 
+* allow log download

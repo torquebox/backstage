@@ -16,8 +16,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "torquebox-backstage"
   gem.homepage = "http://github.com/torquebox/backstage"
   gem.license = "MIT"
-  gem.summary = %Q{BackStage - Queue/Topic/Job viewer for TorqueBox}
-  gem.description = %Q{BackStage - Queue/Topic/Job viewer for TorqueBox}
+  gem.summary = %Q{BackStage - Queue/Topic/Job/etc viewer for TorqueBox}
+  gem.description = %Q{BackStage allows you to look behind the TorqueBox curtain, and view information about all of the components you have running. It includes support for remote code execution and log tailing to aid in debugging.}
   gem.email = "tcrawley@redhat.com"
   gem.authors = ["Tobias Crawley"]
   gem.files = FileList["[A-Z]*", 'backstage.rb', 'config.ru', 'bin/*.rb', "{config,lib,spec,views}/**/*"]
