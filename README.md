@@ -100,7 +100,9 @@ Returns:
         "topics":"http://localhost:8080/backstage/topics?format=json",
         "message_processors":"http://localhost:8080/backstage/message_processors?format=json",
         "jobs":"http://localhost:8080/backstage/jobs?format=json",
-        "services":"http://localhost:8080/backstage/services?format=json"
+        "services":"http://localhost:8080/backstage/services?format=json",
+        "pools":"http://localhost:8080/backstage/pools?format=json",
+        "logs":"http://localhost:8080/backstage/logs?format=json"
       }
     }
 
