@@ -20,7 +20,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{BackStage allows you to look behind the TorqueBox curtain, and view information about all of the components you have running. It includes support for remote code execution and log tailing to aid in debugging.}
   gem.email = "tcrawley@redhat.com"
   gem.authors = ["Tobias Crawley"]
-  gem.files = FileList["[A-Z]*", 'backstage.rb', 'config.ru', 'bin/*.rb', "{config,lib,spec,views}/**/*"]
+  gem.files = FileList["[A-Z]*", 'backstage.rb', 'config.ru', 'bin/*.rb', "{config,lib,spec,views,public}/**/*"]
   gem.executables = %w{backstage}
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)

@@ -1,3 +1,6 @@
+* 0.3.1 - 2011-04-29
+  * public/ now included in the gem
+  
 * 0.3.0 - 2011-04-29
   * you can now tail application and jboss logs
   * added a dashboard
