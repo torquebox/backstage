@@ -52,8 +52,7 @@ module Backstage
     end
     
     def tail(options)
-      num_lines = (options['num_lines'] || 100).to_i
-      offset = (options['offset'] || 0).to_i
+      offset = (options['offset'] || -1000).to_i
       File.open(@file_path, 'r') do |file|
         # Set offset to the beginning or end of the file if
         # the value passed in is less than or greather than
@@ -68,12 +67,9 @@ module Backstage
         else
           file.seek(offset)
         end
-        lines = (1..num_lines).map do
-          begin
-            file.readline
-          rescue EOFError => e
-            nil
-          end
+        lines = []
+        until file.eof? do
+          lines << file.readline
         end
         offset = file.pos
         { :offset => offset, :lines => lines.compact }
