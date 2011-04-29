@@ -31,7 +31,7 @@ module Backstage
         log_dir ||= Backstage.jboss_log_dir
         Dir.glob("#{log_dir}/#{LOG_GLOB}").collect do |path|
           Log.new( File.expand_path( path ) )
-        end.sort_by(:name)
+        end.sort_by(&:name)
       end
 
       alias_method :find, :new
