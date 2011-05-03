@@ -62,7 +62,7 @@
     #message_processors.list
       %h3 Message Processors
       .actions
-        = link_to( collection_path( :messsage_processors ), 'View All Messsage Processors' )
+        = link_to( collection_path( :message_processors ), 'View All Message Processors' )
       - Backstage::MessageProcessor.all.each do |message_processor|
         .element
           = link_to object_path( message_processor ), "#{message_processor.name} - #{message_processor.app_name}"
