@@ -1,3 +1,6 @@
+* 0.3.2 - 2011-05-03
+  * Fixed typo in dashboard Message Processor index link
+  
 * 0.3.1 - 2011-04-29
   * public/ now included in the gem
   
