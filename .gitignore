@@ -2,3 +2,4 @@
 pkg/
 .sass-cache/
 log/
+integration_specs/.torquespec
