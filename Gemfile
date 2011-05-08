@@ -13,7 +13,13 @@ gem 'rack-accept'
 group :development do
   gem 'thor'
   gem 'jeweler'
+end
+
+group :test do
   gem 'watchr'
   gem 'rspec'
   gem 'rack-test'
+  gem 'torquespec'
+  gem 'capybara'
+  gem 'akephalos'
 end
