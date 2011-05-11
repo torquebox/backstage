@@ -172,7 +172,15 @@ th
         
   h3
     border-bottom: 1px solid $text_color
-    
+
+.pagination
+  margin: 5px 0
+  .current-page
+    font-weight: bold
+    font-size: 1.1em
+  .in-window
+    font-size: 1.2em
+
 @include selected-tab('root', 'dashboard')
 @include selected-tab('apps')
 @include selected-tab('queues')

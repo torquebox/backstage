@@ -1,3 +1,6 @@
+* 0.3.3
+  * Queue browsing is now paginated
+  
 * 0.3.2 - 2011-05-03
   * Fixed typo in dashboard Message Processor index link
   

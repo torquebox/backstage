@@ -77,6 +77,40 @@ module Backstage
         "<a href='#{url_for path}' class='#{options[:class]}'>#{text}</a>"
       end
 
+      def paginate(total, limit = 100)
+        offset = params[:offset].to_i || 0
+        current_page = offset/limit
+        last_page = (total.to_f/limit).ceil - 1
+        
+        window = 10
+        if current_page < window/2
+          window_start = 0
+        elsif current_page > total - (window/2)
+          window_start = total - (window/2)
+        else
+          window_start = current_page - (window/2)
+        end
+        window_end = window_start + window
+        
+        accum = ''
+        accum << link_to( "#{request.path_info}?offset=#{offset - limit}&limit=#{limit}", '<<' ) if offset > 0
+        (last_page + 1).times do |page|
+          in_window = page >= window_start && page < window_end
+          if in_window || (page + 1)%10 == 0 || page == 0 || page == last_page
+            if page == current_page
+              accum << %Q{<span class="current-page #{in_window ? 'in-window' : ''}">#{page + 1}</span>}
+            else
+              accum << link_to( "#{request.path_info}?offset=#{page * limit}&limit=#{limit}", page + 1,
+                                :class => in_window ? 'in-window' : '' )
+            end
+          else
+            #accum << '.' unless accum[-3,3] == '...'
+          end
+        end
+        accum << link_to( "#{request.path_info}?offset=#{offset + limit}&limit=#{limit}", '>>' ) if offset + limit < total
+        %Q{<div class="pagination">#{accum}</div>}
+      end
+      
       def data_row(name, value)
         dom_class = ['value']
         dom_class << 'status' << value.downcase if name.to_s.downcase == 'status' # hack

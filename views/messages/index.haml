@@ -1,13 +1,15 @@
 #messages-index
   %h2 
     == #{simple_class_name( @destination ).capitalize}: #{link_to( object_path( @destination ), @destination.display_name)} :: Messages
+  = paginate @destination.message_count  
+
   %table
     %tr
       %th ID
       %th Delivery Count
       %th Properties
       %th Content
-    - @destination.each do |message|
+    - @destination.each(:offset => params[:offset] || 0, :limit => params[:limit] || 100) do |message|
       %tr
         %td
           = link_to( object_path( message ), message.jms_id )
@@ -18,3 +20,4 @@
         %td
           = truncate( message.content, 40 )
           
+  = paginate @destination.message_count  

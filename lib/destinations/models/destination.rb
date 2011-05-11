@@ -36,15 +36,24 @@ module Backstage
       TorqueBox::Messaging::Queue.new( jndi_name, nil, enumerable_options )
     end
     
-    def each
+    def each(options = { })
+      message_count = 0
+      processed_messages = 0
+      offset = options[:offset].to_i || 0
+      limit = options[:limit] ? options[:limit].to_i : nil
       jms_destination.each do |message|
-        message = Message.new( message )
-        message.parent = self
-        yield message
+        message_count += 1
+        if message_count > offset
+          message = Message.new( message )
+          message.parent = self
+          yield message
+          processed_messages += 1
+        end
+        return if limit and processed_messages > limit
       end
     rescue Exception => ex
-      Backstage.logger "WARNING - failed to access messages for queue #{jndi_name}: #{ex}"
-      Backstage.logger ex
+      Backstage.logger.warn "WARNING - failed to access messages for queue #{jndi_name}: #{ex}"
+      Backstage.logger.warn ex
     end
     
     def display_name
