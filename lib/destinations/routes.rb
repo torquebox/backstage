@@ -17,7 +17,7 @@
 
 module Backstage
   class Application < Sinatra::Base
-    resource :queue, :topic, :view_path => :destinations, :actions => [:pause, :resume]
+    resource :queue, :topic, :view_path => :destinations, :actions => [:pause, :resume, :clear]
 
     get "/queue/:name/messages" do
       @destination = Queue.find( Util.decode_name( params[:name] ) )

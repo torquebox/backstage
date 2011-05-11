@@ -4,6 +4,7 @@
   .actions
     = link_to collection_path(@object, :messages), 'View Messages' unless @object.is_a?(Backstage::Topic)
     = @object.status == 'Running' ? action_button( @object, 'pause' ) : action_button( @object, 'resume' )
+    = action_button( @object, 'clear' )
   %table.data-table
     = data_row( "Name", @object.display_name )
     = data_row( "JNDI Address", @object.jndi_name )

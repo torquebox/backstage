@@ -91,12 +91,18 @@ module Backstage
       self
     end
 
+    def clear
+      mbean.removeMessages('')
+      self
+    end
+    
     def status
       mbean.paused ? 'Paused' : 'Running'
     end
 
     def available_actions
-      status == 'Running' ? %w{ pause } : %w{ resume }
+      actions = status == 'Running' ? %w{ pause } : %w{ resume }
+      actions << 'clear'
     end
   end
 end
