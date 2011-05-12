@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "sinatra", "1.1.2"
+gem "sinatra", "1.2.6"
 gem "rack-flash"
 gem 'haml', '~>3.0'
 gem 'sass', '~>3.0'

@@ -1,6 +1,7 @@
 * 0.3.3
   * Queue browsing is now paginated
   * Queues/Topics can now be cleared
+  * Sinatra dependency upgraded to 1.2.6
   
 * 0.3.2 - 2011-05-03
   * Fixed typo in dashboard Message Processor index link
