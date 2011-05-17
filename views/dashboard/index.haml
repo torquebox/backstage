@@ -73,7 +73,7 @@
         = link_to( collection_path( :jobs ), 'View All Jobs' )
       - Backstage::Job.all.each do |job|
         .element
-          = link_to object_path( job ), "#{job.display_name} - #{job.app_name}"
+          = link_to object_path( job ), "#{job.name} - #{job.app_name}"
 
     #services.list
       %h3 Services
