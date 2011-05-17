@@ -1,4 +1,5 @@
-* 0.3.3
+* 0.3.3-SNAPSHOT
+  * Fix for jobs dashboard (name vs. display_name from @davidglassborow)
   * Queue browsing is now paginated
   * Queues/Topics can now be cleared
   * Sinatra dependency upgraded to 1.2.6
