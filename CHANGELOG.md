@@ -1,4 +1,6 @@
-* 0.3.3-SNAPSHOT
+* 0.4.0 - 2011-05-27
+  * Updated to use the TorqueBox 1.0.1 gems
+  * Serve jquery.min.js from BackStage instead of pulling from google.
   * Fix for jobs dashboard (name vs. display_name from @davidglassborow)
   * Queue browsing is now paginated
   * Queues/Topics can now be cleared
