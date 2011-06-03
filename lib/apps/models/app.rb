@@ -21,7 +21,7 @@ module Backstage
     include Resource
     
     def self.filter
-      "torquebox.apps:*"
+      "torquebox.apps:name=*"
     end
 
     def self.to_hash_attributes

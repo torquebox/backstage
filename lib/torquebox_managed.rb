@@ -26,7 +26,7 @@ module Backstage
     end
 
     def app
-      App.find( "torquebox.apps:app=#{app_name}" )
+      App.find( "torquebox.apps:name=#{app_name}" )
     end
     
     def status

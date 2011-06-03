@@ -27,6 +27,13 @@ module Backstage
     def self.to_hash_attributes
       super + [:name, :app, :app_name, :status, :destination_name, :message_selector, :concurrency]
     end
+
+    def name
+      name = super
+      name = $2 if name =~ %r{(/.*)*\.(.*)}
+      name = $1 if name =~ %r{TorqueBox::Messaging::(.*)}
+      name
+    end
     
     def destination_name
       name = super

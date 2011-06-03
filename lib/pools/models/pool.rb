@@ -28,10 +28,6 @@ module Backstage
       super + [:name, :app, :app_name, :pool_type, :size, :available, :borrowed, :minimum_instances, :maximum_instances]
     end
 
-    def pool_type
-      full_name =~ /type=(.*?)(,|$)/ ? $1 : ''
-    end
-
     def size
       shared? ? 1 : mbean.size
     end
@@ -42,6 +38,10 @@ module Backstage
       end
     end
 
+    def pool_type
+      mbean_info.getClassName =~ /Shared/ ? 'shared' : 'default'
+    end
+    
     def shared?
       pool_type == 'shared'
     end

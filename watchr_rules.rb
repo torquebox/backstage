@@ -30,7 +30,7 @@ end
 
 def run_specs(*specs)
   specs << 'spec' if specs.empty?
-  run "jruby -S bundle exec rspec #{specs.join(' ')}"
+  run "jruby -S bundle exec rspec -f d #{specs.join(' ')}"
 end
 
  def run_single_spec *spec
@@ -44,7 +44,7 @@ end
 
  def redeploy
    puts "--- Redeploying @ #{Time.now.strftime("%H:%M:%S")}..."
-   system "touch #{ENV['TORQUEBOX_HOME']}/apps/backstage-knob.yml"
+   system "touch #{ENV['JBOSS_HOME']}/standalone/deployments/backstage-knob.yml.dodeploy"
  end
  
 # --------------------------------------------------

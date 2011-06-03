@@ -42,6 +42,10 @@ module Backstage
     rescue NoMethodError => ex
       super
     end
+
+    def mbean_info
+      self.class.mbean_info( mbean_name )
+    end
     
     module ClassMethods
       def jmx_server
@@ -59,6 +63,10 @@ module Backstage
         nil
       end
 
+      def mbean_info(name)
+        name = ObjectName.new( name ) unless name.is_a?( ObjectName )
+        name.info( jmx_server.server )
+      end
     end
   end
 end

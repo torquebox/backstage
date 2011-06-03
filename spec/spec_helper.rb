@@ -36,7 +36,9 @@ def resource_with_mock_mbean(klass)
     resource = klass.new('mock_mbean', mock_mbean)
     resource.stub(:app).and_return(resource_with_mock_mbean(Backstage::App)) unless klass == Backstage::App
   end
-
+  
+  resource.stub(:pool_type).and_return('shared') if klass == Backstage::Pool
+  
   resource.stub(:name).and_return('name')
   resource.stub(:app_name).and_return('app_name')
 

@@ -15,7 +15,7 @@
 #
 
 require 'torquebox'
-require 'org/torquebox/auth/authentication'
+require 'torquebox-security'
 
 module Backstage
   module Authentication

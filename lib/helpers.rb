@@ -24,7 +24,7 @@ module Backstage
   end
 
   def self.jboss_app_name
-    App.find( "torquebox.apps:app=torquebox-backstage" ) ? 'torquebox-backstage' : 'backstage'
+    App.find( "torquebox.apps:name=torquebox-backstage" ) ? 'torquebox-backstage' : 'backstage'
   end
 
   def self.logger
@@ -196,25 +196,19 @@ module Backstage
 
       def torquebox_version_info
         versions = []
-        torquebox = JMX::MBeanServer.new[javax.management.ObjectName.new( 'torquebox:type=system' )]
+        torquebox = JMX::MBeanServer.new[javax.management.ObjectName.new( 'torquebox:type=version' )]
         versions << ['Version', torquebox.version]
         versions << ['Build Number', torquebox.build_number]
         versions << ['Revision', torquebox.revision]
         versions
       end
 
-      def hornetq_version_info
-        versions = []
-        hornetq = JMX::MBeanServer.new[javax.management.ObjectName.new( 'org.hornetq:module=Core,type=Server' )]
-        versions << ['Version', hornetq.version]
-        versions << ['Clustered', hornetq.clustered]
-        versions
-      end
-
-      def jboss_version_info
-        versions = []
-        jboss = JMX::MBeanServer.new[javax.management.ObjectName.new( 'jboss.system:type=Server' )]
-        versions << ['Version', jboss.version]
+      def component_version_info
+        versions = { }
+        torquebox = JMX::MBeanServer.new[javax.management.ObjectName.new( 'torquebox:type=version' )]
+        torquebox.component_names.each do |name|
+          versions[name] = torquebox.getComponentBuildInfo( name ) unless name == 'TorqueBox'
+        end
         versions
       end
 

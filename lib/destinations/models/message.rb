@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-require 'torquebox/messaging/javax_jms_text_message'
-
 module Backstage
   class Message
     include Resource
@@ -28,7 +26,7 @@ module Backstage
     end
 
     def content
-      jms_message.decode.inspect
+      TorqueBox::Messaging::Message.decode( jms_message ).inspect
     rescue Exception => ex
       # we may not have access to a serialized class. Just show the
       # Marshal string in that case

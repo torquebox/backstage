@@ -37,7 +37,9 @@ module Backstage
     end
     
     def jms_destination
-      TorqueBox::Messaging::Queue.new( jndi_name, nil, enumerable_options )
+      @jms_destination ||= TorqueBox::Messaging::Queue.new( jndi_name )
+      @jms_destination.enumerable_options = enumerable_options
+      @jms_destination
     end
     
     def each(options = { })
@@ -72,17 +74,17 @@ module Backstage
 
     def self.display_name(name)
       display_name = name.gsub( /jms\..*?\./, '' )
-      display_name = 'Backgroundable' if display_name =~ %r{/queues/torquebox/.*/backgroundable}
+      display_name = 'Backgroundable' if display_name =~ %r{/queues/.*/tasks/torquebox_backgroundable}
       display_name = "#{$1.classify}Task" if display_name =~ %r{/queues/torquebox/.*/tasks/(.*)$}
       display_name
     end
 
     def app
-      name =~ %r{/queues/torquebox/(.*?)/} ? App.find( "torquebox.apps:app=#{$1}" ) : nil
+      name =~ %r{/queues/torquebox/(.*?)/} ? App.find( "torquebox.apps:name=#{$1}" ) : nil
     end
     
     def app_name
-      name =~ %r{/queues/torquebox/(.*)} ? $1 : 'n/a'
+      name =~ %r{/queues/torquebox/(.*?)/} ? $1 : 'n/a'
     end
 
     def pause
