@@ -2,6 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{torquebox-backstage}
+
   s.version = "0.5.4"
   s.date = %q{2011-09-27}
   s.authors = ["Tobias Crawley", "David Glassborow", "Penumbra Shadow"]
