@@ -1,3 +1,6 @@
+* 0.4.1 - 2011-06-06
+  * Cleaned up gem dependencies.
+  
 * 0.4.0 - 2011-05-27
   * Updated to use the TorqueBox 1.0.1 gems
   * Serve jquery.min.js from BackStage instead of pulling from google.
