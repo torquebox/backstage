@@ -2,3 +2,5 @@
 pkg/
 .sass-cache/
 log/
+.bundle/
+*.gem

@@ -1,21 +1,19 @@
 source :rubygems
 
 gem "sinatra", "1.2.6"
-gem "rack-flash"
+gem "rack-flash", '0.1.1'
 gem 'haml', '~>3.0'
 gem 'sass', '~>3.0'
 gem "tobias-jmx", '0.8'
-gem 'json'
+gem 'json', '1.5.1'
 gem 'torquebox', '1.0.1'
-gem 'tobias-sinatra-url-for'
-gem 'rack-accept'
-gem 'rake', '0.8.7'
-gem 'tilt', '1.3.0'
+gem 'tobias-sinatra-url-for', '0.2.1'
+gem 'rack-accept', '~>0.4.0'
 
-group :development do
-  gem 'thor'
-  gem 'jeweler'
-  gem 'watchr'
-  gem 'rspec'
-  gem 'rack-test'
-end
+# These are commented out to keep them out of Gemfile.lock
+# group :development do
+#   gem 'thor', '0.14.6'
+#   gem 'watchr', '~>0.7'
+#   gem 'rspec', '~>2.6.0'
+#   gem 'rack-test', '~>0.6.0'
+# end
