@@ -1,3 +1,7 @@
+* 0.4.2 - 2011-06-20
+  * Locked gemspec gem versions to match Gemfile.lock versions (issue #5)
+  * Restored Rakefile to repo
+  
 * 0.4.1 - 2011-06-06
   * Cleaned up gem dependencies.
   
