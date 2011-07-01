@@ -20,17 +20,17 @@ module Backstage
 
     attr_reader :jms_message
 
-    IGNORED_PROPERTIES = %w{ torquebox_encoding JMSXDeliveryCount }
+    IGNORED_PROPERTIES = %w{ JMSXDeliveryCount }
     def initialize(message)
       @jms_message = message
     end
 
     def content
-      TorqueBox::Messaging::Message.decode( jms_message ).inspect
+      jms_message.decode.inspect
     rescue Exception => ex
       # we may not have access to a serialized class. Just show the
       # Marshal string in that case
-      jms_message.get_string_property( 'torquebox_encoding' ) ? Base64.decode64( jms_message.text ) : jms_message.text
+      Base64.decode64( jms_message.text )
     end
 
     def jms_id
