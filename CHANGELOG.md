@@ -1,6 +1,11 @@
+* 0.5 - 2011-07-28
+  * Added Cluster Properties to dashboard
+  * Added Infinispan cache links to dashboard
+  * Added Caches tab view
+
 * 0.4.3 - 2011-07-14
   * Updated to use TorqueBox 1.1 gems
-  
+
 * 0.4.2 - 2011-06-20
   * Locked gemspec gem versions to match Gemfile.lock versions (issue #5)
   * Restored Rakefile to repo

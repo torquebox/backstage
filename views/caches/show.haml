@@ -1,0 +1,27 @@
+#caches-show
+  %h2 
+    == Infinispan Cache: #{@object.name}
+
+  %table.data-table
+    - %w{ cache_manager_name cache_manager_status created_cache_count defined_cache_count running_cache_count version cache_names }.each do |method|
+      = data_row( method.humanize, @object.send( method ) )
+
+  <br/>
+  .element
+  
+  - @object.rpc_caches.each do |cache_name, rpc_cache|
+    <br/>
+    %h2== #{cache_name}
+    %table.data-table
+      .element
+        = data_row( 'AvgReplTime', rpc_cache.average_replication_time )
+        = data_row( 'SuccessRatio', rpc_cache.success_ratio_floating_point )
+        = data_row( 'ClusterSize', rpc_cache.cluster_size )
+        = data_row( 'ReplFailures', rpc_cache.replication_failures )
+        = data_row( 'ReplCount', rpc_cache.replication_count )
+        = data_row( 'Members', rpc_cache.members )
+        = data_row( 'Node Address', rpc_cache.node_address )
+        = data_row( 'Physical Addresses', rpc_cache.physical_addresses)
+  
+  .controls
+    = link_to collection_path( :caches ), '<< Back'

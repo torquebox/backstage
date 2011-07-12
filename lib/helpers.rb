@@ -66,6 +66,7 @@ module Backstage
         paths << collection_or_action if collection_or_action
         '/' + paths.join( '/' )
       end
+
       alias_method :object_action_path, :object_action_or_collection_path
       alias_method :collection_path, :object_action_or_collection_path
 
@@ -215,6 +216,50 @@ module Backstage
         jboss = JMX::MBeanServer.new[javax.management.ObjectName.new( 'jboss.system:type=Server' )]
         versions << ['Version', jboss.version]
         versions
+      end
+
+      def infinispan_version_info
+        versions = []
+        infinispan = JMX::MBeanServer.new
+        cm = nil     # JMX::MBeans::Org::Infinispan::Manager::DefaultCacheManager 
+
+        infinispan.query_names( 'org.infinispan:component=CacheManager,name=*,type=CacheManager' ).collect {|name| cm = JMX::MBeanServer.new[ name ] }
+
+        if cm
+          versions << ['Version', cm.version ]
+        else
+          versions << ['Version', 'disabled']
+        end
+        versions
+      end
+
+      def hornetq_cluster_info
+        info = []
+        ccc = nil   # JMX::MBeans::Org::Hornetq::Core::Management::Impl::ClusterConnectionControlImpl
+        hornetq = JMX::MBeanServer.new
+
+        # find the name of the cluster connection control 
+        hornetq.query_names( 'org.hornetq:module=Core,name=*,type=ClusterConnection,*' ).collect {|name| ccc = JMX::MBeanServer.new[ name ] }
+
+        if ccc
+          ccc.attributes.each do |attr| 
+            info << [ attr, ccc[attr] ] unless ((attr == "StaticConnectorNamePairs") || (attr == "StaticConnectorNamePairsAsJSON"))
+          end
+        end
+  
+        if info.size == 0 
+          info << ['Cluster', 'disabled']
+        end
+        info
+      end
+
+      def jgroups_cluster_channels
+        mux_channels = []
+        jgroups = JMX::MBeanServer.new
+
+        # find the name of the jgroups channels
+        jgroups.query_names( 'jboss.jgroups:cluster=*,type=channel' ).collect {|name| mux_channels << JMX::MBeanServer.new[ name ] }
+        mux_channels
       end
     end
   end

@@ -22,18 +22,50 @@
               - jboss_version_info.each do |key, value|
                 - unless value.blank?
                   %li== #{key}: #{value}
-          %li 
+          %li
             HornetQ:
             %ul
               - hornetq_version_info.each do |key, value|
                 - unless value.blank?
                   %li== #{key}: #{value}
+          %li
+            Infinispan:
+            %ul
+              - infinispan_version_info.each do |key, value|
+                - unless value.blank?
+                  %li== #{key}: #{value}
           /  
             %li
-            Quartz:
+            Quartz: 
             %ul
               %li== Version: ???              
 
+    #cluster_properties.list
+      %h3 Cluster Properties
+      .element
+        %ul
+          %li
+            JGroups Cluster:
+            %ul
+              - jgroups_cluster_channels.each do |channel|
+                %li== <b>#{channel.cluster_name}</b>: <br/>- Connected: #{channel.connected}<br/>- View: #{channel.view}
+        
+          %li
+            HornetQ Cluster: 
+            %ul
+              - hornetq_cluster_info.each do |key, value|
+                %li== #{key}: #{value}
+
+    #caches.list
+      %h3 Infinispan Caches
+      .actions
+        = link_to( collection_path( :caches ), 'View All Caches' )
+      - Backstage::Cache.all.each do |cache|
+        .element
+          = link_to object_path( cache ), "#{cache.name}"
+
+
+  #right_column
     #apps.list
       %h3 Apps
       .actions
@@ -58,7 +90,6 @@
         .element
           = link_to object_path( topic ), "#{topic.display_name} - #{topic.app_name}"
 
-  #right_column
     #message_processors.list
       %h3 Message Processors
       .actions
@@ -91,6 +122,3 @@
         .element
           = link_to object_path( pool ), "#{pool.name} - #{pool.app_name}"
 
-  
-
-  

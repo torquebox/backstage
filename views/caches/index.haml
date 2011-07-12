@@ -1,0 +1,18 @@
+#caches-index
+  %table
+    %tr
+      %th Name 
+      %th Status
+      %th Created
+      %th Defined
+      %th Running
+      %th Version
+      %th
+    - @collection.each do |cache|
+      %tr
+        %td= link_to( object_path( cache ), cache.name )
+        %td= cache.cache_manager_status.downcase
+        %td= cache.created_cache_count
+        %td= cache.defined_cache_count
+        %td= cache.running_cache_count
+        %td= cache.version
