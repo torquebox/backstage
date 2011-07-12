@@ -37,6 +37,7 @@ require 'jobs'
 require 'logs'
 require 'services'
 require 'caches'
+require 'groups'
 
 Backstage.logger.warn "ENV['REQUIRE_AUTHENTICATION'] is not set, *disabling* authentication" unless ENV['REQUIRE_AUTHENTICATION'] 
 

@@ -1,0 +1,20 @@
+#groups-show
+  %h2 
+    == JGroups: #{@object.cluster_name}
+
+  %table.data-table
+    - %w{ name received_messages received_bytes connected num_messages receive_local_msgs view address sent_bytes sent_messages timer_threads receive_blocks number_of_tasks_in_timer stats version }.each do |method|
+      = data_row( method.humanize, @object.send( method ) )
+
+  <br/>
+  .element
+  - @object.protocols.each do |protocol|
+    <br/>
+    %h2== Protocol: #{protocol.name}
+    %table.data-table
+      .element
+        - protocol.attributes.each do |attr|
+          = data_row( attr, protocol[attr] )
+ 
+  .controls
+    = link_to collection_path( :groups ), '<< Back'

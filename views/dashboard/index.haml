@@ -41,20 +41,11 @@
               %li== Version: ???              
 
     #cluster_properties.list
-      %h3 Cluster Properties
+      %h3 HornetQ Cluster
       .element
         %ul
-          %li
-            JGroups Cluster:
-            %ul
-              - jgroups_cluster_channels.each do |channel|
-                %li== <b>#{channel.cluster_name}</b>: <br/>- Connected: #{channel.connected}<br/>- View: #{channel.view}
-        
-          %li
-            HornetQ Cluster: 
-            %ul
-              - hornetq_cluster_info.each do |key, value|
-                %li== #{key}: #{value}
+          - hornetq_cluster_info.each do |key, value|
+            %li== #{key}: #{value}
 
     #caches.list
       %h3 Infinispan Caches
@@ -64,7 +55,14 @@
         .element
           = link_to object_path( cache ), "#{cache.name}"
 
-
+    #groups.list
+      %h3 JGroups
+      .actions
+        = link_to( collection_path( :groups ), 'View All Groups' )
+      - Backstage::Group.all.each do |group|
+        .element
+          = link_to object_path( group ), "#{group.cluster_name}"     
+ 
   #right_column
     #apps.list
       %h3 Apps

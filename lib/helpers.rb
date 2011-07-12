@@ -253,14 +253,14 @@ module Backstage
         info
       end
 
-      def jgroups_cluster_channels
-        mux_channels = []
-        jgroups = JMX::MBeanServer.new
+      #def jgroups_cluster_channels
+      #  mux_channels = []
+      #  jgroups = JMX::MBeanServer.new
 
         # find the name of the jgroups channels
-        jgroups.query_names( 'jboss.jgroups:cluster=*,type=channel' ).collect {|name| mux_channels << JMX::MBeanServer.new[ name ] }
-        mux_channels
-      end
+      #  jgroups.query_names( 'jboss.jgroups:cluster=*,type=channel' ).collect {|name| mux_channels << JMX::MBeanServer.new[ name ] }
+      #  mux_channels
+      #end
     end
   end
 end

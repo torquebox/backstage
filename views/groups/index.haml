@@ -1,0 +1,24 @@
+#groups-index
+  %table
+    %tr
+      %th ClusterName 
+      %th ReceivedMessages 
+      %th ReceivedBytes
+      %th Open
+      %th Connected
+      %th Address
+      %th NumMessages
+      %th ReceiveLocalMsgs
+      %th View
+      %th
+    - @collection.each do |group|
+      %tr
+        %td= link_to( object_path( group ), group.cluster_name )
+        %td= group.received_messages
+        %td= group.received_bytes
+        %td= group.open
+        %td= group.connected
+        %td= group.address
+        %td= group.num_messages
+        %td= group.receive_local_msgs
+        %td= group.view
