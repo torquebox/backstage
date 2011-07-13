@@ -14,14 +14,8 @@
     %h2== #{cache_name}
     %table.data-table
       .element
-        = data_row( 'AvgReplTime', rpc_cache.average_replication_time )
-        = data_row( 'SuccessRatio', rpc_cache.success_ratio_floating_point )
-        = data_row( 'ClusterSize', rpc_cache.cluster_size )
-        = data_row( 'ReplFailures', rpc_cache.replication_failures )
-        = data_row( 'ReplCount', rpc_cache.replication_count )
-        = data_row( 'Members', rpc_cache.members )
-        = data_row( 'Node Address', rpc_cache.node_address )
-        = data_row( 'Physical Addresses', rpc_cache.physical_addresses)
+        - rpc_cache.attributes.each do |attr|
+          = data_row( attr, rpc_cache[ attr ] )
   
   .controls
     = link_to collection_path( :caches ), '<< Back'
