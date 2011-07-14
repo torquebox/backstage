@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{torquebox-backstage}
-  s.version = "0.4.2"
+  s.version = "0.4.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
     s.authors = ["Tobias Crawley"]
-  s.date = %q{2011-06-06}
+  s.date = %q{2011-07-14}
   s.default_executable = %q{backstage}
   s.description = %q{BackStage allows you to look behind the TorqueBox curtain, and view information about all of the components you have running. It includes support for remote code execution and log tailing to aid in debugging.}
   s.email = %q{tcrawley@redhat.com}
@@ -102,7 +102,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sass>, ["= 3.1.2"])
       s.add_runtime_dependency(%q<tobias-jmx>, ["= 0.8"])
       s.add_runtime_dependency(%q<json>, ["= 1.5.1"])
-      s.add_runtime_dependency(%q<torquebox>, ["= 1.0.1"])
+      s.add_runtime_dependency(%q<torquebox>, ["= 1.1"])
       s.add_runtime_dependency(%q<tobias-sinatra-url-for>, ["= 0.2.1"])
       s.add_runtime_dependency(%q<rack-accept>, ["= 0.4.4"])
       s.add_development_dependency(%q<thor>, ["= 0.14.6"])
@@ -118,7 +118,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sass>, ["= 3.1.2"])
       s.add_dependency(%q<tobias-jmx>, ["= 0.8"])
       s.add_dependency(%q<json>, ["= 1.5.1"])
-      s.add_dependency(%q<torquebox>, ["= 1.0.1"])
+      s.add_dependency(%q<torquebox>, ["= 1.1"])
       s.add_dependency(%q<tobias-sinatra-url-for>, ["= 0.2.1"])
       s.add_dependency(%q<rack-accept>, ["= 0.4.4"])
       s.add_dependency(%q<thor>, ["= 0.14.6"])
@@ -135,7 +135,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sass>, ["= 3.1.2"])
     s.add_dependency(%q<tobias-jmx>, ["= 0.8"])
     s.add_dependency(%q<json>, ["= 1.5.1"])
-    s.add_dependency(%q<torquebox>, ["= 1.0.1"])
+    s.add_dependency(%q<torquebox>, ["= 1.1"])
     s.add_dependency(%q<tobias-sinatra-url-for>, ["= 0.2.1"])
     s.add_dependency(%q<rack-accept>, ["= 0.4.4"])
     s.add_dependency(%q<thor>, ["= 0.14.6"])
