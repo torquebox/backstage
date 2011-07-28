@@ -6,16 +6,13 @@
     - %w{ cache_manager_name cache_manager_status created_cache_count defined_cache_count running_cache_count version cache_names }.each do |method|
       = data_row( method.humanize, @object.send( method ) )
 
-  <br/>
-  .element
-  
   - @object.rpc_caches.each do |cache_name, rpc_cache|
-    <br/>
-    %h2== #{cache_name}
-    %table.data-table
-      .element
-        - rpc_cache.attributes.each do |attr|
-          = data_row( attr, rpc_cache[ attr ] )
+    %h3== RPC Cache: #{cache_name}
+    .rpc-cache    
+      %table.data-table
+        .element
+          - rpc_cache.attributes.each do |attr|
+            = data_row( attr, rpc_cache[ attr ] )
   
   .controls
     = link_to collection_path( :caches ), '<< Back'

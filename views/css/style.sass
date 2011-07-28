@@ -149,6 +149,20 @@ th
       position: absolute
       top: 1px
 
+#groups-show
+  h3
+    font-weight: bold
+    margin: 10px 0
+  .protocol
+    padding-left: 10px
+
+#caches-show
+  h3
+    font-weight: bold
+    margin: 10px 0
+  .rpc-cache
+    padding-left: 10px
+
 #dashboard
   @include clearfix
   #left_column, #right_column
@@ -195,4 +209,8 @@ th
 @include selected-tab('service', 'services')
 @include selected-tab('pools')
 @include selected-tab('pool', 'pools')
+@include selected-tab('caches')
+@include selected-tab('cache', 'caches')
+@include selected-tab('groups')
+@include selected-tab('group', 'groups')
 

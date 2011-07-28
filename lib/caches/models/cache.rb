@@ -17,7 +17,6 @@
 module Backstage
   class Cache
     include HasMBean
-    include TorqueBoxManaged
     include Resource
     
     def self.filter
