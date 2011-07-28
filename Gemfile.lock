@@ -45,4 +45,3 @@ DEPENDENCIES
   tobias-jmx (= 0.8)
   tobias-sinatra-url-for (= 0.2.1)
   torquebox (= 1.1)
-

@@ -1,7 +1,7 @@
 * 0.5 - 2011-07-28
-  * Added Cluster Properties to dashboard
-  * Added Infinispan cache links to dashboard
-  * Added Caches tab view
+  * Added Cluster Properties to dashboard (from Penumbra)
+  * Added Infinispan cache links to dashboard  (from Penumbra)
+  * Added Caches tab view (from Penumbra)
 
 * 0.4.3 - 2011-07-14
   * Updated to use TorqueBox 1.1 gems

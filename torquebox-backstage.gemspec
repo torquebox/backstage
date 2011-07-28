@@ -2,12 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{torquebox-backstage}
-  s.version = "0.4.3"
+  s.version = "0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-    s.authors = ["Tobias Crawley"]
-  s.date = %q{2011-07-14}
-  s.default_executable = %q{backstage}
+    s.authors = ["Tobias Crawley", "David Glassborow", "Penumbra Shadow"]
+  s.date = %q{2011-07-28}
   s.description = %q{BackStage allows you to look behind the TorqueBox curtain, and view information about all of the components you have running. It includes support for remote code execution and log tailing to aid in debugging.}
   s.email = %q{tcrawley@redhat.com}
   s.executables = ["backstage"]
@@ -15,79 +14,19 @@ Gem::Specification.new do |s|
                         "README.md",
                         "TODO"
                        ]
-  s.files = [
-             "CHANGELOG.md",
-             "Gemfile",
-             "Gemfile.lock",
-             "README.md",
-             "TODO",
-             "TORQUEBOX_VERSION",
-             "VERSION",
-             "backstage.rb",
-             "config.ru",
-             "config/torquebox.yml",
-             "lib/apps.rb",
-             "lib/apps/models/app.rb",
-             "lib/apps/routes.rb",
-             "lib/authentication.rb",
-             "lib/destinations.rb",
-             "lib/destinations/models/destination.rb",
-             "lib/destinations/models/message.rb",
-             "lib/destinations/models/queue.rb",
-             "lib/destinations/models/topic.rb",
-             "lib/destinations/routes.rb",
-             "lib/has_mbean.rb",
-             "lib/helpers.rb",
-             "lib/jobs.rb",
-             "lib/jobs/models/job.rb",
-             "lib/jobs/routes.rb",
-             "lib/logs.rb",
-             "lib/logs/models/log.rb",
-             "lib/logs/routes.rb",
-             "lib/message_processors.rb",
-             "lib/message_processors/models/message_processor.rb",
-             "lib/message_processors/routes.rb",
-             "lib/pools.rb",
-             "lib/pools/models/pool.rb",
-             "lib/pools/routes.rb",
-             "lib/resource.rb",
-             "lib/resource_helpers.rb",
-             "lib/runtimes.rb",
-             "lib/runtimes/models/job.rb",
-             "lib/runtimes/routes.rb",
-             "lib/services.rb",
-             "lib/services/models/service.rb",
-             "lib/services/routes.rb",
-             "lib/torquebox_managed.rb",
-             "lib/util.rb",
-             "public/ajax-loader.gif",
-             "public/app.js",
-             "public/jquery.min.js",
-             "views/apps/index.haml",
-             "views/apps/show.haml",
-             "views/css/_mixins.sass",
-             "views/css/html5reset.sass",
-             "views/css/style.sass",
-             "views/dashboard/index.haml",
-             "views/destinations/index.haml",
-             "views/destinations/show.haml",
-             "views/jobs/index.haml",
-             "views/jobs/show.haml",
-             "views/layout.haml",
-             "views/logs/index.haml",
-             "views/logs/show.haml",
-             "views/message_processors/index.haml",
-             "views/message_processors/show.haml",
-             "views/messages/index.haml",
-             "views/messages/properties.haml",
-             "views/messages/show.haml",
-             "views/pools/index.haml",
-             "views/pools/show.haml",
-             "views/services/index.haml",
-             "views/services/show.haml"
-            ]
+  
+  s.files = Dir[
+                "backstage.rb",
+                "config.ru",
+                "[A-Z]*",
+                "config/**/*",
+                "lib/**/*",
+                "public/**/*",
+                "views/**/*"
+               ]
+
   s.homepage = %q{http://github.com/torquebox/backstage}
-  s.licenses = ["MIT"]
+  s.licenses = ["AL"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.5.1}
   s.summary = %q{BackStage - Queue/Topic/Job/etc viewer for TorqueBox}
