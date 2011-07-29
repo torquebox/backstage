@@ -1,3 +1,6 @@
+* 0.5.1 - 2011-07-29
+  * Resolved error with cache name not being defined.
+  
 * 0.5 - 2011-07-28
   * Added Cluster Properties to dashboard (from Penumbra)
   * Added Infinispan cache links to dashboard  (from Penumbra)

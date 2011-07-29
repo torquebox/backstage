@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{torquebox-backstage}
-  s.version = "0.5"
+  s.version = "0.5.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
     s.authors = ["Tobias Crawley", "David Glassborow", "Penumbra Shadow"]
-  s.date = %q{2011-07-28}
+  s.date = %q{2011-07-29}
   s.description = %q{BackStage allows you to look behind the TorqueBox curtain, and view information about all of the components you have running. It includes support for remote code execution and log tailing to aid in debugging.}
   s.email = %q{tcrawley@redhat.com}
   s.executables = ["backstage"]
