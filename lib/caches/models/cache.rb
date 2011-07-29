@@ -27,6 +27,10 @@ module Backstage
       super + [:name, :cache_manager_status, :created_cache_count, :defined_cache_count, :running_cache_count, :version, :defined_cache_names]
     end
 
+    def name
+      $1 if full_name =~ /name="(.*?)"(,|$)/
+    end
+
     # for use with show.haml
     alias_method :cache_manager_name, :name
 
