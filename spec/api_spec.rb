@@ -34,7 +34,7 @@ module Backstage
     end
 
     it "should contain a hash of collection urls" do
-      collections = [:apps, :queues, :topics, :message_processors, :jobs, :services, :pools, :logs]
+      collections = [:apps, :queues, :topics, :message_processors, :jobs, :services, :pools, :logs, :caches, :groups]
       @response[:collections].keys.should =~ collections
       collections.each do |collection|
         @response[:collections][collection].should =~ %r{^http://example.org/#{collection}\?format=json$}
@@ -74,7 +74,7 @@ module Backstage
     end
   end
 
-  %w{ app queue topic job message_processor service pool log }.each do |resource|
+  %w{ app queue topic job message_processor service pool log cache group }.each do |resource|
     klass = "backstage/#{resource}".constantize
     describe resource do
       it "should have hash attributes beyond :resource" do

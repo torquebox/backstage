@@ -54,6 +54,19 @@ module Backstage
     include Backstage::Authentication 
 
     set :views, Proc.new { File.join( File.dirname( __FILE__ ), "views" ) }
+
+    COLLECTIONS = [
+                   :apps,
+                   :caches,
+                   :groups,
+                   :jobs,
+                   :logs,
+                   :message_processors,
+                   :pools,
+                   :queues,
+                   :services,
+                   :topics
+                  ]
     
     before do
       require_authentication if ENV['REQUIRE_AUTHENTICATION']
@@ -63,7 +76,7 @@ module Backstage
       content_type :json
 
       {
-        :collections => [:pools, :apps, :queues, :topics, :message_processors, :jobs, :services, :logs].inject({}) do |collections, collection|
+        :collections => COLLECTIONS.inject({}) do |collections, collection|
           collections[collection] = json_url_for( collection_path( collection ) )
           collections
         end
