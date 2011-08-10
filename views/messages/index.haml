@@ -1,7 +1,7 @@
 #messages-index
   %h2 
     == #{simple_class_name( @destination ).capitalize}: #{link_to( object_path( @destination ), @destination.display_name)} :: Messages
-  = paginate @destination.message_count  
+  = paginate @destination.browsable_message_count  
 
   %table
     %tr
@@ -20,4 +20,4 @@
         %td
           = truncate( message.content, 40 )
           
-  = paginate @destination.message_count  
+  = paginate @destination.browsable_message_count

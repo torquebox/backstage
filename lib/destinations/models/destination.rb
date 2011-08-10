@@ -32,6 +32,10 @@ module Backstage
       super + [:display_name, :app, :app_name, :status, :message_count, :delivering_count, :scheduled_count, :messages_added, :consumer_count]
     end
 
+    def browsable_message_count
+      message_count - delivering_count
+    end
+    
     def jms_destination
       TorqueBox::Messaging::Queue.new( jndi_name, nil, enumerable_options )
     end
