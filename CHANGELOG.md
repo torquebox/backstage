@@ -1,3 +1,7 @@
+* 0.5.2 - 2011-08-10
+  * Updated to use TorqueBox 1.1.1 gems
+  * Added caches and groups to API
+
 * 0.5.1 - 2011-07-29
   * Resolved error with cache name not being defined.
   
