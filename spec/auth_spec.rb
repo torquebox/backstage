@@ -22,7 +22,7 @@ module Backstage
       App.stub(:all).and_return([resource_with_mock_mbean(App)])
       ENV['REQUIRE_AUTHENTICATION'] = 'true'
       @authenticator = mock(:authenticator)
-      TorqueBox::Authentication.stub(:default).and_return(@authenticator)
+      TorqueBox::Authentication.stub('[]').with('backstage').and_return(@authenticator)
     end
     
     it "allow access with proper credentials" do
