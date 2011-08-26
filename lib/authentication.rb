@@ -43,7 +43,7 @@ module Backstage
    
     def authenticate(username, password)
       return false if username.nil? || password.nil?
-      authenticator = TorqueBox::Authentication.default
+      authenticator = TorqueBox::Authentication['backstage']
       authenticator.authenticate(username, password)
     end
 

@@ -30,12 +30,11 @@ class BackstageCommand < Thor
                                                                      :env => 'production' )
     if options[:secure]
       descriptor['environment'] = { 'REQUIRE_AUTHENTICATION' => true }
-      credentials = []
+      descriptor['auth'] = {'backstage' => {'domain'=>'torquebox-torquebox-backstage', 'credentials'=>{}}}
       options[:secure].each do |user, pass|
-        credentials << [user, pass]
+        descriptor['auth']['backstage']['credentials'][user] = pass
       end
-      prop_file = TorqueBox::DeployUtils.write_credentials( credentials )
-      puts ">> Wrote user/password entries to #{prop_file}"
+      puts ">> Wrote user/password entries to backstage deployment descriptor"
     else
       puts ">> WARNING: deploying BackStage with no security - use the --secure=username:password option to secure it"
     end
