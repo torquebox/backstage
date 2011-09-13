@@ -39,7 +39,7 @@ module Backstage
     end
     
     def available_actions
-      status == 'Started' ? %w{ stop } : %w{ start' }
+      status == 'Started' ? %w{ stop } : %w{ start }
     end
   end
 end
