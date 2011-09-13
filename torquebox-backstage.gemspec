@@ -3,8 +3,8 @@
 Gem::Specification.new do |s|
   s.name = %q{torquebox-backstage}
 
-  s.version = "0.5.2"
-  s.date = %q{2011-08-10}
+  s.version = "0.5.3"
+  s.date = %q{2011-09-13}
   s.authors = ["Tobias Crawley", "David Glassborow", "Penumbra Shadow"]
   
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=

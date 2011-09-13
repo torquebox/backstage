@@ -1,3 +1,7 @@
+* 0.5.3 - 2011-09-13
+  * Use the correct message count for paging messages.
+  * A fix for the typo that broke display of services (from wollsau).
+
 * 0.5.2 - 2011-08-10
   * Updated to use TorqueBox 1.1.1 gems
   * Added caches and groups to API
