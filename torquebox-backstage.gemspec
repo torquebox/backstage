@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
                 "lib/**/*",
                 "public/**/*",
                 "views/**/*"
-               ]
+               ] - %w{ Gemfile.lock }
 
   s.homepage = %q{http://github.com/torquebox/backstage}
   s.licenses = ["AL"]
