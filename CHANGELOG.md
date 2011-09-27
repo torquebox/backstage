@@ -1,3 +1,6 @@
+* 0.5.4 - 2011-09-27
+  * Don't ship the Gemfile.lock.
+
 * 0.5.3 - 2011-09-13
   * Use the correct message count for paging messages.
   * A fix for the typo that broke display of services (from wollsau).
