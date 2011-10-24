@@ -209,24 +209,19 @@ module Backstage
         torquebox.component_names.each do |name|
           versions[name] = torquebox.getComponentBuildInfo( name ) unless name == 'TorqueBox'
         end
-        versions
+        augment_version_data( versions )
       end
 
-      def infinispan_version_info
-        versions = []
-        infinispan = JMX::MBeanServer.new
-        cm = nil     # JMX::MBeans::Org::Infinispan::Manager::DefaultCacheManager 
-
-        infinispan.query_names( 'org.infinispan:component=CacheManager,name=*,type=CacheManager' ).collect {|name| cm = JMX::MBeanServer.new[ name ] }
-
-        if cm
-          versions << ['Version', cm.version ]
-        else
-          versions << ['Version', 'disabled']
-        end
-        versions
+      def augment_version_data( versions )
+        augment_hornetq_version( versions )
       end
 
+      def augment_hornetq_version( versions )
+        hornetq = JMX::MBeanServer.new[javax.management.ObjectName.new( 'org.hornetq:module=Core,type=Server' )]
+        versions['HornetQ']['clustered'] = hornetq.clustered if versions['HornetQ'] && hornetq
+        versions
+      end
+      
       def hornetq_cluster_info
         info = []
         ccc = nil   # JMX::MBeans::Org::Hornetq::Core::Management::Impl::ClusterConnectionControlImpl
@@ -247,14 +242,6 @@ module Backstage
         info
       end
 
-      #def jgroups_cluster_channels
-      #  mux_channels = []
-      #  jgroups = JMX::MBeanServer.new
-
-        # find the name of the jgroups channels
-      #  jgroups.query_names( 'jboss.jgroups:cluster=*,type=channel' ).collect {|name| mux_channels << JMX::MBeanServer.new[ name ] }
-      #  mux_channels
-      #end
     end
   end
 end
