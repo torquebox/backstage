@@ -38,20 +38,20 @@ have to generate the gem from the source:
 
 2. Build the gem:
 
-       jruby -S gem build torquebox-backstage.gemspec
+    `jruby -S gem build torquebox-backstage.gemspec`
        
 3. Install the gem:
 
-       jruby -S gem install torquebox-backstage-1.0.dev.gem
+    `jruby -S gem install torquebox-backstage-1.0.dev.gem`
        
 4. deploy backstage using the `backstage` command. You can deploy with security
    disabled:
    
-       jruby -S backstage deploy
+    `jruby -S backstage deploy`
     
    Or enable security by providing a username/password pair:
 
-       jruby -S backstage deploy --secure=username:password
+    `jruby -S backstage deploy --secure=username:password`
 
 ### From Source ###
 
