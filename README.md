@@ -20,41 +20,43 @@ available from BackStage are also available from `/jmx-console` (with
 the exception of queue message browsing), but are more accessible in
 BackStage.
 
-## Authentication ##
-
-By default, access to BackStage is wide open. You can secure it by setting 
-`REQUIRE_AUTHENTICATION: true` in the environment section of `torquebox.yml`:
-
-    environment:
-      REQUIRE_AUTHENTICATION: true
-
-This will enable basic JAAS authentication through TorqueBox. Use the 
-rake task to add usernames and password:
-
-    $ rake torquebox:auth:adduser CREDENTIALS=username:password
+*Note:* The master branch now only supports TorqueBox 2.x. If you need
+BackStage for TorqueBox 1.x, install version 0.5.4 of the gem, or use
+the tag `v0.5.4` from this repo.
 
 ## Installation ##
 
 BackStage can either be installed and deployed as a gem, or deployed from the
-application source.
+application source. 
 
 ### As A Gem ###
 
+There are currently no released BackStage gems for TorqueBox 2.x - you will
+have to generate the gem from the source:
 
-First, install the gem:
+1. Clone the [git repo](https://github.com/torquebox/backstage)
 
-    jruby -S gem install torquebox-backstage
+2. Build the gem:
 
-Then, deploy backstage using the `backstage` command. You can deploy with security
-disabled:
+       jruby -S gem build torquebox-backstage.gemspec
+       
+3. Install the gem:
 
-    jruby -S backstage deploy
+       jruby -S gem install torquebox-backstage-1.0.dev.gem
+       
+4. deploy backstage using the `backstage` command. You can deploy with security
+   disabled:
+   
+       jruby -S backstage deploy
     
-Or enable security by providing a username/password pair:
+   Or enable security by providing a username/password pair:
 
-    jruby -S backstage deploy --secure=username:password
+       jruby -S backstage deploy --secure=username:password
 
 ### From Source ###
+
+*Note:* unless you are doing development on BackStage, the recommended
+install method is to build and install the gem (see above).
 
 Clone the [git repo](https://github.com/torquebox/backstage),
 then run bundler to install the needed gems (listed in the 
