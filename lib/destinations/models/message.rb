@@ -18,19 +18,24 @@ module Backstage
   class Message
     include Resource
 
-    attr_reader :jms_message
-
-    IGNORED_PROPERTIES = %w{ JMSXDeliveryCount }
+    IGNORED_PROPERTIES = [ 'JMSXDeliveryCount', TorqueBox::Messaging::Message::ENCODING_PROPERTY ]
+    
     def initialize(message)
-      @jms_message = message
+      @torquebox_message = message
+    end
+
+    def jms_message
+      @torquebox_message.jms_message
     end
 
     def content
-      jms_message.decode.inspect
+      @torquebox_message.decode.inspect
     rescue Exception => ex
-      # we may not have access to a serialized class. Just show the
-      # Marshal string in that case
-      Base64.decode64( jms_message.text )
+      if @jms_message.respond_to?(:text)
+        @jms_message.text 
+      else
+        "Undecodable message"
+      end
     end
 
     def jms_id
@@ -45,7 +50,7 @@ module Backstage
       end
     end
     
-    JMS_PROPERTIES = %w{ JMS_Correlation_ID JMS_Priority JMS_Type  JMS_Reply_To JMS_Redelivered }
+    JMS_PROPERTIES = %w{ JMS_Correlation_ID JMS_Priority JMS_Type JMS_Reply_To JMS_Redelivered }
     def jms_properties
       @jms_properties ||= JMS_PROPERTIES.inject( {} ) do |props,name|
         value = jms_message.send(name.downcase)
