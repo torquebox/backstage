@@ -7,8 +7,8 @@
       %th Open
       %th Connected
       %th Address
-      %th NumMessages
-      %th ReceiveLocalMsgs
+      %th SentMessages
+      %th SentBytes
       %th View
       %th
     - @collection.each do |group|
@@ -19,6 +19,6 @@
         %td= group.open
         %td= group.connected
         %td= group.address
-        %td= group.num_messages
-        %td= group.receive_local_msgs
+        %td= group.sent_messages
+        %td= group.sent_bytes
         %td= group.view

@@ -20,11 +20,24 @@ module Backstage
     include Resource
     
     def self.filter
-      "jboss.jgroups:cluster=*,type=channel"
+      "jgroups:cluster=*,type=channel"
     end
 
     def self.to_hash_attributes
-      super + [:name, :received_messages, :received_bytes, :connected, :num_messages, :receive_local_msgs, :view, :sent_bytes, :timer_threads, :cluster_name, :receive_blocks, :address, :number_of_tasks_in_timer, :stats, :version, :sent_messages]
+      super + [:address,
+               :cluster_name,
+               :connected,
+               :name,
+               :number_of_tasks_in_timer,
+               :open,
+               :received_bytes,
+               :received_messages,
+               :sent_bytes,
+               :sent_messages,
+               :stats,
+               :timer_threads,
+               :version,
+               :view]
     end
 
     def protocols

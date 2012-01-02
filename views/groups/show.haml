@@ -3,7 +3,7 @@
     == JGroups: #{@object.cluster_name}
 
   %table.data-table
-    - %w{ name received_messages received_bytes connected num_messages receive_local_msgs view address sent_bytes sent_messages timer_threads receive_blocks number_of_tasks_in_timer stats version }.each do |method|
+    - %w{ name received_messages received_bytes connected sent_messages sent_bytes view address timer_threads number_of_tasks_in_timer stats version }.each do |method|
       = data_row( method.humanize, @object.send( method ) )
 
   - @object.protocols.each do |protocol|
