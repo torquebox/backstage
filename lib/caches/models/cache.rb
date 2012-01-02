@@ -20,7 +20,7 @@ module Backstage
     include Resource
     
     def self.filter
-      "org.infinispan:component=CacheManager,*"
+      "jboss.infinispan:component=CacheManager,*"
     end
 
     def self.to_hash_attributes
