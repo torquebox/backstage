@@ -15,7 +15,6 @@
 #
 
 require 'sinatra/base'
-require 'rack-flash'
 require 'rack/accept'
 require 'haml'
 require 'sass'
@@ -48,7 +47,6 @@ module Backstage
   class Application < Sinatra::Base
     enable :sessions
     use Rack::Accept
-    use Rack::Flash
     use Rack::CommonLogger, Backstage.logger
     
     include Backstage::Authentication 

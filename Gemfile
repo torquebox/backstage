@@ -1,12 +1,11 @@
 source :rubygems
   
 gem "sinatra", "1.2.6"
-gem "rack-flash", '0.1.1'
 gem 'haml', '~>3.0'
 gem 'sass', '~>3.0'
 gem "tobias-jmx", '0.8'
 gem 'json', '1.5.1'
-gem 'torquebox', '~> 2.x.incremental'
+gem 'torquebox', "2.0.0.beta2"#'~> 2.x.incremental'
 gem 'tobias-sinatra-url-for', '0.2.1'
 gem 'rack-accept', '~>0.4.0'
 

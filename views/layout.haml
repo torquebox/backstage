@@ -20,9 +20,6 @@
         = link_to collection_path( :caches ), 'Caches', :class => 'caches'
         = link_to collection_path( :groups ), 'JGroups', :class => 'groups'
     #content-wrapper
-      - if flash_msg = flash[:notice]
-        #flash
-          = flash_msg
       #content
         = yield
     #footer
