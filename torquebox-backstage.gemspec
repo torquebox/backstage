@@ -37,7 +37,8 @@ Gem::Specification.new do |s|
           [%q<sass>, "~> 3.1.2"],
           [%q<tobias-jmx>, "= 0.8"],
           [%q<json>, "= 1.5.1"],
-          [%q<torquebox>, "~> 2.x.incremental"],
+          [%q<torquebox>, "~> 2.0.0.beta" #"~> 2.x.incremental"
+          ],
           [%q<tobias-sinatra-url-for>, "= 0.2.1"],
           [%q<rack-accept>, "~> 0.4.4"],
           [%q<thor>, "= 0.14.6"],
