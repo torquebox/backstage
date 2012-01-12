@@ -39,7 +39,7 @@ class BackstageCommand < Thor
       puts ">> WARNING: deploying BackStage with no security - use the --secure=username:password option to secure it"
     end
 
-    name, dir = TorqueBox::DeployUtils.deploy_yaml( descriptor, DEPLOYMENT_NAME )
+    name, dir = TorqueBox::DeployUtils.deploy_yaml( descriptor, :name => DEPLOYMENT_NAME )
     
     puts ">> Deployed #{name} to #{dir}"
   end
