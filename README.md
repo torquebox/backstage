@@ -31,18 +31,14 @@ application source.
 
 ### As A Gem ###
 
-There are currently no released BackStage gems for TorqueBox 2.x - you will
-have to generate the gem from the source:
+A version of the gem that supports TorqueBox 2.0.0.beta2 is currently
+available as a beta itself. You can install it via:
 
-1. Clone the [git repo](https://github.com/torquebox/backstage)
-
-2. Build the gem: `jruby -S gem build torquebox-backstage.gemspec`
-       
-3. Install the gem: `jruby -S gem install torquebox-backstage-1.0.dev.gem`
-       
-4. deploy backstage using the `backstage` command. You can deploy with security
-   disabled: `jruby -S backstage deploy`
-   Or enable security by providing a username/password pair: `jruby -S backstage deploy --secure=username:password`
+    jruby -S gem install torquebox-backstage --pre
+    
+Deploy backstage using the `backstage` command. You can deploy with security
+disabled: `jruby -S backstage deploy`
+Or enable security by providing a username/password pair: `jruby -S backstage deploy --secure=username:password`
 
 ### From Source ###
 
