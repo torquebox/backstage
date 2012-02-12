@@ -40,6 +40,12 @@ Deploy backstage using the `backstage` command. You can deploy with security
 disabled: `jruby -S backstage deploy`
 Or enable security by providing a username/password pair: `jruby -S backstage deploy --secure=username:password`
 
+If you are deploying to the torquebox-server gem, you'll need to provide the
+`$TORQUEBOX_HOME` environment var. You can obtain that from the `torquebox` 
+command and set it like so:
+
+    TORQUEBOX_HOME=`torquebox env torquebox_home` backstage deploy
+
 ### From Source ###
 
 *Note:* unless you are doing development on BackStage, the recommended
