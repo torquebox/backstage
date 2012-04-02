@@ -31,10 +31,9 @@ application source.
 
 ### As A Gem ###
 
-A version of the gem that supports TorqueBox 2.0.0.beta2 is currently
-available as a beta itself. You can install it via:
+You can install it via:
 
-    jruby -S gem install torquebox-backstage --pre
+    jruby -S gem install torquebox-backstage
     
 Deploy backstage using the `backstage` command. You can deploy with security
 disabled: `jruby -S backstage deploy`

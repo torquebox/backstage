@@ -5,7 +5,7 @@ gem 'haml', '~>3.0'
 gem 'sass', '~>3.0'
 gem "tobias-jmx", '0.8'
 gem 'json', '1.5.1'
-gem 'torquebox', '~> 2.0.0.beta'#'~> 2.x.incremental'
+gem 'torquebox', '~> 2.0.0'
 gem 'tobias-sinatra-url-for', '0.2.1'
 gem 'rack-accept', '~>0.4.0'
 
