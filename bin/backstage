@@ -22,7 +22,7 @@ class BackstageCommand < Thor
 
   DEPLOYMENT_NAME = 'torquebox-backstage-knob.yml'
   
-  desc "deploy [--secure=username:password[,username:password]*]", "Deploys backstage to $TORQUEBOX_HOME/apps"
+  desc "deploy [--secure=username:password[,username:password]*]", "Deploys backstage to the TorqueBox instance specified by $TORQUEBOX_HOME"
   method_option :secure, :type => :hash, :default => nil
   def deploy
     check
@@ -44,23 +44,12 @@ class BackstageCommand < Thor
     puts ">> Deployed #{name} to #{dir}"
   end
 
-  desc "undeploy", "Removes backstage from $TORQUEBOX_HOME/apps"
+  desc "undeploy", "Undeploys backstage from the TorqueBox instance specified by $TORQUEBOX_HOME"
   def undeploy
     check
-    name, dir = TorqueBox::DeployUtils.undeploy( DEPLOYMENT_NAME )
-    
-    puts ">> Undeployed #{name} from #{dir}"
-  end
+    name, dir = TorqueBox::DeployUtils.undeploy_yaml( :name => DEPLOYMENT_NAME )
 
-  desc "info", "Prints info about BackStage's status"
-  def info
-    check
-    path = File.join( ENV['TORQUEBOX_HOME'], 'apps', DEPLOYMENT_NAME )
-    if File.exists?( path )
-      puts ">> BackStage deployed to #{path}"
-    else
-      puts ">> BackStage is not deployed"
-    end
+    puts ">> Undeployed #{name} from #{dir}" if name
   end
 
   protected
