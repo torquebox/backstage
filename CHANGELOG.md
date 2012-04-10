@@ -1,3 +1,12 @@
+* 1.0.1 - 2012-04-10
+  * Fixed the 'backstage undeploy' command to actually work
+  * Removed useless 'backstage info' command
+
+* 1.0.0 - 2012-04-02
+  * Updated to work with TorqueBox 2.0.0
+
+...
+
 * 0.5.4 - 2011-09-27
   * Don't ship the Gemfile.lock.
 
