@@ -23,9 +23,14 @@
       #content
         = yield
     #footer
-      %a{:href => 'https://github.com/torquebox/backstage'}<
-        Backstage
-      v#{Backstage::BACKSTAGE_VERSION} for 
-      %a{:href => 'http://torquebox.org/'}<
-        TorqueBox 
-      v#{Backstage::TORQUEBOX_VERSION}
+      #tip
+        Tip: press the backquote (`) key to bring up a ruby 
+        %a{:href => 'https://github.com/torquebox/torquebox-webconsole'}<
+          console
+      #version
+        %a{:href => 'https://github.com/torquebox/backstage'}<
+          Backstage
+        v#{Backstage::BACKSTAGE_VERSION} for 
+        %a{:href => 'http://torquebox.org/'}<
+          TorqueBox 
+        v#{Backstage::TORQUEBOX_VERSION}

@@ -1,3 +1,6 @@
+* 1.0.3 - 2012-04-19
+  * add builtin webconsole
+
 * 1.0.2 - 2012-04-18
   * relax bundler requirement
   

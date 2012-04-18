@@ -16,6 +16,7 @@
 
 require 'sinatra/base'
 require 'rack/accept'
+require 'torquebox/webconsole'
 require 'haml'
 require 'sass'
 require 'jmx'
@@ -48,7 +49,8 @@ module Backstage
     enable :sessions
     use Rack::Accept
     use Rack::CommonLogger, Backstage.logger
-    
+    use Rack::Webconsole
+
     include Backstage::Authentication 
 
     set :views, Proc.new { File.join( File.dirname( __FILE__ ), "views" ) }

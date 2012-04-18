@@ -8,6 +8,7 @@ gem 'json', '1.5.1'
 gem 'torquebox', '~> 2.0.0'
 gem 'tobias-sinatra-url-for', '0.2.1'
 gem 'rack-accept', '~>0.4.0'
+gem 'torquebox-webconsole', '0.1.0'
 
 # These are commented out to keep them out of Gemfile.lock
  #group :development do
