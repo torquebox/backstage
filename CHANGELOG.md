@@ -1,3 +1,6 @@
+* 1.0.2 - 2012-04-18
+  * relax bundler requirement
+  
 * 1.0.1 - 2012-04-10
   * Fixed the 'backstage undeploy' command to actually work
   * Removed useless 'backstage info' command
