@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
           [%q<rack-accept>, "~> 0.4.4"],
           [%q<thor>, "= 0.14.6"],
           [%q<bundler>, "~> 1.0"],
+          [%q<torquebox-webconsole>, '0.1.0'],
           [%q<watchr>, "~> 0.7", :dev],
           [%q<rspec>, "~> 2.6.0", :dev],
           [%q<rack-test>, "~> 0.6.0", :dev]
