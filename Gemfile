@@ -3,7 +3,7 @@ source :rubygems
 gem "sinatra", "1.2.6"
 gem 'haml', '~>3.0'
 gem 'sass', '~>3.0'
-gem "tobias-jmx", '0.8'
+gem "jmx", '0.9'
 gem 'json', '1.5.1'
 gem 'torquebox', '~> 2.0.0'
 gem 'tobias-sinatra-url-for', '0.2.1'
