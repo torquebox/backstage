@@ -253,13 +253,19 @@ class Object
 end
 
 class String
-  def classify
-    if self =~ %r{/}
-      split( '/' ).collect( &:classify ).join( '::' )
-    elsif self =~ %r{_}
-      split( '_' ).collect( &:classify ).join( '' )
+  def camelize
+    if self =~ %r{_}
+      split( '_' ).collect( &:capitalize ).join( '' )
     else
       capitalize
+    end
+  end
+  
+  def classify
+    if self =~ %r{/}
+      split( '/' ).collect( &:camelize ).join( '::' )
+    else
+      camelize
     end
   end
 

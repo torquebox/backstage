@@ -38,6 +38,14 @@ module Backstage
     end
 
     def method_missing(method, *args, &block)
+      if args.length == 0
+        # see if it is an attribute first
+        begin
+          return mbean[method.to_s.camelize]
+        rescue Exception => e
+          # it must not be an attribute, fall through
+        end
+      end
       mbean.send( method, *args, &block )
     rescue NoMethodError => ex
       super
