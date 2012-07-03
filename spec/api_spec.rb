@@ -16,12 +16,18 @@
 
 require 'spec_helper'
 
+def parse_json_response
+  JSON.parse(last_response.body, :symbolize_names => true)
+rescue Exception => e
+  puts "WARN: json parsing failed"
+end
+
 module Backstage
 
   describe '/api' do
     before(:each) do
       get '/api'
-      @response = JSON.parse(last_response.body, :symbolize_names => true)
+      @response = parse_json_response
     end
 
     it "should work" do
@@ -47,7 +53,7 @@ module Backstage
     before(:each) do
       ENV['REQUIRE_AUTHENTICATION'] = 'true'
       @authenticator = mock(:authenticator)
-      TorqueBox::Authentication.stub(:default).and_return(@authenticator)
+      TorqueBox::Authentication.stub(:[]).and_return(@authenticator)
     end
 
     it "api should work with authentication" do
@@ -85,7 +91,7 @@ module Backstage
         before(:each) do
           klass.stub(:all).and_return([resource_with_mock_mbean(klass)])
           get "/#{resource.pluralize}", :format => 'json'
-          @response = JSON.parse(last_response.body, :symbolize_names => true)
+          @response = parse_json_response
         end
 
         it "should work" do
@@ -113,7 +119,7 @@ module Backstage
         before(:each) do
           klass.stub(:find).and_return(resource_with_mock_mbean(klass))
           get "/#{resource}/somename", :format => 'json'
-          @response = JSON.parse(last_response.body, :symbolize_names => true)
+          @response = parse_json_response
         end
 
         it "should work" do
@@ -137,7 +143,7 @@ module Backstage
     before(:each) do
       Queue.stub(:find).and_return(resource_with_mock_mbean(Queue))
       get "/queue/somename", :format => 'json'
-      @response = JSON.parse(last_response.body, :symbolize_names => true)
+      @response = parse_json_response
     end
 
     it "should include a link to its messages" do

@@ -25,7 +25,7 @@ module Backstage
       TorqueBox::Authentication.stub('[]').with('backstage').and_return(@authenticator)
     end
     
-    it "allow access with proper credentials" do
+    it "should allow access with proper credentials" do
       @authenticator.should_receive(:authenticate).with('blah', 'pw').and_return(true)
       authorize 'blah', 'pw'
       get '/apps'

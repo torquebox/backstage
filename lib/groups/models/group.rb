@@ -40,6 +40,11 @@ module Backstage
                :view]
     end
 
+    # this shadows Object#open
+    def open
+      mbean[:open]
+    end
+    
     def protocols
       mbean = JMX::MBeanServer.new
       cluster = self.cluster_name

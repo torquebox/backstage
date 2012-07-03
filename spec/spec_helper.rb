@@ -26,10 +26,11 @@ end
 
 def resource_with_mock_mbean(klass)
   mock_mbean = mock('mbean')
+  
   def mock_mbean.method_missing(method, *args, &block)
     method.to_s
   end
-
+  
   if klass == Backstage::Log
     resource = Backstage::Log.new(File.join( TEST_ROOT, 'data', 'railsapp', 'log', 'production.log' ))
   else

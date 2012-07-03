@@ -46,7 +46,11 @@ module Backstage
   TORQUEBOX_VERSION = File.readlines( File.join( File.dirname( __FILE__ ), 'TORQUEBOX_VERSION' ) ).first.strip
 
   class Application < Sinatra::Base
-    use TorqueBox::Session::ServletStore
+    if ENV['TORQUEBOX_APP_NAME']
+      use TorqueBox::Session::ServletStore
+    else
+      enable :sessions
+    end
     use Rack::Accept
     use Rack::CommonLogger, Backstage.logger
     use Rack::Webconsole
