@@ -42,7 +42,7 @@ module Backstage
 
     # this shadows Object#open
     def open
-      mbean[:open]
+      mbean["Open"]
     end
     
     def protocols
