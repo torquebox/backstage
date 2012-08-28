@@ -21,7 +21,7 @@ require 'torquebox-rake-support'
 class BackstageCommand < Thor
 
   DEPLOYMENT_NAME = 'torquebox-backstage-knob.yml'
-  
+
   desc "deploy [--secure=username:password[,username:password]*]", "Deploys backstage to the TorqueBox instance specified by $TORQUEBOX_HOME"
   method_option :secure, :type => :hash, :default => nil
   def deploy
@@ -29,7 +29,7 @@ class BackstageCommand < Thor
     descriptor = TorqueBox::DeployUtils.basic_deployment_descriptor( :root => root_dir,
                                                                      :env => 'production' )
     if options[:secure]
-      descriptor['environment'] = { 'REQUIRE_AUTHENTICATION' => true }
+      descriptor['environment']['REQUIRE_AUTHENTICATION'] = true
       descriptor['auth'] = {'backstage' => {'domain'=>'torquebox-torquebox-backstage', 'credentials'=>{}}}
       options[:secure].each do |user, pass|
         descriptor['auth']['backstage']['credentials'][user] = pass
@@ -40,7 +40,7 @@ class BackstageCommand < Thor
     end
 
     name, dir = TorqueBox::DeployUtils.deploy_yaml( descriptor, :name => DEPLOYMENT_NAME )
-    
+
     puts ">> Deployed #{name} to #{dir}"
   end
 
@@ -60,7 +60,7 @@ class BackstageCommand < Thor
   def root_dir
     File.expand_path( File.join( File.dirname( __FILE__ ), '..' ) )
   end
-  
+
 end
 
 BackstageCommand.start
