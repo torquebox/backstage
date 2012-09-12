@@ -3,6 +3,7 @@
   %title TorqueBox::BackStage
   %link{:rel=>"stylesheet", :type=>"text/css", :href=>url_for('/css/html5reset.css')}
   %link{:rel=>"stylesheet", :type=>"text/css", :href=>url_for('/css/style.css')}
+  %link{:rel=>"shortcut icon", :type=>"image/png", :href=>url_for('/favicon.png')}
   %script{:type=>"text/javascript", :src=> url_for('/jquery.min.js')}
   %script{:type=>"text/javascript", :src=> url_for('/app.js')}
   %body{:class => class_for_body}
@@ -24,13 +25,13 @@
         = yield
     #footer
       #tip
-        Tip: press the backquote (`) key to bring up a ruby 
+        Tip: press the backquote (`) key to bring up a ruby
         %a{:href => 'https://github.com/torquebox/torquebox-webconsole'}<
           console
       #version
         %a{:href => 'https://github.com/torquebox/backstage'}<
           Backstage
-        v#{Backstage::BACKSTAGE_VERSION} for 
+        v#{Backstage::BACKSTAGE_VERSION} for
         %a{:href => 'http://torquebox.org/'}<
-          TorqueBox 
+          TorqueBox
         v#{Backstage::TORQUEBOX_VERSION}
