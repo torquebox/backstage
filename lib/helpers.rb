@@ -220,6 +220,8 @@ module Backstage
         hornetq = JMX::MBeanServer.new[javax.management.ObjectName.new( 'org.hornetq:module=Core,type=Server' )]
         versions['HornetQ']['clustered'] = hornetq.clustered if versions['HornetQ'] && hornetq
         versions
+      rescue JMX::NoSuchBeanError
+        versions
       end
       
       def hornetq_cluster_info
