@@ -34,6 +34,17 @@ application source.
 You can install it via:
 
     jruby -S gem install torquebox-backstage
+
+By default, the gem command will try to install the latest versions of
+the TorqueBox gems that match the pessimistic version requirements of
+backstage. If you are installing backstage into a TorqueBox that is
+older than the latest release, you'll need to update your gem command
+to the latest version and use the `--conservative` flag when
+installing (the update is necessary due to a bug in older rubygems
+versions that prevents `--conservative` from working properly):
+
+    jruby -S gem update --system
+    jruby -S gem install torquebox-backstage --conservative
     
 Deploy backstage using the `backstage` command. You can deploy with security
 disabled: `jruby -S backstage deploy`
