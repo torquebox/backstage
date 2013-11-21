@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
   
 gem "sinatra", "1.2.6"
-gem 'haml', '~>3.0'
+gem 'haml', '>= 3.0.0'
 gem 'sass', '~>3.2.12'
 gem "jmx", '0.9'
 gem 'json', '1.8.1'
