@@ -20,9 +20,9 @@ available from BackStage are also available from `/jmx-console` (with
 the exception of queue message browsing), but are more accessible in
 BackStage.
 
-*Note:* The master branch now only supports TorqueBox 2.x. If you need
-BackStage for TorqueBox 1.x, install version 0.5.4 of the gem, or use
-the tag `v0.5.4` from this repo.
+*Note:* The master branch now only supports TorqueBox 2.x and 3.x. If
+you need BackStage for TorqueBox 1.x, install version 0.5.4 of the
+gem, or use the tag `v0.5.4` from this repo.
 
 ## Installation ##
 
