@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem "sinatra", "1.4.4"
+gem "sinatra", "1.3.6"
 gem 'haml', '~>3.0'
 gem 'sass', '~>3.0'
 gem "jmx", '0.9'
 gem 'json', '1.8.1'
 gem 'torquebox', '>= 2.0', "< 5.0"
 gem 'rack-accept', '~>0.4.0'
-gem 'torquebox-webconsole', '0.1.1'
+gem 'torquebox-webconsole', '0.2.0'
 
 # These are commented out to keep them out of Gemfile.lock
  #group :development do
