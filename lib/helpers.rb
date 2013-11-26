@@ -16,7 +16,6 @@
 require 'logger'
 require 'util'
 require 'authentication'
-require 'sinatra/url_for'
 
 module Backstage
   def self.jboss_log_dir
@@ -46,11 +45,9 @@ module Backstage
 
     helpers do
       include Backstage::Authentication
-      include Sinatra::UrlForHelper
 
-      def json_url_for(fragment, options = { })
-        options[:format] = 'json'
-        url_for( fragment, :full, options )
+      def json_url_for(fragment)
+        url(fragment) + "?format=json"
       end
 
       def object_path(object)
@@ -71,11 +68,11 @@ module Backstage
       alias_method :collection_path, :object_action_or_collection_path
 
       def redirect_to(location)
-        redirect url_for(location, :full)
+        redirect url(location)
       end
 
       def link_to(path, text, options = {})
-        "<a href='#{url_for path}' class='#{options[:class]}'>#{text}</a>"
+        "<a href='#{url path}' class='#{options[:class]}'>#{text}</a>"
       end
 
       def paginate(total, limit = 100)
@@ -134,7 +131,7 @@ module Backstage
       def action_button(object, action, text=nil)
         text ||= action.capitalize
         accum = <<-EOF
-<form method="post" action="#{url_for object_action_path(object, action)}">
+<form method="post" action="#{url object_action_path(object, action)}">
   <input type="submit" value="#{text}"/>
 </form>
         EOF
