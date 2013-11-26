@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir[
                 "backstage.rb",
                 "config.ru",
+                "torquebox-backstage.gemspec",
                 "[A-Z]*",
                 "config/**/*",
                 "lib/**/*",
@@ -32,20 +33,16 @@ Gem::Specification.new do |s|
 
 
   deps = [
-          [%q<sinatra>, "= 1.2.6"],
+          [%q<sinatra>, "= 1.4.4"],
           [%q<haml>, "~> 3.0"],
           [%q<sass>, "~> 3.1.2"],
           [%q<jmx>, "= 0.9"],
-          [%q<json>, "= 1.5.1"],
+          [%q<json>, "= 1.8.1"],
           [%q<torquebox>, ">= 2.0", "< 5.0"],
-          [%q<tobias-sinatra-url-for>, "= 0.2.1"],
           [%q<rack-accept>, "~> 0.4.4"],
           [%q<thor>, "= 0.14.6"],
           [%q<bundler>, "~> 1.0"],
-          [%q<torquebox-webconsole>, '0.1.1'],
-          [%q<watchr>, "~> 0.7", :dev],
-          [%q<rspec>, "~> 2.6.0", :dev],
-          [%q<rack-test>, "~> 0.6.0", :dev]
+          [%q<torquebox-webconsole>, '0.2.0']
          ]
   
   if s.respond_to? :specification_version then
