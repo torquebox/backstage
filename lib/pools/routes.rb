@@ -27,8 +27,8 @@ module Backstage
       script = params[:script] || ''
       response = { :script => script }
       begin
-        result = object.evaluate( script )
-        response[:result] = result
+        result = object.evaluate( script ) || 'null'
+        response[:result] = String.new(result.to_s)
       rescue Exception => ex
         response[:exception] = ex
         response[:backtrace] = ex.backtrace
