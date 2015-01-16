@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.name = %q{torquebox-backstage}
   s.version = IO.read(File.join(File.dirname(__FILE__), 'VERSION')).strip
   s.date = Time.now.strftime('%Y-%m-%d')
-  s.authors = ["Tobias Crawley", "David Glassborow", "Penumbra Shadow"]
-  
+  s.authors = ["Tobias Crawley", "David Glassborow", "Penumbra Shadow", "Tom Beauvais"]
+
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.description = %q{BackStage allows you to look behind the TorqueBox curtain, and view information about all of the components you have running. It includes support for remote code execution and log tailing to aid in debugging.}
   s.email = %q{tcrawley@redhat.com}
@@ -38,13 +38,13 @@ Gem::Specification.new do |s|
           [%q<sass>, "~> 3.1.2"],
           [%q<jmx>, "= 0.9"],
           [%q<json>, "= 1.8.1"],
-          [%q<torquebox>, ">= 2.0", "< 5.0"],
+          [%q<torquebox>, ">= 2.0", "< 4.0"],
           [%q<rack-accept>, "~> 0.4.4"],
           [%q<thor>, "= 0.14.6"],
           [%q<bundler>, "~> 1.0"],
           [%q<torquebox-webconsole>, '0.2.0']
          ]
-  
+
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
@@ -67,4 +67,3 @@ Gem::Specification.new do |s|
     end
   end
 end
-
