@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
                ] - %w{ Gemfile.lock }
 
   s.homepage = %q{http://github.com/torquebox/backstage}
-  s.licenses = ["AL"]
+  s.licenses = ["Apache-2.0"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.5.1}
   s.summary = %q{BackStage - Queue/Topic/Job/etc viewer for TorqueBox}
