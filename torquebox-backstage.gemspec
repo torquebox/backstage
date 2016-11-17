@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
           [%q<sinatra>, "= 1.4.4"],
           [%q<haml>, "~> 3.0"],
           [%q<sass>, "~> 3.1.2"],
-          [%q<jmx>, "= 0.9"],
+          [%q<jmx>, "= 1.0"],
           [%q<json>, "= 1.8.1"],
           [%q<torquebox>, ">= 2.0", "< 4.0"],
           [%q<rack-accept>, "~> 0.4.4"],
